@@ -4,7 +4,10 @@
 	contact you by phone, please include your phone number.
 </p>
 <%= render partial: 'shared/flash', locals: { flash: flash } %>
-<%= render partial: 'shared/validation_errors', verrors: @verrors  %>
+
+<% if @verrors %>
+	<%= render partial: 'shared/validation_errors', verrors: @verrors  %>
+<% end %>
 
 <%= form_for @contact, :url => home_create_contact_url do |f| %>
 
@@ -39,7 +42,7 @@
 	<div class="form-actions">
 		<%= f.submit 'Submit', :class => 'button small radius' %>
 		<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-			          home_support_url, :class => 'button small radius cancel' %>
+			          home_support_url, :class => 'button small radius cancel-button' %>
 	</div>
 
 <% end %>

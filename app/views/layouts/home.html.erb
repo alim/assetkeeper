@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Ignition" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Asset Keeper" %></title>
 
     <%= stylesheet_link_tag    "application" %>
 
@@ -21,7 +21,9 @@
     <!-- Navigation Menu ------------------------------------------ -->
     <nav class="top-bar" data-topbar>
       <ul class="title-area">
-        <li><%= image_tag('ignition_logo.svg', class: 'logo') %></li>
+        <li class="name">
+          <%= image_tag('ak_logo_name_60h.png', class: 'logo') %>
+        </li>
         <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       </ul>
 
@@ -62,19 +64,19 @@
         <li>
           <%= image_tag 'banner-1.jpg', alt: 'banner-1' %>
           <div class="orbit-caption">
-            Fire up your next great idea.
+            Simplified Asset Management for Your Community
           </div>
         </li>
         <li class="active">
           <%= image_tag 'banner-2.jpg', alt: 'banner-2' %>
           <div class="orbit-caption">
-            User and subscription management from the start.
+            Helping You Track Your Community's Vital Infrastructure
           </div>
         </li>
         <li>
           <%= image_tag 'banner-3.jpg', alt: 'banner-3' %>
           <div class="orbit-caption">
-            A starting framework for your next web application.
+            Enabling Your Community's Plan for the Future
           </div>
         </li>
       </ul>
@@ -86,6 +88,12 @@
       </div>
     </div>
 
+    <footer class='row'>
+      <div class='small-12 columns'>
+        <hr>
+        <p>&copy; Copyright 2014 - Netsource, LLC</p>
+      </div>
+    </footer>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
