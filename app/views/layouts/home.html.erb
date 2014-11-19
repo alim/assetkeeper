@@ -34,6 +34,14 @@
             <%= link_to 'Home', root_path %>
           </li>
 
+          <li <%= "#{active(home_pricing_path)}" %>>
+            <%= link_to 'Pricing', home_pricing_path %>
+          </li>
+
+          <li <%= "#{active(home_demo_path)}" %>>
+            <%= link_to 'Demo', home_demo_path %>
+          </li>
+
           <li <%= "#{active(home_about_path)}" %>>
             <%= link_to 'About', home_about_path %>
           </li>

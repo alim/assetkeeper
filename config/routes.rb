@@ -19,6 +19,8 @@ Ignition::Application.routes.draw do
 	end
 
   get   "home/index"
+  get   "home/pricing"
+  get   "home/demo"
   get   "home/support"
   get   "home/contact"
   post  "home/create_contact"
