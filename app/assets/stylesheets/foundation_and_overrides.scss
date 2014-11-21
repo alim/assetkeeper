@@ -54,8 +54,9 @@ $total-columns: 12;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #FF3500;
-$secondary-color: #aaaaaa;
+$primary-color: #ff6633;
+//$secondary-color: #aaaaaa;
+$secondary-color: #cccccc;
 $alert-color: #f04124;
 $success-color: #43AC6A;
 $warning-color: #f08a24;
@@ -1183,12 +1184,12 @@ $topbar-bg-color: $secondary-color;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: 60px;
-$topbar-margin-bottom: 20;
+$topbar-height: 70px;
+$topbar-margin-bottom: 10;
 
 // Controlling the styles for the title in the top bar
 $topbar-title-weight: bold;
-$topbar-title-font-size: rem-calc(28);
+$topbar-title-font-size: rem-calc(32);
 
 // Style the top bar dropdown elements
 $topbar-dropdown-bg: #ddd;
@@ -1205,7 +1206,7 @@ $topbar-link-color: #555;
 // $topbar-link-color-active: #fff;
 // $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: normal;
-// $topbar-link-font-size: rem-calc(13);
+$topbar-link-font-size: rem-calc(14);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 $topbar-link-bg: $topbar-bg;
 $topbar-link-bg-hover: #aaaaaa;

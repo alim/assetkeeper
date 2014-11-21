@@ -57,6 +57,13 @@ class HomeController < ApplicationController
   ## -------------------------------------------------------------------
 
   ######################################################################
+  # Presents a page that allows potential customers to try out our free
+  # demonstration system.
+  ######################################################################
+  def demo
+  end
+
+  ######################################################################
   # The support action will present a support page to the customer.
   ######################################################################
   def support
