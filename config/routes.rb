@@ -1,4 +1,4 @@
-Ignition::Application.routes.draw do
+AssetKeeper::Application.routes.draw do
   resources :projects
 
   resources :subscriptions

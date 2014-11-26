@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Ignition::Application.config.secret_key_base = '825b31c0672af7e8fe602f7ad2d39ef0cd23c3e00859c608c7a598b2bb878101be17c2cf32642f1155964d82e03bed4bf4c310576d60ae0c4f5076cf3db76d3c'
+AssetKeeper::Application.config.secret_key_base = '825b31c0672af7e8fe602f7ad2d39ef0cd23c3e00859c608c7a598b2bb878101be17c2cf32642f1155964d82e03bed4bf4c310576d60ae0c4f5076cf3db76d3c'
