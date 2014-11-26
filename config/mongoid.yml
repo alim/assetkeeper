@@ -4,15 +4,13 @@ production:
       uri:  mongodb://<%= ENV['MONGODB_USER'] %>:<%= ENV['MONGODB_PASSWORD'] %>@<%= ENV['MONGODB_HOST'] %>/assetkeeper_production
 
       options:
-        raise_not_found_error: true
-
         # How many times Moped should attempt to retry an operation after
         # failure. (default: 30)
-        # max_retries: 30
+        max_retries: 30
 
         # The time in seconds that Moped should wait before retrying an
         # operation on failure. (default: 1)
-        # retry_interval: 1
+        retry_interval: 1
 
 development:
   sessions:
