@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Ignition::Application.load_tasks
+AssetKeeper::Application.load_tasks
