@@ -1,7 +1,12 @@
 production:
   sessions:
     default:
-      uri:  <%= ENV['MONGOLAB_URI'] %>
+      #uri:  <%= ENV['MONGOLAB_URI'] %>
+      database: assetkeeper_production
+      hosts:
+        -  <%= ENV['MONGOLAB_HOST'] %>
+      username: <%= ENV['MONGOLAB_USERNAME'] %>
+      password: <%= ENV['MONGOLAB_PASSWORD'] %>
 
       options:
         # How many times Moped should attempt to retry an operation after
