@@ -233,7 +233,6 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   bson_ext
-  bundler (~> 1.7)
   cancan (~> 1.6)
   capybara
   coffee-rails (~> 4.0)

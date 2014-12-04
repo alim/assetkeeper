@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-# Specify version of bundler
-gem 'bundler', '~> 1.7'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.1'
 
