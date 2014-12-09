@@ -2,7 +2,7 @@ require "spec_helper"
 require "cancan/matchers"
 
 # TODO: Fill out ability tests
-describe Ability do
+describe Ability, :type => :model do
 include_context 'user_setup'
 include_context 'subscription_setup'
 
@@ -19,36 +19,36 @@ include_context 'subscription_setup'
     describe "Account access" do
       let(:account) { account_customer.account }
 
-      it {should be_able_to(:create, account)}
-      it {should be_able_to(:read, account)}
-      it {should be_able_to(:update, account)}
-      it {should be_able_to(:destroy, account)}
+      it {is_expected.to be_able_to(:create, account)}
+      it {is_expected.to be_able_to(:read, account)}
+      it {is_expected.to be_able_to(:update, account)}
+      it {is_expected.to be_able_to(:destroy, account)}
 
       context "with a different user" do
         let(:account) { another_customer.account }
 
-        it {should_not be_able_to(:create, account)}
-        it {should_not be_able_to(:read, account)}
-        it {should_not be_able_to(:update, account)}
-        it {should_not be_able_to(:destroy, account)}
+        it {is_expected.not_to be_able_to(:create, account)}
+        it {is_expected.not_to be_able_to(:read, account)}
+        it {is_expected.not_to be_able_to(:update, account)}
+        it {is_expected.not_to be_able_to(:destroy, account)}
       end
     end
 
     describe "Organization access" do
       let(:organization) { FactoryGirl.create(:organization, owner: account_customer) }
 
-      it {should be_able_to(:create, organization)}
-      it {should be_able_to(:read, organization)}
-      it {should be_able_to(:update, organization)}
-      it {should be_able_to(:destroy, organization)}
+      it {is_expected.to be_able_to(:create, organization)}
+      it {is_expected.to be_able_to(:read, organization)}
+      it {is_expected.to be_able_to(:update, organization)}
+      it {is_expected.to be_able_to(:destroy, organization)}
 
       context "different owner" do
         let(:organization) { FactoryGirl.create(:organization, owner: another_customer) }
 
-        it {should_not be_able_to(:create, organization)}
-        it {should_not be_able_to(:read, organization)}
-        it {should_not be_able_to(:update, organization)}
-        it {should_not be_able_to(:destroy, organization)}
+        it {is_expected.not_to be_able_to(:create, organization)}
+        it {is_expected.not_to be_able_to(:read, organization)}
+        it {is_expected.not_to be_able_to(:update, organization)}
+        it {is_expected.not_to be_able_to(:destroy, organization)}
       end
     end
 
@@ -61,20 +61,20 @@ include_context 'subscription_setup'
         project.organization = org
       }
 
-      it {should be_able_to(:read, project)}
-      it {should be_able_to(:create, project)}
-      it {should be_able_to(:update, project)}
-      it {should be_able_to(:destroy, project)}
+      it {is_expected.to be_able_to(:read, project)}
+      it {is_expected.to be_able_to(:create, project)}
+      it {is_expected.to be_able_to(:update, project)}
+      it {is_expected.to be_able_to(:destroy, project)}
 
       context "different owner" do
         let(:project) { FactoryGirl.create(:project, user: another_customer) }
         let(:org) { FactoryGirl.create(:organization, owner: another_customer) }
         before(:each) { account_customer.organization = nil }
 
-        it {should_not be_able_to(:create, project)}
-        it {should_not be_able_to(:read, project)}
-        it {should_not be_able_to(:update, project)}
-        it {should_not be_able_to(:destroy, project)}
+        it {is_expected.not_to be_able_to(:create, project)}
+        it {is_expected.not_to be_able_to(:read, project)}
+        it {is_expected.not_to be_able_to(:update, project)}
+        it {is_expected.not_to be_able_to(:destroy, project)}
 
       end
     end
@@ -103,19 +103,19 @@ include_context 'subscription_setup'
         subject(:admin_ability) { Ability.new(sub_admin) }
 
         it "Create a Subscription" do
-          should be_able_to(:create, subscription_fake_customer)
+          is_expected.to be_able_to(:create, subscription_fake_customer)
         end
 
         it "Read a Subscription" do
-          should be_able_to(:read, subscription_fake_customer)
+          is_expected.to be_able_to(:read, subscription_fake_customer)
         end
 
         it "Update a Subscription" do
-          should be_able_to(:update, subscription_fake_customer)
+          is_expected.to be_able_to(:update, subscription_fake_customer)
         end
 
         it "Delete a Subscription" do
-          should be_able_to(:destroy, subscription_fake_customer)
+          is_expected.to be_able_to(:destroy, subscription_fake_customer)
         end
       end
 
@@ -125,19 +125,19 @@ include_context 'subscription_setup'
         subject(:user_ability) { Ability.new(normal_user) }
 
         it "Create a Subscription" do
-          should be_able_to(:create, subscription_fake_customer)
+          is_expected.to be_able_to(:create, subscription_fake_customer)
         end
 
         it "Read a Subscription" do
-          should be_able_to(:read, subscription_fake_customer)
+          is_expected.to be_able_to(:read, subscription_fake_customer)
         end
 
         it "Update a Subscription" do
-          should be_able_to(:update, subscription_fake_customer)
+          is_expected.to be_able_to(:update, subscription_fake_customer)
         end
 
         it "Delete a Subscription" do
-          should be_able_to(:destroy, subscription_fake_customer)
+          is_expected.to be_able_to(:destroy, subscription_fake_customer)
         end
       end
 
@@ -145,19 +145,19 @@ include_context 'subscription_setup'
       describe "Subscription Non User Access Tests" do
 
         it "Create a Subscription" do
-          should_not be_able_to(:create, subscription_fake_abnormal_customer)
+          is_expected.not_to be_able_to(:create, subscription_fake_abnormal_customer)
         end
 
         it "Read a Subscription" do
-          should_not be_able_to(:read, subscription_fake_abnormal_customer)
+          is_expected.not_to be_able_to(:read, subscription_fake_abnormal_customer)
         end
 
         it "Update a Subscription" do
-          should_not be_able_to(:update, subscription_fake_abnormal_customer)
+          is_expected.not_to be_able_to(:update, subscription_fake_abnormal_customer)
         end
 
         it "Delete a Subscription" do
-          should_not be_able_to(:destroy, subscription_fake_abnormal_customer)
+          is_expected.not_to be_able_to(:destroy, subscription_fake_abnormal_customer)
         end
       end
     end

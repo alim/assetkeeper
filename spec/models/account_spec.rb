@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Account do
+describe Account, :type => :model do
   include_context 'user_setup'
 
   before(:each) {
@@ -13,15 +13,15 @@ describe Account do
 
   # METHOD CHECKS ------------------------------------------------------
 	describe "Method check" do
-		it { should respond_to(:status) }
-		it { should respond_to(:customer_id)}
-		it { should respond_to(:status_str) }
-		it { should respond_to(:stripe_cc_token) }
-		it { should respond_to(:cardholder_email) }
-		it { should respond_to(:cardholder_name)}
-		it { should respond_to(:last4) }
-		it { should respond_to(:card_type) }
-		it { should respond_to(:expiration) }
+		it { is_expected.to respond_to(:status) }
+		it { is_expected.to respond_to(:customer_id)}
+		it { is_expected.to respond_to(:status_str) }
+		it { is_expected.to respond_to(:stripe_cc_token) }
+		it { is_expected.to respond_to(:cardholder_email) }
+		it { is_expected.to respond_to(:cardholder_name)}
+		it { is_expected.to respond_to(:last4) }
+		it { is_expected.to respond_to(:card_type) }
+		it { is_expected.to respond_to(:expiration) }
 	end
 
 	# STATUS STRING CHECKS -----------------------------------------------
@@ -32,27 +32,27 @@ describe Account do
 
 	  it "Should return Unknown string for UNKNOWN status" do
 	    @account.status = Account::UNKNOWN
-	    @account.status_str.should eq("Unknown")
+	    expect(@account.status_str).to eq("Unknown")
 	  end
 
 	  it "Should return Active string for ACTIVE status" do
 	    @account.status = Account::ACTIVE
-	    @account.status_str.should eq("Active")
+	    expect(@account.status_str).to eq("Active")
 	  end
 
 	  it "Should return InActive string for INACTIVE status" do
 	    @account.status = Account::INACTIVE
-	    @account.status_str.should eq("Inactive")
+	    expect(@account.status_str).to eq("Inactive")
 	  end
 
 	  it "Should return Closed string for CLOSED status" do
 	    @account.status = Account::CLOSED
-	    @account.status_str.should eq("Closed")
+	    expect(@account.status_str).to eq("Closed")
 	  end
 
 	  it "Should return No Stripe Account string for NO_STRIPE status" do
 	    @account.status = Account::NO_STRIPE
-	    @account.status_str.should eq("No Stripe Account")
+	    expect(@account.status_str).to eq("No Stripe Account")
 	  end
 	end
 
@@ -85,43 +85,43 @@ describe Account do
 		    before { token }
 
 	      it "Should allow saving with stripe information to account record" do
-				  user.account.save_with_stripe(params).should be_true
+				  expect(user.account.save_with_stripe(params)).to be_truthy
 			  end
 
 			  it "Should update account with stripe customer id" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.customer_id.should be_present
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.customer_id).to be_present
 			  end
 
 			  it "Should update account with stripe customer email" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.cardholder_email.should eq(params[:cardholder_email])
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.cardholder_email).to eq(params[:cardholder_email])
 			  end
 
 			  it "Should update account with stripe customer name" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.cardholder_name.should eq(params[:cardholder_name])
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.cardholder_name).to eq(params[:cardholder_name])
 			  end
 
 			  it "Should update account with last4 of credit card" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.last4.should eq(cardnum.split(//).last(4).join)
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.last4).to eq(cardnum.split(//).last(4).join)
 			  end
 
 			  it "Should set account with credit card_type" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.card_type.should eq("Visa")
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.card_type).to eq("Visa")
 			  end
 
 			  it "Should set account with credit card expiration date" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.expiration.should eq(@token.card[:exp_month].to_s + '/' +
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.expiration).to eq(@token.card[:exp_month].to_s + '/' +
 			      @token.card[:exp_year].to_s)
 			  end
 
 			  it "Should update account status to ACTIVE" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.status.should eq(Account::ACTIVE)
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.status).to eq(Account::ACTIVE)
 			  end
 			end
 
@@ -144,10 +144,10 @@ describe Account do
 
 			  it "Should not save the account with an invalid token" do
 			    params[:account][:stripe_cc_token] = '123451234512345'
-			    user.account.save_with_stripe(params).should be_false
+			    expect(user.account.save_with_stripe(params)).to be_falsey
 
-			    user.account.status.should eq(Account::INACTIVE)
-				  user.account.errors.full_messages[0].should match(/Customer Invalid token id: 123451234512345/)
+			    expect(user.account.status).to eq(Account::INACTIVE)
+				  expect(user.account.errors.full_messages[0]).to match(/Customer Invalid token id: 123451234512345/)
 				end
 			end
 		end
@@ -190,52 +190,52 @@ describe Account do
 			  end
 
 			  it "Should update a saved account with new attributes" do
-			    user.account.save_with_stripe(params).should be_true
+			    expect(user.account.save_with_stripe(params)).to be_truthy
 			    customer_id = user.account.customer_id
 
 			    # Update record and check attributes
-			    user.account.update_with_stripe(update_params).should be_true
-			    user.account.customer_id.should eq(customer_id)
+			    expect(user.account.update_with_stripe(update_params)).to be_truthy
+			    expect(user.account.customer_id).to eq(customer_id)
 			  end
 
 
 			  it "Should update account with stripe customer email" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.update_with_stripe(update_params).should be_true
-			    user.account.cardholder_email.should eq(update_params[:cardholder_email])
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.update_with_stripe(update_params)).to be_truthy
+			    expect(user.account.cardholder_email).to eq(update_params[:cardholder_email])
 			  end
 
 			  it "Should update account with stripe customer name" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.update_with_stripe(update_params).should be_true
-			    user.account.cardholder_name.should eq(update_params[:cardholder_name])
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.update_with_stripe(update_params)).to be_truthy
+			    expect(user.account.cardholder_name).to eq(update_params[:cardholder_name])
 			  end
 
 			  it "Should update account with last4 of credit card" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.update_with_stripe(update_params).should be_true
-			    user.account.last4.should eq(cardnum.split(//).last(4).join)
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.update_with_stripe(update_params)).to be_truthy
+			    expect(user.account.last4).to eq(cardnum.split(//).last(4).join)
 			  end
 
 			  it "Should set account with credit card_type" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.update_with_stripe(update_params).should be_true
-			    user.account.card_type.should eq("Visa")
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.update_with_stripe(update_params)).to be_truthy
+			    expect(user.account.card_type).to eq("Visa")
 			  end
 
 			  it "Should set account with credit card expiration date" do
-			    user.account.save_with_stripe(params).should be_true
-			    user.account.update_with_stripe(update_params).should be_true
-			    user.account.expiration.should eq(@second_token.card[:exp_month].to_s + '/' +
+			    expect(user.account.save_with_stripe(params)).to be_truthy
+			    expect(user.account.update_with_stripe(update_params)).to be_truthy
+			    expect(user.account.expiration).to eq(@second_token.card[:exp_month].to_s + '/' +
 			      @second_token.card[:exp_year].to_s)
 			  end
 
 			  it "Should update a saved account and status should be ACTIVE" do
-			    user.account.save_with_stripe(params).should be_true
+			    expect(user.account.save_with_stripe(params)).to be_truthy
 
 			    # Update record and check attributes
-			    user.account.update_with_stripe(update_params).should be_true
-			    user.account.status.should eq(Account::ACTIVE)
+			    expect(user.account.update_with_stripe(update_params)).to be_truthy
+			    expect(user.account.status).to eq(Account::ACTIVE)
 			  end
 			end
 
@@ -268,12 +268,12 @@ describe Account do
 			  end
 
 			  it "Should not update the account with an invalid token" do
-			    user.account.save_with_stripe(params).should be_true
+			    expect(user.account.save_with_stripe(params)).to be_truthy
 			    update_params[:account][:stripe_cc_token] = '123412341234'
 
 			    # Update record and check attributes
-			    user.account.update_with_stripe(update_params).should be_false
-			    user.account.status.should eq(Account::INACTIVE)
+			    expect(user.account.update_with_stripe(update_params)).to be_falsey
+			    expect(user.account.status).to eq(Account::INACTIVE)
 			  end
 			end
 
@@ -301,36 +301,36 @@ describe Account do
 			  before { info_token }
 
 			  it "Should retrieve the correct email address" do
-				  user.account.save_with_stripe(params).should be_true
+				  expect(user.account.save_with_stripe(params)).to be_truthy
 				  user.account.get_customer
-				  user.account.cardholder_email.should eq(email)
+				  expect(user.account.cardholder_email).to eq(email)
 			  end
 
 			  it "Should retrieve the correct cardholder name" do
-				  user.account.save_with_stripe(params).should be_true
+				  expect(user.account.save_with_stripe(params)).to be_truthy
 				  user.account.get_customer
-				  user.account.cardholder_name.should eq(name)
+				  expect(user.account.cardholder_name).to eq(name)
 			  end
 
 			  it "Should retrieve the correct cardholder last 4 digits" do
-				  user.account.save_with_stripe(params).should be_true
+				  expect(user.account.save_with_stripe(params)).to be_truthy
 				  user.account.get_customer
-				  user.account.last4.should eq(cardnum.split(//).last(4).join)
+				  expect(user.account.last4).to eq(cardnum.split(//).last(4).join)
 			  end
 
 			  it "Should retrieve the correct card expiration" do
-				  user.account.save_with_stripe(params).should be_true
+				  expect(user.account.save_with_stripe(params)).to be_truthy
 				  user.account.get_customer
 
 				  month = @info_token.card[:exp_month].to_s
 				  year = @info_token.card[:exp_year].to_s
-				  user.account.expiration.should match(/#{month}\/#{year}/)
+				  expect(user.account.expiration).to match(/#{month}\/#{year}/)
 			  end
 
 	      it "Should have a status of ACTIVE" do
-				  user.account.save_with_stripe(params).should be_true
+				  expect(user.account.save_with_stripe(params)).to be_truthy
 				  user.account.get_customer
-				  user.account.status.should eq(Account::ACTIVE)
+				  expect(user.account.status).to eq(Account::ACTIVE)
 			  end
 			end
 
@@ -352,10 +352,10 @@ describe Account do
 			  end
 
 			  it "Should return an error, if customer_id is invalid" do
-			    user.account.save_with_stripe(params).should be_true
+			    expect(user.account.save_with_stripe(params)).to be_truthy
 			    user.account.customer_id = '1234123412341234'
-			    user.account.get_customer.should be_nil
-					user.account.errors.full_messages[0].should match(/Customer No such customer:/)
+			    expect(user.account.get_customer).to be_nil
+					expect(user.account.errors.full_messages[0]).to match(/Customer No such customer:/)
 			  end
 			end
 		end

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe OrganizationMailer do
+describe OrganizationMailer, :type => :mailer do
   before(:each) do
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
@@ -23,15 +23,15 @@ describe OrganizationMailer do
   end
 
   it 'should send an email' do
-    ActionMailer::Base.deliveries.count.should == 1
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
 
   it 'renders the receiver email' do
-    ActionMailer::Base.deliveries.first.to.should == [@user.email]
+    expect(ActionMailer::Base.deliveries.first.to).to eq([@user.email])
   end
 
   it 'renders the sender email' do
-    ActionMailer::Base.deliveries.first.from.should == [OrganizationMailer::ORGANIZATION_FROM_EMAIL]
+    expect(ActionMailer::Base.deliveries.first.from).to eq([OrganizationMailer::ORGANIZATION_FROM_EMAIL])
   end
 
 end

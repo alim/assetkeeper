@@ -2,7 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
+# require 'rspec/autorun'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'vcr'
@@ -31,6 +31,10 @@ VCR.configure do |c|
 end
 
 RSpec.configure do |config|
+  # default, enables both `should` and `expect`
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -73,6 +77,4 @@ RSpec.configure do |config|
   # Add VCR helpers
   # config.extend VCR::RSpec::Macros
 
-  # Allow metadata to be passed into a describe block
-  config.treat_symbols_as_metadata_keys_with_true_values = true
 end

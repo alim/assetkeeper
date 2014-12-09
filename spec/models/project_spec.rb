@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Project do
+describe Project, :type => :model do
   include_context 'project_setup'
 
   let(:a_project) { Project.where(:user_id.exists => true).first }
@@ -17,17 +17,17 @@ describe Project do
 
   ## METHOD CHECKS -----------------------------------------------------
 	describe "Should respond to all accessor methods" do
-		it { should respond_to(:name) }
-		it { should respond_to(:description) }
-		it { should respond_to(:user_id) }
-		it { should respond_to(:organization_id) }
+		it { is_expected.to respond_to(:name) }
+		it { is_expected.to respond_to(:description) }
+		it { is_expected.to respond_to(:user_id) }
+		it { is_expected.to respond_to(:organization_id) }
 	end
 
 	## VALIDATION CHECKS -------------------------------------------------
 	describe "Validation checks" do
 	  describe "Valid tests" do
 	    it "Should be valid with a user and NO organization" do
-	      a_project.should be_valid
+	      expect(a_project).to be_valid
 	    end
 	  end
 
@@ -35,18 +35,18 @@ describe Project do
 	    it "Should be invalid without a name" do
         project = a_project
 	      project.name = nil
-	      project.should_not be_valid
+	      expect(project).not_to be_valid
 	    end
 
 	    it "Should be invalid without a description" do
         project = a_project
 	      project.description = nil
-	      project.should_not be_valid
+	      expect(project).not_to be_valid
 	    end
 
 	    it "Should be invalid without a user_id" do
 	      project = FactoryGirl.build(:project)
-	      project.should_not be_valid
+	      expect(project).not_to be_valid
 	    end
 
 	    it "Project should be destroyed, if user is destroyed" do
@@ -71,17 +71,17 @@ describe Project do
         it "should find projects with matching user, but no organization" do
           projects = Project.in_organization(a_project.user)
           projects.each do |project|
-            project.user_id.should == a_project.user.id
-            project.organization.should be_nil
+            expect(project.user_id).to eq(a_project.user.id)
+            expect(project.organization).to be_nil
           end
 
-          projects.count.should <  Project.count
+          expect(projects.count).to be <  Project.count
         end
 
         it "should find a subset of the projects" do
           projects = Project.in_organization(a_project.user)
-          projects.count.should > 0
-          projects.count.should <  Project.count
+          expect(projects.count).to be > 0
+          expect(projects.count).to be <  Project.count
         end
 
         it "should find all projects part of the user's organization" do
@@ -92,7 +92,7 @@ describe Project do
 
           # Find projects not matching owner
           projects = Project.ne(user_id: owner.id)
-          projects.count.should > 0
+          expect(projects.count).to be > 0
 
           # Add projects to organization
           org.projects << projects
@@ -100,12 +100,12 @@ describe Project do
           # user_projects = Project.where(user_id: @project.user_id)
           found_projects = Project.in_organization(projects.last.user)
 
-          found_projects.count.should > 0
+          expect(found_projects.count).to be > 0
 
           found_projects.each do |project|
-            project.organization.id.should == org.id
-            project.organization.id.should_not be_nil
-            project.user.should_not eq owner
+            expect(project.organization.id).to eq(org.id)
+            expect(project.organization.id).not_to be_nil
+            expect(project.user).not_to eq owner
           end
         end
       end
@@ -116,18 +116,18 @@ describe Project do
         let(:a_user){ FactoryGirl.create(:user) }
 
         it "should not relate project to an organization if user doesn't belong to one" do
-          a_project.organization.should be_nil
+          expect(a_project.organization).to be_nil
           a_project.relate_to_organization
-          a_project.organization.should be_nil
+          expect(a_project.organization).to be_nil
         end
 
         it "should relate project to a user's organization" do
           org.users << a_user
           a_project.user = a_user
-          a_project.organization.should be_nil
+          expect(a_project.organization).to be_nil
 
           a_project.relate_to_organization
-          a_project.organization.should == org
+          expect(a_project.organization).to eq(org)
         end
       end
     end
@@ -151,7 +151,7 @@ describe Project do
 
     it "should relate the project to the correct user" do
       project = Project.create_with_user(project_params, new_user)
-      project.user.should == new_user
+      expect(project.user).to eq(new_user)
     end
   end
 

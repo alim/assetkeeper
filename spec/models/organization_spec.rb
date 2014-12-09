@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Organization do
+describe Organization, :type => :model do
   include_context 'user_setup'
   include_context 'organization_setup'
   include_context 'project_setup'
@@ -18,30 +18,30 @@ describe Organization do
 
   # ATTRIBUTE TESTS ----------------------------------------------------
   describe "Attribute tests" do
-    it { should respond_to(:name) }
-		it { should respond_to(:description) }
-		it { should respond_to(:owner) }
+    it { is_expected.to respond_to(:name) }
+		it { is_expected.to respond_to(:description) }
+		it { is_expected.to respond_to(:owner) }
   end
 
   # VALIDATION TESTS ---------------------------------------------------
   describe "Validation tests" do
     it "Should be valid with all fields" do
-      one_organization.should be_valid
+      expect(one_organization).to be_valid
     end
 
     it "Should not be valid without a name" do
       one_organization.name = nil
-      one_organization.should_not be_valid
+      expect(one_organization).not_to be_valid
     end
 
     it "Should not be valid without a description" do
       one_organization.description = nil
-      one_organization.should_not be_valid
+      expect(one_organization).not_to be_valid
     end
 
     it "Should not be valid without an owner" do
       one_organization.owner = nil
-      one_organization.should_not be_valid
+      expect(one_organization).not_to be_valid
     end
   end
 
@@ -57,26 +57,26 @@ describe Organization do
 
     it "Should store a list of white space delimited email addresses" do
       one_organization.members = email_list
-      one_organization.should be_valid
-      one_organization.members.should eq(email_list)
+      expect(one_organization).to be_valid
+      expect(one_organization.members).to eq(email_list)
     end
 
     it "Should not be valid, with invalid email list" do
       one_organization.members = invalid_email_list
-      one_organization.should_not be_valid
-      one_organization.members.should eq(invalid_email_list)
+      expect(one_organization).not_to be_valid
+      expect(one_organization.members).to eq(invalid_email_list)
     end
 
     it "Should log errors for each invalid email address" do
       one_organization.members = invalid_email_list
-      one_organization.should_not be_valid
+      expect(one_organization).not_to be_valid
       email = invalid_email_list.split
       i = 0
       one_organization.errors.full_messages.each do |message|
-        message.should match(/#{email[i]}/)
+        expect(message).to match(/#{email[i]}/)
         i += 1
       end
-      i.should eq(email.count)
+      expect(i).to eq(email.count)
     end
   end
 
@@ -89,31 +89,31 @@ describe Organization do
       }
 
       it "Should allow access to each user email" do
-        @organization.users.count.should eq(5)
-        @organization.users.each { |user| user.email.should be_present }
+        expect(@organization.users.count).to eq(5)
+        @organization.users.each { |user| expect(user.email).to be_present }
       end
 
       it "Should allow access to each user first_name" do
-        @organization.users.count.should eq(5)
-        @organization.users.each { |user| user.first_name.should be_present }
+        expect(@organization.users.count).to eq(5)
+        @organization.users.each { |user| expect(user.first_name).to be_present }
       end
 
       it "Should allow access to each user last_name" do
-        @organization.users.count.should eq(5)
-        @organization.users.each { |user| user.last_name.should be_present }
+        expect(@organization.users.count).to eq(5)
+        @organization.users.each { |user| expect(user.last_name).to be_present }
       end
 
       it "Should allow access to the organization name from each user" do
         User.all.each do |user|
-          user.organization.name.should be_present
-          user.organization.id.should eq(@organization.id)
+          expect(user.organization.name).to be_present
+          expect(user.organization.id).to eq(@organization.id)
         end
       end
 
       it "Should allow access to the organization description from each user" do
         User.all.each do |user|
-          user.organization.description.should be_present
-          user.organization.id.should eq(@organization.id)
+          expect(user.organization.description).to be_present
+          expect(user.organization.id).to eq(@organization.id)
         end
       end
     end # Single organization with multiple users
@@ -131,25 +131,25 @@ describe Organization do
 
     it "should return a hash of all matching user emails" do
       organization.members = user_list
-      organization.should be_valid
+      expect(organization).to be_valid
       users = organization.lookup_users
-      users.should_not be_empty
-      users.keys.join(' ').should == user_list
+      expect(users).not_to be_empty
+      expect(users.keys.join(' ')).to eq(user_list)
     end
 
 
     it "should return a hash of all User classes" do
       organization.members = user_list
-      organization.should be_valid
+      expect(organization).to be_valid
       users = organization.lookup_users
-      users.should_not be_empty
+      expect(users).not_to be_empty
       users.values.each {|u| u.class == User }
     end
 
     it "should return an empty hash if no members present" do
       organization.members = nil
-      organization.should be_valid
-      organization.lookup_users.should be_empty
+      expect(organization).to be_valid
+      expect(organization.lookup_users).to be_empty
     end
   end
 
@@ -167,13 +167,13 @@ describe Organization do
       @organization.create_notify
       @organization.users.count == 7
 
-      new_members.split {|e| User.where(email: e).should_not be_empty }
+      new_members.split {|e| expect(User.where(email: e)).not_to be_empty }
     end
 
     it "should create an email for each new user" do
       @organization.members = new_members
       @organization.create_notify
-      ActionMailer::Base.deliveries.count.should == 2
+      expect(ActionMailer::Base.deliveries.count).to eq(2)
     end
 
     it "should create an email messages with the right fields" do
@@ -181,9 +181,9 @@ describe Organization do
       @organization.create_notify
 
       ActionMailer::Base.deliveries.each do |d|
-        new_members.split.should include(d.to[0])
-        d.from[0].should match(/no-reply/)
-        d.subject.should match(/has added you to their organization.$/)
+        expect(new_members.split).to include(d.to[0])
+        expect(d.from[0]).to match(/no-reply/)
+        expect(d.subject).to match(/has added you to their organization.$/)
       end
     end
 
@@ -193,7 +193,7 @@ describe Organization do
       @organization.create_notify
 
       ActionMailer::Base.deliveries.each do |d|
-        current_users.split.should_not include(d.to[0])
+        expect(current_users.split).not_to include(d.to[0])
       end
     end
   end
@@ -207,19 +207,19 @@ describe Organization do
 
     it "should create an email for the invited user" do
       @organization.invite_member(@organization.users.last)
-      ActionMailer::Base.deliveries.count.should == 1
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
     end
 
     it "should address it to the write person" do
       @organization.invite_member(@organization.users.last)
-      ActionMailer::Base.deliveries.count.should == 1
-      ActionMailer::Base.deliveries.first.to[0].should == @organization.users.last.email
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.to[0]).to eq(@organization.users.last.email)
     end
 
     it "should have a password set" do
       @organization.invite_member(@organization.users.last)
-      ActionMailer::Base.deliveries.count.should == 1
-      ActionMailer::Base.deliveries.first.encoded.should match(/password:/)
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.first.encoded).to match(/password:/)
     end
   end
 
@@ -232,11 +232,11 @@ describe Organization do
 
     it "should set the organization of managed projects" do
       Project.all.each do |project|
-        project.organization.should be_nil
+        expect(project.organization).to be_nil
       end
       @organization.relate_classes
-      @organization.projects.count.should > 0
-      Project.all.each { |project| project.organization.should == @organization }
+      expect(@organization.projects.count).to be > 0
+      Project.all.each { |project| expect(project.organization).to eq(@organization) }
     end
 
     it "should not relate projects not created by organization owner" do
@@ -248,7 +248,7 @@ describe Organization do
       end
 
       @organization.relate_classes
-      @organization.projects.count.should == 0
+      expect(@organization.projects.count).to eq(0)
     end
 
   end
@@ -269,7 +269,7 @@ describe Organization do
 
       mclasses = @organization.managed_classes
       mclasses[:project].each do |project|
-        project.organization.should == @organization
+        expect(project.organization).to eq(@organization)
       end
     end
 
@@ -280,7 +280,7 @@ describe Organization do
   describe "#unrelate_classes" do
     let(:setup_projects) {
       Project.all.each do |project|
-        project.organization.should be_nil
+        expect(project.organization).to be_nil
       end
     }
     before(:each) {
@@ -291,11 +291,11 @@ describe Organization do
     it "should un-relate project classes" do
       setup_projects
       @organization.relate_classes
-      @organization.projects.count.should > 0
-      Project.all.each { |project| project.organization.should == @organization }
+      expect(@organization.projects.count).to be > 0
+      Project.all.each { |project| expect(project.organization).to eq(@organization) }
       @organization.unrelate_classes
-      @organization.projects.count.should == 0
-      Project.count.should > 0
+      expect(@organization.projects.count).to eq(0)
+      expect(Project.count).to be > 0
     end
   end
 
@@ -324,8 +324,8 @@ describe Organization do
 
     it "should relate the organization to the correct user" do
       org = Organization.create_with_owner(org_params, owner)
-      org.owner.should == owner
-      owner.organization.should == org
+      expect(org.owner).to eq(owner)
+      expect(owner.organization).to eq(org)
     end
   end
 end

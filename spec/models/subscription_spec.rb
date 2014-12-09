@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Subscription do
+describe Subscription, :type => :model do
   include_context 'subscription_setup'
 
   let(:find_a_subscription) {
@@ -19,18 +19,18 @@ describe Subscription do
 
   # METHOD CHECKS ------------------------------------------------------
 	describe "Should respond to all accessor methods" do
-		it { should respond_to(:stripe_plan_id) }
-		it { should respond_to(:cancel_at_period_end) }
-		it { should respond_to(:quantity) }
-		it { should respond_to(:sub_start) }
-		it { should respond_to(:sub_end) }
-		it { should respond_to(:status) }
-		it { should respond_to(:canceled_at) }
-		it { should respond_to(:current_period_start) }
-		it { should respond_to(:current_period_end) }
-		it { should respond_to(:trial_start) }
-		it { should respond_to(:trial_end) }
-		it { should respond_to(:user_id) }
+		it { is_expected.to respond_to(:stripe_plan_id) }
+		it { is_expected.to respond_to(:cancel_at_period_end) }
+		it { is_expected.to respond_to(:quantity) }
+		it { is_expected.to respond_to(:sub_start) }
+		it { is_expected.to respond_to(:sub_end) }
+		it { is_expected.to respond_to(:status) }
+		it { is_expected.to respond_to(:canceled_at) }
+		it { is_expected.to respond_to(:current_period_start) }
+		it { is_expected.to respond_to(:current_period_end) }
+		it { is_expected.to respond_to(:trial_start) }
+		it { is_expected.to respond_to(:trial_end) }
+		it { is_expected.to respond_to(:user_id) }
 	end
 
   # VALIDATION TESTS ---------------------------------------------------
@@ -38,32 +38,32 @@ describe Subscription do
 
     it "With all fields, model should be valid" do
       sub = FactoryGirl.create(:subscription)
-      sub.should be_valid
+      expect(sub).to be_valid
     end
 
     it "Should not be valid, if stripe_plan_id is missing" do
       subscription.stripe_plan_id = nil
-      subscription.should_not be_valid
+      expect(subscription).not_to be_valid
     end
 
     it "Should not be valid, if quantity is missing" do
       subscription.quantity = nil
-      subscription.should_not be_valid
+      expect(subscription).not_to be_valid
     end
 
     it "Should not be valid, if sub_start is missing" do
       subscription.sub_start = nil
-      subscription.should_not be_valid
+      expect(subscription).not_to be_valid
     end
 
     it "Should not be valid, if status is missing" do
       subscription.status = nil
-      subscription.should_not be_valid
+      expect(subscription).not_to be_valid
     end
 
     it "Should not be valid, if user_id is missing" do
       subscription.user_id = nil
-      subscription.should_not be_valid
+      expect(subscription).not_to be_valid
     end
   end # VALIDATION TESTS
 
@@ -71,17 +71,17 @@ describe Subscription do
 
     it "should return the correct bronze label" do
       subscription.stripe_plan_id = Subscription::PLAN_OPTIONS[:bronze][:plan_id]
-      subscription.plan_str.should == Subscription::PLAN_OPTIONS[:bronze][:label]
+      expect(subscription.plan_str).to eq(Subscription::PLAN_OPTIONS[:bronze][:label])
     end
 
     it "should return the correct silver label" do
       subscription.stripe_plan_id = Subscription::PLAN_OPTIONS[:silver][:plan_id]
-      subscription.plan_str.should == Subscription::PLAN_OPTIONS[:silver][:label]
+      expect(subscription.plan_str).to eq(Subscription::PLAN_OPTIONS[:silver][:label])
     end
 
     it "should return the correct gold label" do
       subscription.stripe_plan_id = Subscription::PLAN_OPTIONS[:gold][:plan_id]
-      subscription.plan_str.should == Subscription::PLAN_OPTIONS[:gold][:label]
+      expect(subscription.plan_str).to eq(Subscription::PLAN_OPTIONS[:gold][:label])
     end
 
   end
@@ -191,7 +191,7 @@ describe Subscription do
       end
 
       it "should specify the correct plan for the subscription" do
-        subscription.subscribe(@user.account, silver_plan_id, coupon_code).stripe_plan_id.should eql silver_plan_id
+        expect(subscription.subscribe(@user.account, silver_plan_id, coupon_code).stripe_plan_id).to eql silver_plan_id
       end
 
     end
@@ -208,7 +208,7 @@ describe Subscription do
       end
 
       it "should specify the correct plan for the subscription" do
-        subscription.subscribe(@user.account, bronze_plan_id, coupon_code).stripe_plan_id.should eql bronze_plan_id
+        expect(subscription.subscribe(@user.account, bronze_plan_id, coupon_code).stripe_plan_id).to eql bronze_plan_id
       end
     end
 
