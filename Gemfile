@@ -1,19 +1,21 @@
 source 'https://rubygems.org'
 
+## STANDARD RAILS 4.1.x Gemset ----------------------------------------
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1'
+gem 'rails', '4.1.8'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '~> 1.3.0'
+gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0'
+gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -22,17 +24,19 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.0'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Gems needed for our applications ------------------------------------
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+gem 'spring',        group: :development
 
-# Mongodb support - using master, since 3.0.5 does not support Rails 4
-gem 'mongoid', "~> 4.0.0.beta1", git: 'git://github.com/mongoid/mongoid.git'
+##  -------------------------------------------------------------------
+
+## APPLICATION SPECIFIC GEMS ##########################################
+
+gem 'mongoid', "~> 4.0"
 gem 'bson_ext'
 
 # UI Related Gems
@@ -44,7 +48,7 @@ gem 'foundation-icons-sass-rails'
 gem 'strip_attributes'
 
 # Authentication and Authorization
-gem 'devise', "~> 3.0"
+gem 'devise', "~> 3.4"
 gem 'cancan', "~> 1.6"
 
 # Paperclip GEM for handling file attachments
@@ -59,24 +63,23 @@ gem 'stripe'
 
 # Rspec, Cucumber and Webrat GEMs for TDD/BDD
 group :test, :development do
-	gem "factory_girl_rails"
-	gem 'rspec-rails'
-	gem "capybara"
-	gem 'pry-nav'
-	gem 'pry-rails', :group => :development
-	gem "webrat"
+  gem "factory_girl_rails"
+  gem 'rspec-rails'
+  gem "capybara"
+  gem 'pry-nav'
+  gem 'pry-rails'
+  gem "webrat"
   gem "database_cleaner"
   gem "vcr"
   gem "webmock"
 end
 
-# This needs to be installed so we can run Rails console on OpenShift directly
-gem 'minitest'
+#######################################################################
+
+## SETUP for Heroku ---------------------------------------------------
 
 group :production do
   gem 'rails_12factor'
 end
 
-# ---------------------------------------------------------------------
-
-ruby "1.9.3"
+ruby '2.1.5'
