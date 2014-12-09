@@ -39,7 +39,7 @@ describe User do
 			@user.first_name = @first_name + '    	    '
 			@user.save
 
-			@user.first_name.should eq(@first_name)
+			expect(@user.first_name).to eq(@first_name)
 		end
 
 		it "Should strip extra leading spaces" do
@@ -47,15 +47,15 @@ describe User do
 			@user.first_name = '    	    ' + @first_name
 			@user.save
 
-			@user.first_name.should eq(@first_name)
+			expect(@user.first_name).to eq(@first_name)
 		end
 
 		it "Should not be valid without a first_name" do
 			get_first_name
 			@user.first_name = nil
-			@user.should_not be_valid
-			@user.should have(1).error_on(:first_name)
-			@user.errors.full_messages[0].should match(/First name can't be blank/)
+			expect(@user).not_to be_valid
+			expect(@user).to have(1).error_on(:first_name)
+			expect(@user.errors.full_messages[0]).to match(/First name can't be blank/)
 		end
 	end
 
