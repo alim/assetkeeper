@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Sign up for new account" do 
+describe "Sign up for new account", :type => :feature do 
   let(:sign_up_page) {
     visit new_user_registration_url
   }

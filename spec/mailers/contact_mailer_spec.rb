@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe ContactMailer do
+describe ContactMailer, :type => :mailer do
   before(:each) do
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
@@ -18,15 +18,15 @@ describe ContactMailer do
   end
   
   it 'should send an email' do
-    ActionMailer::Base.deliveries.count.should == 1
+    expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
   
   it 'renders the receiver email' do
-    ActionMailer::Base.deliveries.first.to.should == [@contact.email]
+    expect(ActionMailer::Base.deliveries.first.to).to eq([@contact.email])
   end
   
   it 'renders the sender email' do  
-    ActionMailer::Base.deliveries.first.from.should == [ContactMailer::CONTACT_FROM]
+    expect(ActionMailer::Base.deliveries.first.from).to eq([ContactMailer::CONTACT_FROM])
   end
     
 end

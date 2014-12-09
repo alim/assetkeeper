@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe UsersController do
+describe UsersController, :type => :routing do
   describe "routing" do
 
     it "route to #index should not exist" do
@@ -12,27 +12,27 @@ describe UsersController do
     end
 
     it "routes to #new" do
-      get("/users/1/accounts/new").should route_to("accounts#new",
+      expect(get("/users/1/accounts/new")).to route_to("accounts#new",
         user_id: '1')
     end
 
     it "routes to #edit" do
-      get("/users/1/accounts/2/edit").should route_to("accounts#edit",
+      expect(get("/users/1/accounts/2/edit")).to route_to("accounts#edit",
         user_id: "1", id: '2')
     end
 
     it "routes to #create" do
-      post("/users/1/accounts").should route_to("accounts#create",
+      expect(post("/users/1/accounts")).to route_to("accounts#create",
         user_id: '1')
     end
 
     it "routes to #update" do
-      put("/users/1/accounts/2").should route_to("accounts#update",
+      expect(put("/users/1/accounts/2")).to route_to("accounts#update",
         user_id: "1", id: '2')
     end
 
     it "routes to #destroy" do
-      delete("/users/1/accounts/2").should route_to("accounts#destroy",
+      expect(delete("/users/1/accounts/2")).to route_to("accounts#destroy",
         user_id: "1", id: '2')
     end
 

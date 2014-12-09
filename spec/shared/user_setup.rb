@@ -32,6 +32,6 @@ shared_context 'user_setup' do
   let(:login_admin) {
     sign_out subject.current_user
     signin_admin
-    subject.current_user.should_not be_nil
+    expect(subject.current_user).not_to be_nil
   }
 end
