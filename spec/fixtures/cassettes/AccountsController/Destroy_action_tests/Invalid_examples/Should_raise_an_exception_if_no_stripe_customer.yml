@@ -1730,4 +1730,184 @@ http_interactions:
         }
     http_version: 
   recorded_at: Tue, 09 Dec 2014 05:19:22 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/customers/96664
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.1.5 p273 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.16.0-25-generic #33-Ubuntu SMP Tue Nov 4 12:06:54 UTC 2014 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 09 Dec 2014 17:33:37 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '118'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_Ed3Jao7gYS8vt6CQ
+      Stripe-Version:
+      - '2013-08-13'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "type": "invalid_request_error",
+            "message": "No such customer: 96664",
+            "param": "id"
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 17:33:37 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/customers/89713
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.1.5 p273 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.16.0-25-generic #33-Ubuntu SMP Tue Nov 4 12:06:54 UTC 2014 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 09 Dec 2014 19:12:41 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '118'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_X4Xhf28WSUnDtG1N
+      Stripe-Version:
+      - '2013-08-13'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "type": "invalid_request_error",
+            "message": "No such customer: 89713",
+            "param": "id"
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 19:12:41 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/customers/30534
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.1.5 p273 (2014-11-13)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.16.0-25-generic #33-Ubuntu SMP Tue Nov 4 12:06:54 UTC 2014 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 09 Dec 2014 19:15:30 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '118'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_qNuqCdlMpn4mhqcW
+      Stripe-Version:
+      - '2013-08-13'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "type": "invalid_request_error",
+            "message": "No such customer: 30534",
+            "param": "id"
+          }
+        }
+    http_version: 
+  recorded_at: Tue, 09 Dec 2014 19:15:30 GMT
 recorded_with: VCR 2.9.3

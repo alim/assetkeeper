@@ -660,7 +660,7 @@ describe OrganizationsController, :type => :controller do
 
         expect{
           delete :destroy, destroy_params
-        }.to_not change(Project, :count).by(-1)
+        }.to change(Project, :count).by(0)
 
         expect(Project.count).to eq(rcount)
       end

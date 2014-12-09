@@ -726,12 +726,12 @@ describe ProjectsController, :type => :controller do
         }.to change(Project, :count).by(-1)
       end
 
-      it "Should should not destroy any related organziations" do
+      it "Should should not destroy any related organizations" do
         org_count = Organization.count
         expect(org_count).not_to eq(0)
         expect {
           delete :destroy, destroy_params
-        }.to_not change(Organization, :count).by(-1)
+        }.to change(Organization, :count).by(0)
         expect(Organization.count).to eq(org_count)
       end
     end # Valid examples
@@ -823,11 +823,11 @@ describe ProjectsController, :type => :controller do
           }.to change(Project, :count).by(-1)
         end
 
-        it "Should reduce the number of organizations" do
+        it "Should not reduce the number of organizations" do
           org_count = Organization.count
           expect{
             delete :destroy, destroy_params
-          }.to_not change(Organization, :count).by(-1)
+          }.to change(Organization, :count).by(0)
         end
       end
 

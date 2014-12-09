@@ -21,7 +21,7 @@ AssetKeeper::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = false
+  config.assets.debug = true
 
   # Setup precompiling of assets. Normally set to false for development
   # but enable it for debugging production issues in development

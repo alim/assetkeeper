@@ -54,7 +54,6 @@ describe User, :type => :model do
 			get_first_name
 			@user.first_name = nil
 			expect(@user).not_to be_valid
-			expect(@user).to have(1).error_on(:first_name)
 			expect(@user.errors.full_messages[0]).to match(/First name can't be blank/)
 		end
 	end
@@ -85,7 +84,6 @@ describe User, :type => :model do
 			get_last_name
 			@user.last_name = nil
 			expect(@user).not_to be_valid
-			expect(@user).to have(1).error_on(:last_name)
 			expect(@user.errors.full_messages[0]).to match(/Last name can't be blank/)
 		end
 	end
@@ -116,7 +114,6 @@ describe User, :type => :model do
 			get_phone
 			@user.phone = nil
 			expect(@user).not_to be_valid
-			expect(@user).to have(1).error_on(:phone)
 			expect(@user.errors.full_messages[0]).to match(/Phone can't be blank/)
 		end
 	end
@@ -147,7 +144,6 @@ describe User, :type => :model do
 			get_email
 			@user.email = nil
 			expect(@user).not_to be_valid
-			expect(@user).to have(1).error_on(:email)
 			expect(@user.errors.full_messages[0]).to match(/Email can't be blank/)
 		end
 
@@ -157,7 +153,7 @@ describe User, :type => :model do
 			user.email = @user.email
 
 			expect(user).not_to be_valid
-			expect(user).to have(2).error_on(:email)
+			expect(user.errors.full_messages.count).to eq(2)
 		end
 	end
 
@@ -171,7 +167,7 @@ describe User, :type => :model do
 			get_role
 			@user.role = nil
 			expect(@user).not_to be_valid
-			expect(@user).to have(1).error_on(:role)
+			expect(@user.errors.full_messages.count).to eq(1)
 		end
 
 		it "Should not allow invalid role" do
@@ -179,7 +175,7 @@ describe User, :type => :model do
 			@user.role = 99
 
 			expect(@user).not_to be_valid
-			expect(@user).to have(1).error_on(:role)
+			expect(@user.errors.full_messages[0]).to match(/Role is invalid/)
 		end
 	end
 
