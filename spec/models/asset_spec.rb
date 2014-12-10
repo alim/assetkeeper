@@ -163,7 +163,20 @@ RSpec.describe Asset, :type => :model do
     end
   end
 
-  # CREATING WITH USER
+  ## CRITICATLITY -----------------------------------------------------
+
+  describe '#crticality' do
+    it 'should calculate the correct crticality' do
+      expect(@asset.criticality).to eq(@asset.failure_consequence * @asset.failure_probablity)
+    end
+
+    it 'should return zero if failure_probablity is UNKNOWN' do
+      @asset.failure_probablity = Asset::UNKNOWN_FAILURE
+      expect(@asset.criticality).to eq(0)
+    end
+  end
+
+  ## CREATING WITH USER -----------------------------------------------
 
   describe "#create_with_user" do
     let(:new_user){ FactoryGirl.create(:user) }
