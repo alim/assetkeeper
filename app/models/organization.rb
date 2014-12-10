@@ -28,6 +28,7 @@ class Organization
   # to the name of the class to which the groups will be given access
 
   has_many :projects
+  has_many :assets
 
   ## VALIDATIONS -------------------------------------------------------
 

@@ -61,6 +61,9 @@ gem 'figaro'
 # Stripe GEM for interacting with stripe.com payment service
 gem 'stripe'
 
+# Gem for tagging
+gem 'mongoid-tags-arent-hard'
+
 # Rspec, Cucumber and Webrat GEMs for TDD/BDD
 group :test, :development do
   gem "factory_girl_rails"
