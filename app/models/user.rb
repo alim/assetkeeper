@@ -91,7 +91,7 @@ class User
   ## RESOURCES MANAGED BY A USER
 
   has_many :projects, dependent: :destroy  # Example primary resource
-
+  has_many :assets, dependent: :destroy
 
   ## DELEGATIONS ------------------------------------------------------
 

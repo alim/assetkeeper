@@ -106,6 +106,8 @@ GEM
       tzinfo (>= 0.3.37)
     mongoid-paperclip (0.0.9)
       paperclip (>= 2.3.6)
+    mongoid-tags-arent-hard (1.1.5)
+      mongoid (>= 3.0.0)
     moped (2.0.2)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -250,6 +252,7 @@ DEPENDENCIES
   jquery-rails
   mongoid (~> 4.0)
   mongoid-paperclip
+  mongoid-tags-arent-hard
   pry-nav
   pry-rails
   rails (= 4.1.8)
