@@ -1,0 +1,51 @@
+<%= render 'shared/validation_errors', verrors: verrors  %>
+
+<%= form_for manufacturer do |f| %>
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :address %>
+      <%= f.text_area :address, rows: 6 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :website %>
+      <%= f.text_area :website, rows: 6 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :main_phone %>
+      <%= f.text_area :main_phone, rows: 6 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :main_fax %>
+      <%= f.text_area :main_fax, rows: 6 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :tags %>
+      <%= f.text_area :tags, rows: 6 %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, class: 'success-button' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                manufacturers_path, class: 'cancel-button' %>
+  </div>
+<% end %>

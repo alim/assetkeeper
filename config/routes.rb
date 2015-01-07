@@ -1,4 +1,6 @@
 AssetKeeper::Application.routes.draw do
+  resources :manufacturers
+
   resources :projects
 
   resources :subscriptions

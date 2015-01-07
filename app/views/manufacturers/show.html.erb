@@ -1,0 +1,74 @@
+<%- model_class = Manufacturer -%>
+<%= render 'shared/page_header',
+  flash: flash,
+  title: 'Manufacturer',
+  description: "The information on this page shows you a manufacturer record, which
+    includes the manufacturer owner and any user groups associated with the
+    manufacturer."
+%>
+
+<div class="row">
+ <div class="small-3 columns">
+    <div class="right inline"><strong>Name:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @manufacturer.name %>
+  </div>
+</div>
+
+<div class="row">
+ <div class="small-3 columns">
+    <div class="right inline"><strong>Address:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @manufacturer.address %>
+  </div>
+</div>
+
+<div class="row">
+ <div class="small-3 columns">
+    <div class="right inline"><strong>Website:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @manufacturer.website %>
+  </div>
+</div>
+
+<div class="row">
+ <div class="small-3 columns">
+    <div class="right inline"><strong>Main Phone:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @manufacturer.main_phone %>
+  </div>
+</div>
+
+<div class="row">
+ <div class="small-3 columns">
+    <div class="right inline"><strong>Main Fax:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @manufacturer.main_fax %>
+  </div>
+</div>
+
+<div class="row">
+ <div class="small-3 columns">
+    <div class="right inline"><strong>Tags:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @manufacturer.tags %>
+  </div>
+</div>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              manufacturers_path, :class => 'cancel-button'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_manufacturer_path(@manufacturer), :class => 'success-button' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              manufacturer_path(@manufacturer),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'delete-button right' %>
+</div>
