@@ -4,6 +4,8 @@
 # ActiveModel validations to help validate the form entries.
 #######################################################################
 class Contact
+  include Mongoid::Document
+  include Mongoid::Timestamps
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
@@ -16,6 +18,9 @@ class Contact
 
   validates :name, :email, :body, :presence => true
   validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => true
+
+	# RELATIONSHIPS -------------------------------------------------------
+     embedded_in :manufacturer
 
   # INSTANCE METHODS --------------------------------------------------
 

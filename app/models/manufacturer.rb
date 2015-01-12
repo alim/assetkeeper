@@ -36,6 +36,7 @@ class Manufacturer
   validates_presence_of :tags
 
  ## RELATIONSHIPS ----------------------------------------------------
+  embeds_many :contacts
 
  ## DELEGATIONS ------------------------------------------------------
 
