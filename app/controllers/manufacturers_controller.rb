@@ -71,7 +71,7 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers/1/edit
   #
   # The standard edit method will display the edit form and include the
-  # ability to select groups that will be given access to the 
+  # ability to select groups that will be given access to the
   # manufacturers.
   ######################################################################
 
@@ -81,7 +81,7 @@ class ManufacturersController < ApplicationController
   ######################################################################
   # POST /manufacturers
   #
-  # The create method will create a new manufacturer and relate any 
+  # The create method will create a new manufacturer and relate any
   # selected groups that the user selected.
   ######################################################################
 
@@ -121,8 +121,8 @@ class ManufacturersController < ApplicationController
   # DELETE /manufacturers/1
   # DELETE /manufacturers/1.json
   #
-  # The destroy manufacturer method will delete the manufacturer, 
-  # but does not destroy the related groups that were given access to 
+  # The destroy manufacturer method will delete the manufacturer,
+  # but does not destroy the related groups that were given access to
   # the manufacturer.
   ######################################################################
 

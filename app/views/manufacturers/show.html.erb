@@ -61,6 +61,48 @@
   </div>
 </div>
 
+<% if @manufacturer.contacts.size > 0 %>
+ <h2>Contacts</h2>
+ <% for contact in @manufacturer.contacts %>
+   <h3><%= contact.name %></h3>
+   <h3><%= contact.email %></h3>
+ <% end %>
+<% end %>
+
+<h2> New Contact</h2>
+
+<%= form_for [@manufacturer, Contact.new] do |f| %>
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+    </div>
+  </div>
+
+  <p><%= f.submit %></p>
+<% end %>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               manufacturers_path, :class => 'cancel-button'  %>

@@ -12,7 +12,6 @@
 class Manufacturer
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paperclip
 
   # Add call to strip leading and trailing white spaces from all attributes
   strip_attributes  # See strip_attributes for more information
@@ -36,8 +35,8 @@ class Manufacturer
   validates_presence_of :tags
 
  ## RELATIONSHIPS ----------------------------------------------------
-  embeds_many :contacts
 
+  embeds_many :contacts
  ## DELEGATIONS ------------------------------------------------------
 
  ## PUBLIC METHODS ---------------------------------------------------

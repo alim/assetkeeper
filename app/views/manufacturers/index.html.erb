@@ -1,5 +1,4 @@
 <%- model_class = Manufacturer -%>
-<% if current_user.role == User::SERVICE_ADMIN %>
   <%= render 'shared/page_header',
     flash: flash,
     title: 'Service Wide Manufacturer Listing',
@@ -10,17 +9,6 @@
       associated with each manufacturer maybe shared with user groups
       that you designate."
   %>
-<% else %>
-  <%= render 'shared/page_header',
-    flash: flash,
-    title: 'Your Manufacturer List',
-    description: "This page will show you a complete listing of
-      manufacturers that you have created. These manufacturers and the records
-      associated with each manufacturer maybe shared with user groups
-      that you manage. If you would like to create a <em>new</em>
-      manufacturer, then use the 'New' button at the bottom at the page."
-  %>
-<% end %>
 
 <div class='row'>
   <div class='12-small columns'>

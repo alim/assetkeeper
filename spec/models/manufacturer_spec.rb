@@ -11,6 +11,13 @@ describe Manufacturer, :type => :model do
     @manufacturer = Manufacturer.last
   }
 
+  # CREATE A LIST OF MANUFACTURERS WITH CONTACTS ------------------------------------------------
+
+ let(:find_a_manufacturer_with_contact) {
+    create_manufacturers_with_contact
+    @manufacturer_with_contact = Manufacturer.last
+  }
+
  # LOGIN AS ADMIN  ------------------------------------------------
 
   let(:admin_login) {
@@ -134,4 +141,39 @@ describe Manufacturer, :type => :model do
       }.to change(Manufacturer, :count).by(1)
     end
  end
+
+
+  # Nested / embedded Contact Tests ------------------------------------
+
+  describe "Nested/embedded Contact Tests" do
+    before(:each) {
+      find_a_manufacturer_with_contact
+    }
+
+    describe "Valid tests" do
+      it "Should be valid to have an embedded contact" do
+        expect(@manufacturer_with_contact).to be_valid
+      end
+
+      it "Should have a contact name" do
+        expect(@manufacturer_with_contact.contacts.name).to be_present
+      end
+
+      it "Should have a contact email" do
+        expect(@manufacturer_with_contact.contacts.email).to be_present
+      end
+
+      it "Should have a contact phone" do
+        expect(@manufacturer_with_contact.contacts.phone).to be_present
+      end
+
+      it "Should have a contact body" do
+        expect(@manufacturer_with_contact.contacts.body).to be_present
+      end
+
+      it "Should have a contact phone" do
+        expect(@manufacturer_with_contact.contacts.phone).to eq("734.555.1212")
+      end
+    end
+  end
 end
