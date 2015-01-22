@@ -20,6 +20,9 @@ FactoryGirl.define do
     main_fax "888-999-1111"
     tags "Disney"
 
-    contact { FactoryGirl.build(:contact) }
+    contacts {[
+      FactoryGirl.build(:contact),
+      FactoryGirl.build(:contact)
+    ]}
   end
 end

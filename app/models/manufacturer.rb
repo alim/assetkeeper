@@ -34,12 +34,13 @@ class Manufacturer
   validates_presence_of :main_fax
   validates_presence_of :tags
 
- ## RELATIONSHIPS ----------------------------------------------------
+  ## RELATIONSHIPS ----------------------------------------------------
 
   embeds_many :contacts
- ## DELEGATIONS ------------------------------------------------------
 
- ## PUBLIC METHODS ---------------------------------------------------
+  ## DELEGATIONS ------------------------------------------------------
+
+  ## PUBLIC METHODS ---------------------------------------------------
 
   #####################################################################
   # Create a new manufacturer if the current user is Admin

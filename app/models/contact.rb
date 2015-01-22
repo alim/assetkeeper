@@ -6,9 +6,6 @@
 class Contact
   include Mongoid::Document
   include Mongoid::Timestamps
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
 
 	# ACCESSORS ---------------------------------------------------------
 
@@ -20,18 +17,8 @@ class Contact
   validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => true
 
 	# RELATIONSHIPS -------------------------------------------------------
-     embedded_in :manufacturer
+  embedded_in :manufacturer
 
   # INSTANCE METHODS --------------------------------------------------
-
-  def initialize(attributes = {})
-    attributes.each do |name, value|
-      send("#{name}=", value)
-    end
-  end
-
-  def persisted?
-    false
-  end
 
 end
