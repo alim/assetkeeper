@@ -61,13 +61,49 @@
   </div>
 </div>
 
-<% if @manufacturer.contacts.size > 0 %>
- <h2>Contacts</h2>
- <% for contact in @manufacturer.contacts %>
-   <h3><%= contact.name %></h3>
-   <h3><%= contact.email %></h3>
- <% end %>
-<% end %>
+<div class='row'>
+  <div class='12-small columns'>
+
+    <% if @manufacturer.contacts.size > 0 %>
+      <table class=""full-width"">
+        <thead>
+          <tr>
+            <th width="20%">Name</th>
+            <th width="30%">Email</th>
+            <th width="20%">Phone</th>
+            <th width="20%">Body</th>
+            <th width="10%"><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @manufacturer.contacts.each do |contact| %>
+            <tr>
+              <td><%= link_to contact.name, manufacturer_contacts_path(@manufacturer, contact) %></td>
+              <td><%= link_to contact.email, manufacturer_contacts_path(@manufacturer, contact) %></td>
+              <td><%= link_to contact.phone, manufacturer_contacts_path(@manufacturer, contact) %></td>
+              <td><%= link_to contact.body, manufacturer_contacts_path(@manufacturer, contact) %></td>
+              <td>
+                <%= link_to t('.edit', default: t("helpers.links.edit")),
+                            manufacturer_contacts_path(@manufacturer, contact), class: 'intable-success-button' %>
+                <%= link_to t('.destroy', default: t("helpers.links.destroy")),
+                            manufacturer_contacts_path(@manufacturer, contact),
+                            method: :delete,
+                            data: { confirm: t('.confirm', default: t("helpers.links.confirm",
+                              default: 'Are you sure?')) },
+                            class: 'intable-delete-button' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>
+        No contacts have been created yet. Click on the <strong>New</strong>
+        button below to create your first one.
+      </p>
+    <% end %>
+  </div>
+</div>
 
 <h2> New Contact</h2>
 

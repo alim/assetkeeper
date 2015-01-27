@@ -12,9 +12,16 @@ class ContactsController < ApplicationController
   # or checks Class permissions
   authorize_resource
 
+  def index
+  end
+
+  ######################################################################
+  # POST   /admin/manufacturers/:manufacturer_id/contacts(.:format)
+  #
+  # The create method will create a new manufacturer contact.
+  ######################################################################
   def create
     @new_contact = @manufacturer.contacts.create!(contact_params)
-    binding.pry
 
     if @manufacturer.save
         redirect_to @manufacturer, :notice => "Contact was successfully created."
@@ -24,6 +31,30 @@ class ContactsController < ApplicationController
     end
   end
 
+  ######################################################################
+  # DELETE /admin/manufacturer/:manufacturer_id/contacts/:id(.:format)
+  #
+  # The destroy method will destroy the contact record associated with
+  # the manufacturer object.
+  ######################################################################
+  def destroy
+
+      @remove_contact = Contact.find(params[:contact_id])
+
+      if @remove_contact.present?
+        begin
+          @remove_contact.destroy
+          redirect_to @manufacturer, :notice => "Contact was successfully deleted."
+        rescue Exception => contact_error
+          flash[:alert] = "Error deleting contact - #{contact_error.message}"
+          redirect_to @manufacturer
+        end
+      else
+        flash[:alert] = "Could not find contact to delete."
+        redirect_to @manufacturer
+      end
+
+  end
 # PRIVATE INSTANCE METHODS =----------------------------------------
   private
 
@@ -31,7 +62,7 @@ class ContactsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   # We do the following actions:
   # * Try to lookup the resource
-  # * Catch the error if not found and redirect with error message
+  # * Then assign a global variable to access the embedded object
   ####################################################################
   def set_manufacturer
     @manufacturer = Manufacturer.find(params[:manufacturer_id])

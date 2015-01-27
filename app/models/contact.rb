@@ -9,10 +9,10 @@ class Contact
 
  # ATTRIBUTES ---------------------------------------------------------
 
-  field :name
-  field :email
-  field :phone
-  field :body
+  field :name, type: String
+  field :email, type: String
+  field :phone, type: String
+  field :body, type: String
 
 	# VALIDATIONS -------------------------------------------------------
 
