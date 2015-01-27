@@ -7,9 +7,12 @@ class Contact
   include Mongoid::Document
   include Mongoid::Timestamps
 
-	# ACCESSORS ---------------------------------------------------------
+ # ATTRIBUTES ---------------------------------------------------------
 
-  attr_accessor :name, :email, :phone, :body
+  field :name
+  field :email
+  field :phone
+  field :body
 
 	# VALIDATIONS -------------------------------------------------------
 

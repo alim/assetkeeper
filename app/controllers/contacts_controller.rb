@@ -12,16 +12,16 @@ class ContactsController < ApplicationController
   # or checks Class permissions
   authorize_resource
 
-  #def new
-   # @manufacturer.contacts = Contact.new
-   # @manufacturer.reload
-  #end
-
   def create
-    @contact = @manufacturer.contacts.create!(contact_params)
-    @contact.save
-    @manufacturer.reload
-    redirect_to @manufacturer, :notice => "Contact created"
+    @new_contact = @manufacturer.contacts.create!(contact_params)
+    binding.pry
+
+    if @manufacturer.save
+        redirect_to @manufacturer, :notice => "Contact was successfully created."
+    else
+        @verrors = @contact.errors.full_messages
+        redirect_to @manufacturer, :notice => "Contact was not successfully created."
+    end
   end
 
 # PRIVATE INSTANCE METHODS =----------------------------------------
