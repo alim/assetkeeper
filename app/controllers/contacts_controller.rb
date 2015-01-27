@@ -12,18 +12,20 @@ class ContactsController < ApplicationController
   # or checks Class permissions
   authorize_resource
 
-  def new
-    @manufacturer.contacts = Contact.new
-    @manufacturer.reload
-  end
+  #def new
+   # @manufacturer.contacts = Contact.new
+   # @manufacturer.reload
+  #end
 
   def create
-    @contact = @manufacturer.contacts.create!(params[:contact])
-    redirect_to @manufacturer, :notice => "Comment created"
+    @contact = @manufacturer.contacts.create!(contact_params)
+    @contact.save
+    @manufacturer.reload
+    redirect_to @manufacturer, :notice => "Contact created"
   end
 
-# PROTECTED INSTANCE METHODS =----------------------------------------
-  protected
+# PRIVATE INSTANCE METHODS =----------------------------------------
+  private
 
   ####################################################################
   # Use callbacks to share common setup or constraints between actions.
@@ -36,10 +38,18 @@ class ContactsController < ApplicationController
 
     authorize! :update, @manufacturer
 
-    #if @manufacturer.contacts.present?
-      #@contact = @manufacturer.contacts
-    #else
-      #@contact = nil
-    #end
+    if @manufacturer.contacts.present?
+      @contact = @manufacturer.contacts
+    else
+      @contact = nil
+    end
   end
+  ######################################################################
+  # Never trust parameters from the scary internet, only allow the
+  # white list through.
+  ######################################################################
+
+    def contact_params
+      params.require(:contact).permit(:name, :email, :website, :phone, :body)
+    end
 end

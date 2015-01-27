@@ -147,32 +147,33 @@ describe Manufacturer, :type => :model do
 
   describe "Nested/embedded Contact Tests" do
     before(:each) {
-      find_a_manufacturer_with_contact
+      @manufacturer_with_contacts = FactoryGirl.create(:manufacturercontact)
+      @contacts = @manufacturer_with_contacts.contacts.last
     }
 
     describe "Valid tests" do
       it "Should be valid to have an embedded contact" do
-        expect(@manufacturer_with_contact).to be_valid
+        expect(@manufacturer_with_contacts).to be_valid
       end
 
       it "Should have a contact name" do
-        expect(@manufacturer_with_contact.contacts.name).to be_present
+        expect(@contacts.name).to be_present
       end
 
       it "Should have a contact email" do
-        expect(@manufacturer_with_contact.contacts.email).to be_present
+        expect(@contacts.email).to be_present
       end
 
       it "Should have a contact phone" do
-        expect(@manufacturer_with_contact.contacts.phone).to be_present
+        expect(@contacts.phone).to be_present
       end
 
       it "Should have a contact body" do
-        expect(@manufacturer_with_contact.contacts.body).to be_present
+        expect(@contacts.body).to be_present
       end
 
       it "Should have a contact phone" do
-        expect(@manufacturer_with_contact.contacts.phone).to eq("734.555.1212")
+        expect(@contacts.phone).to eq("734.555.1212")
       end
     end
   end
