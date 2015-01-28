@@ -1,3 +1,6 @@
+
+<% if contact.present? %>
+
 <%= form_for contact , url: manufacturer_contacts_url, method: :post do |f| %>
   <div class="row">
     <div class="small-8 columns">
@@ -35,4 +38,38 @@
       </div>
     </div>
   </div>
+<% end %>
+<% else %>
+
+<%= form_for [@manufacturer, Contact.new] do |f| %>
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+    </div>
+  </div>
+
+  <p><%= f.submit %></p>
+<% end %>
 <% end %>
