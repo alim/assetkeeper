@@ -84,7 +84,7 @@
               <td><%= link_to contact.body, manufacturer_contacts_path(@manufacturer, contact) %></td>
               <td>
                 <%= link_to t('.edit', default: t("helpers.links.edit")),
-                            manufacturer_contacts_path(@manufacturer, contact), class: 'intable-success-button' %>
+                            edit_manufacturer_contact_url(@manufacturer, contact), class: 'intable-success-button' %>
                 <%= link_to t('.destroy', default: t("helpers.links.destroy")),
                             manufacturer_contacts_path(@manufacturer, contact),
                             method: :delete,
