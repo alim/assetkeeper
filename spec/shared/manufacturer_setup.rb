@@ -1,5 +1,5 @@
 ########################################################################
-# Provide shared macros for testing user accounts
+# Provide shared macros for testing manufacturer
 ########################################################################
 shared_context 'manufacturer_setup' do
 

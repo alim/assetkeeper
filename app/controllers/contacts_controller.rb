@@ -12,6 +12,21 @@ class ContactsController < ApplicationController
   # or checks Class permissions
   authorize_resource
 
+  ######################################################################
+  # GET    /admin/manufacturers/:manufacturer_id/contacts/new(.:format)
+  #
+  # The new method will create a new contact
+  ######################################################################
+  def new
+    @contact = nil
+    #begin
+      #@manufacturer.contacts = Contact.new
+    #rescue Exception => new_error
+      #flash[:alert] = "New Contact error associated with account error = #{new_error.message}"
+      #redirect_to @manufacturer
+    #end
+  end
+
   def index
   end
 
@@ -31,6 +46,25 @@ class ContactsController < ApplicationController
     end
   end
 
+  ######################################################################
+  # PUT or PATCH  /admin/manufacturers/:manufacturer_id/contacts/:id(.:format)
+  #
+  # The update method will update a manufacturer contact.
+  ######################################################################
+  #def update
+    #if @contact.present?
+
+      #if @manufacturer.contacts.update(params)
+        #redirect_to @manufacturer, notice: 'Contact was successfully updated.'
+      #else
+        #render  :edit
+      #end
+
+    #else
+      #flash[:alert] = "We could not find the contact."
+      #redirect_to @manufacturer
+    #end
+  #end
   ######################################################################
   # DELETE /admin/manufacturer/:manufacturer_id/contacts/:id(.:format)
   #
