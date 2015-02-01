@@ -18,6 +18,7 @@ class Ability
 
         can :crud, Account, user: {id: user.id}
         can :crud, Subscription, user_id: user.id
+        can :read, Manufacturer
         can [:crud, :notify], Organization, owner_id: user.id
 				can [:show, :edit, :update], User, id: user.id
 				can :crud, Project do |project|

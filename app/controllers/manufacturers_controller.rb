@@ -36,9 +36,9 @@ class ManufacturersController < ApplicationController
      # Get page number
                 page = params[:page].nil? ? 1 : params[:page]
 
-    if current_user.role == User::SERVICE_ADMIN
+    #if current_user.role == User::SERVICE_ADMIN
       @manufacturers = Manufacturer.all.paginate(page: page,      per_page: PAGE_COUNT)
-    end
+    #end
   end
 
   ######################################################################
