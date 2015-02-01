@@ -18,13 +18,15 @@ class ContactsController < ApplicationController
   # The new method will create a new contact
   ######################################################################
   def new
-    @contact = nil
-    #begin
-      #@manufacturer.contacts = Contact.new
-    #rescue Exception => new_error
-      #flash[:alert] = "New Contact error associated with account error = #{new_error.message}"
-      #redirect_to @manufacturer
-    #end
+  end
+
+  ######################################################################
+  # GET /admin/manufacturers/:manufacturer_id/contacts/:id(.:format)
+  #
+  # The edit method will update a manufacturer contact.
+  ######################################################################
+  def edit
+    @contact = @contacts.find(params[:id])
   end
 
   def index
@@ -51,20 +53,21 @@ class ContactsController < ApplicationController
   #
   # The update method will update a manufacturer contact.
   ######################################################################
-  #def update
-    #if @contact.present?
+  def update
 
-      #if @manufacturer.contacts.update(params)
-        #redirect_to @manufacturer, notice: 'Contact was successfully updated.'
-      #else
-        #render  :edit
-      #end
+    @update_contact = @contacts.find(params[:id])
 
-    #else
-      #flash[:alert] = "We could not find the contact."
-      #redirect_to @manufacturer
-    #end
-  #end
+    if @update_contact.present?
+      if @update_contact.update_attributes(contact_params)
+        redirect_to @manufacturer, :notice => "Contact was successfully updated."
+      else
+        render  :edit
+      end
+    else
+      flash[:alert] = "We could not find the contact."
+      redirect_to @manufacturer
+    end
+  end
   ######################################################################
   # DELETE /admin/manufacturer/:manufacturer_id/contacts/:id(.:format)
   #
@@ -72,8 +75,7 @@ class ContactsController < ApplicationController
   # the manufacturer object.
   ######################################################################
   def destroy
-
-      @remove_contact = Contact.find(params[:contact_id])
+      @remove_contact = @contacts.find(params[:id])
 
       if @remove_contact.present?
         begin
@@ -104,9 +106,9 @@ class ContactsController < ApplicationController
     authorize! :update, @manufacturer
 
     if @manufacturer.contacts.present?
-      @contact = @manufacturer.contacts
+      @contacts = @manufacturer.contacts
     else
-      @contact = nil
+      @contacts = nil
     end
   end
   ######################################################################

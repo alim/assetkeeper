@@ -70,11 +70,11 @@
               <td><%= contact.phone %></td>
               <td><%= contact.body %></td>
               <td>
-                <%= link_to t('.edit', default: t("helpers.links.edit")),
-                            edit_manufacturer_contact_url(@manufacturer, contact), class: 'intable-success-button' %>
-                <%= link_to t('.destroy', default: t("helpers.links.destroy")),
-                            manufacturer_contacts_path(@manufacturer, contact),
-                            method: :delete,
+                <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                            edit_manufacturer_contact_path(@manufacturer, contact), class: 'intable-success-button' %>
+                <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                            manufacturer_contact_path(@manufacturer, contact),
+                            :method => 'delete',
                             data: { confirm: t('.confirm', default: t("helpers.links.confirm",
                               default: 'Are you sure?')) },
                             class: 'intable-delete-button' %>
