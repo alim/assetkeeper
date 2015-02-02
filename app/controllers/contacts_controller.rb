@@ -39,7 +39,6 @@ class ContactsController < ApplicationController
   ######################################################################
   def create
     @new_contact = @manufacturer.contacts.create!(contact_params)
-
     if @manufacturer.save
         redirect_to @manufacturer, :notice => "Contact was successfully created."
     else

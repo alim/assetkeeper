@@ -21,28 +21,65 @@ require 'spec_helper'
 RSpec.describe ContactsController, :type => :controller do
 
   include_context 'contact_setup'
+  include_context 'manufacturer_setup'
   include_context 'user_setup'
 
 # CREATE A LIST OF MANUFACTURERS -------------------------------------------
 
-  let(:find_a_contact) {
-    create_contacts
-    @fake_contact = Contact.last
+  let(:find_a_manufacturer) {
+    create_manufacturers_with_contact
+    @manufacturer = Manufacturer.last
   }
+
 
   # CREATE PARAMETERS -------------------------------------------
 
   let(:create_params) {
-      {contact:
+    {
+      manufacturer_id: @manufacturer.id,
+      contact:
         {
-         name: @fake_contact.name,
-         email: @fake_contact.email,
-         phone: @fake_contact.phone,
-         body: @fake_contact.body,
+         name: "John Miles",
+         email: "johnmiles@testing.com",
+         phone: "123-456-7890",
+         body: "None",
         }
-      }
+     }
     }
 
+# UPDATE PARAMETERS -------------------------------------------
+
+  let(:update_params) {
+    {
+      manufacturer_id: @manufacturer.id,
+      id: @manufacturer.contacts.last.id,
+      contact:
+        {
+         name: "John Miles",
+         email: "johnmiles@testing.com",
+         phone: "123-456-7890",
+         body: "None",
+        }
+     }
+    }
+
+# DELETE PARAMETERS -------------------------------------------
+
+  let(:delete_params) {
+    {
+      manufacturer_id: @manufacturer.id,
+      id: @manufacturer.contacts.last.id,
+    }
+  }
+
+  # NONEXISTENT CONTACT PARAMETERS -------------------------------------------
+
+  let(:nonexistent_contact_params) {
+    {
+      manufacturer_id: @manufacturer.id,
+      id: "54cfc6d87567652ca5000000",
+    }
+  }
 # LOGIN AS ADMIN -------------------------------------------
 
   let(:login_contact_admin) {
@@ -53,9 +90,8 @@ RSpec.describe ContactsController, :type => :controller do
 # LOGIN AS NON-ADMIN -------------------------------------------
 
   let(:login_non_contact_admin) {
-   sign_out subject.current_user
    @non_contact_admin_user = FactoryGirl.create(:user)
-   sign_in @non_manufacturer_admin_user
+   sign_in @non_contact_admin_user
   }
 
 # LOG BACK IN AS ADMIN -------------------------------------------
@@ -65,33 +101,110 @@ RSpec.describe ContactsController, :type => :controller do
    sign_in @contact_admin_user
   }
 
-  # INITIALIZE PARAMETERS -------------------------------------------
+    # ADMIN TESTS -------------------------------------------
 
-  let(:show_params) { {id: @fake_manufacturer } }
-  let(:edit_params) { {id: @fake_manufacturer } }
-  let(:destroy_params){ {id: @fake_manufacturer } }
+describe "GET for Admin Users", :vcr do
 
-  let(:new_main_phone){ "999-999-9999" }
-  let(:update_params){
-    {
-     id: @fake_contact,
-      manufacturer: {
-      phone: new_phone,
-     }
-    }
-   }
-
-   # SETUP FOR EACH ADMIN TEST -------------------------------------------
+    # SETUP FOR EACH ADMIN TEST -------------------------------------------
 
     before(:each) {
-     find_a_contact
+     find_a_manufacturer
      login_contact_admin
     }
 
     after(:each) {
-     Contact.destroy_all
+     Manufacturer.destroy_all
     }
 
-    # ADMIN TESTS -------------------------------------------
+  describe "POST create", :vcr do
 
+    describe "with valid params" do
+      it "creates a new Contact" do
+        post :create, create_params
+        expect(response).to redirect_to ("http://test.host/manufacturers/#{assigns(:manufacturer).id}")
+        flash[:notice].should eq("Contact was successfully created.")
+      end
+    end
+  end
+
+  describe "PUT update", :vcr do
+
+    describe "with valid params" do
+      it "update a Contact" do
+        put :update, update_params
+        expect(response).to redirect_to ("http://test.host/manufacturers/#{assigns(:manufacturer).id}")
+        flash[:notice].should eq("Contact was successfully updated.")
+      end
+    end
+
+    describe "with invalid params" do
+      it "Redirect to admin_oops_url - update a Contact that cannot be found" do
+        put :update, nonexistent_contact_params
+        expect(response).to redirect_to admin_oops_url
+      end
+    end
+  end
+
+  describe "DELETE Destroy", :vcr do
+
+    describe "with valid params" do
+      it "delete a Contact" do
+        delete :destroy, delete_params
+        expect(response).to redirect_to ("http://test.host/manufacturers/#{assigns(:manufacturer).id}")
+        flash[:notice].should eq("Contact was successfully deleted.")
+      end
+    end
+
+    describe "with invalid params" do
+      it "Redirect to admin_oops_url - delete a Contact that cannot be found" do
+        delete :destroy, nonexistent_contact_params
+        expect(response).to redirect_to admin_oops_url
+      end
+    end
+  end
+ end
+
+ describe "GET for Admin Users", :vcr do
+
+    # SETUP FOR EACH NON-ADMIN TEST -------------------------------------------
+
+    before(:each) {
+     find_a_manufacturer
+     login_non_contact_admin
+    }
+
+    after(:each) {
+     Manufacturer.destroy_all
+    }
+
+  describe "POST create", :vcr do
+
+    describe "with valid params" do
+      it "Redirect to admin_oops_url - creates a new Contact fails for non-admin user" do
+        post :create, create_params
+        expect(response).to redirect_to admin_oops_url
+      end
+    end
+   end
+
+  describe "PUT update", :vcr do
+
+   describe "with valid params" do
+      it "Redirect to admin_oops_url - update a Contact fails for non-admin user" do
+        put :update, update_params
+        expect(response).to redirect_to admin_oops_url
+      end
+   end
+  end
+
+  describe "DELETE Destroy", :vcr do
+
+   describe "with valid params" do
+      it "Redirect to admin_oops_url - delete a Contact fails for non-admin user" do
+        delete :destroy, delete_params
+        expect(response).to redirect_to admin_oops_url
+      end
+    end
+  end
+ end
 end
