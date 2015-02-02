@@ -230,7 +230,7 @@ RSpec.describe ManufacturersController, :type => :controller do
         expect(assigns(:manufacturers).count).to eq(count)
       end
     end # Index authorization
-    
+
     describe "Authorization Show examples", :vcr do
 
       describe "access by Admin" do
@@ -243,7 +243,7 @@ RSpec.describe ManufacturersController, :type => :controller do
           get :show, show_params
           expect(assigns(:manufacturer).id).to eq(@fake_manufacturer.id)
         end
-      end 
+      end
     end # Show Admin Access
 
     describe "Authorization Edit examples", :vcr do
@@ -257,7 +257,7 @@ RSpec.describe ManufacturersController, :type => :controller do
           get :edit, edit_params
           expect(assigns(:manufacturer).id).to eq(@fake_manufacturer.id)
         end
-      end 
+      end
     end # Edit Admin Access
 
      describe "Authorization Destroy examples", :vcr do
@@ -266,7 +266,7 @@ RSpec.describe ManufacturersController, :type => :controller do
           delete :destroy, destroy_params
           expect(response).to redirect_to manufacturers_url
         end
-      end 
+      end
     end # Destroy Admin Access
 
  end # Admin Test Examples
@@ -275,18 +275,18 @@ RSpec.describe ManufacturersController, :type => :controller do
 
  describe "Non-Admin Authorization Examples", :vcr do
   describe "Authorization Index Examples" do
-    it "Redirect to admin_oops_url for a manufacturer NOT accessible by the user" do
+    it "Return success for a manufacturer READ-ONLY access by the Non-Admin" do
         login_non_manufacturer_admin
         get :index
-        expect(response).to redirect_to admin_oops_url
+        expect(response).to be_success
       end
     end # Index authorization
 
   describe "Authorization Show Examples" do
-    it "Redirect to admin_oops_url for a manufacturer NOT accessible by the user" do
+    it "Return success for a manufacturer READ-ONLY access by the Non-Admin" do
         login_non_manufacturer_admin
         get :show, show_params
-        expect(response).to redirect_to admin_oops_url
+        expect(response).to be_success
       end
     end # Show authorization
 
