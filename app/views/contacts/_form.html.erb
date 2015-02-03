@@ -35,10 +35,10 @@
      <div class="form-actions">
     <%= f.submit nil, class: 'success-button' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                manufacturers_path, class: 'cancel-button' %>
-  </div>
+                manufacturer_path(@manufacturer), class: 'cancel-button' %>
     </div>
-  </div>
+   </div>
+ </div>
 <% end %>
 <% else %>
 
@@ -71,6 +71,14 @@
     </div>
   </div>
 
-  <p><%= f.submit %></p>
+<div class='row'>
+    <div class='small-12 columns'>
+     <div class="form-actions">
+    <%= f.submit nil, class: 'success-button' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                manufacturer_path(@manufacturer), class: 'cancel-button' %>
+    </div>
+   </div>
+ </div>
 <% end %>
 <% end %>
