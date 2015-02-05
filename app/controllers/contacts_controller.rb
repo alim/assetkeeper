@@ -7,9 +7,11 @@ class ContactsController < ApplicationController
 
   before_action :set_manufacturer
 
+  #
   # CANCAN AUTHORIZATION -----------------------------------------------
   # This helper assumes that the instance variable @group is loaded
   # or checks Class permissions
+  #
   authorize_resource
 
   ######################################################################
