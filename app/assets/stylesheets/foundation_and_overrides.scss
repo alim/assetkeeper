@@ -54,7 +54,8 @@ $total-columns: 12;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #ff6633;
+// $primary-color: #ff6633;
+$primary-color: #0091d4;
 //$secondary-color: #aaaaaa;
 $secondary-color: #cccccc;
 $alert-color: #f04124;
@@ -1385,16 +1386,32 @@ $action-color: #008CBA;
 
 // Admin section definitions //////////////////////////////////////////
 
-img.admin-logo {
-  height: 80%;
-}
+//img.admin-logo {
+//  height: 80%;
+//}
 
-// .full-height {
-//   height: 100vh;
-// }
+.full-height {
+  height: 100vh;
+}
 
 footer.admin {
   background-color: $topbar-bg-color;
   margin-top: rem-calc(50);
   padding: rem-calc(10) rem-calc(10) rem-calc(10) rem-calc(10);
+}
+
+img.admin-logo {
+  height: 90%;
+}
+
+.sidebar {
+  width: 50px;
+  min-height: 100vh;
+  background-color: $topbar-bg-color;
+}
+
+.sidebar-icon {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.8rem;
 }
