@@ -4,29 +4,24 @@
 # ActiveModel validations to help validate the form entries.
 #######################################################################
 class Contact
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  extend ActiveModel::Naming
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-	# ACCESSORS ---------------------------------------------------------
+ # ATTRIBUTES ---------------------------------------------------------
 
-  attr_accessor :name, :email, :phone, :body
+  field :name, type: String
+  field :email, type: String
+  field :phone, type: String
+  field :body, type: String
 
 	# VALIDATIONS -------------------------------------------------------
 
   validates :name, :email, :body, :presence => true
   validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => true
 
+	# RELATIONSHIPS -------------------------------------------------------
+  embedded_in :manufacturer
+
   # INSTANCE METHODS --------------------------------------------------
-
-  def initialize(attributes = {})
-    attributes.each do |name, value|
-      send("#{name}=", value)
-    end
-  end
-
-  def persisted?
-    false
-  end
 
 end
