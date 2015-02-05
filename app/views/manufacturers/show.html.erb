@@ -1,0 +1,99 @@
+<%- model_class = Manufacturer -%>
+<%= render 'shared/page_header',
+  flash: flash,
+  title: 'Manufacturer',
+  description: "The information on this page shows you a manufacturer record, which
+    includes the manufacturer owner and any user groups associated with the
+    manufacturer."
+%>
+
+<div class='row'>
+  <div class='12-small columns'>
+      <table class=""full-width"">
+        <thead>
+          <tr>
+            <th width="20%">Name</th>
+            <th width="30%">Address</th>
+            <th width="20%">Website</th>
+            <th width="20%">Main Phone</th>
+            <th width="20%">Main Fax</th>
+            <th width="20%">Tags</th>
+            <th width="10%"><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%= @manufacturer.name %></td>
+              <td><%= @manufacturer.address %></td>
+              <td><%= @manufacturer.website %></td>
+              <td><%= @manufacturer.main_phone %></td>
+              <td><%= @manufacturer.main_fax %></td>
+              <td><%= @manufacturer.tags %></td>
+              <td>
+               <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                 edit_manufacturer_path(@manufacturer), :class => 'success-button' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                manufacturer_path(@manufacturer),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'delete-button right' %>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+   </div>
+</div>
+
+<fieldset>
+
+  <legend>Manufacturer Contact Information</legend>
+
+<div class='row'>
+  <div class='12-small columns'>
+
+    <% if @manufacturer.contacts.size > 0 %>
+      <table class=""full-width"">
+        <thead>
+          <tr>
+            <th width="20%">Name</th>
+            <th width="30%">Email</th>
+            <th width="20%">Phone</th>
+            <th width="20%">Body</th>
+            <th width="10%"><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @manufacturer.contacts.each do |contact| %>
+            <tr>
+              <td><%= contact.name %></td>
+              <td><%= contact.email %></td>
+              <td><%= contact.phone %></td>
+              <td><%= contact.body %></td>
+              <td>
+                <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                            edit_manufacturer_contact_path(@manufacturer, contact), class: 'intable-success-button' %>
+                <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                            manufacturer_contact_path(@manufacturer, contact),
+                            :method => 'delete',
+                            data: { confirm: t('.confirm', default: t("helpers.links.confirm",
+                              default: 'Are you sure?')) },
+                            class: 'intable-delete-button' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>
+        No contacts have been created yet. Click on the <strong>New</strong>
+        button below to create your first one.
+      </p>
+    <% end %>
+  </div>
+</div>
+</fieldset>
+
+<div class="form-actions">
+ <%= link_to t('.new', :default => t("helpers.links.new")),
+ new_manufacturer_contact_url(@manufacturer), :class => 'success-button' %>
+ </div>

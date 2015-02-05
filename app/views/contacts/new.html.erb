@@ -1,0 +1,10 @@
+<%- model_class = Contact -%>
+<%= render 'shared/page_header',
+  flash: flash,
+  title: 'New Contact',
+  description: "You can create a new contact using the form below.
+    The contact is an embedded component of the manufacturer record.
+    Other contact records will be related to this manufacturer record."
+%>
+
+<%= render 'form', manufacturer: @manufacturer, contact: @contact, verrors: @verrors %>
