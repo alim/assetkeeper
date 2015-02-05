@@ -1,0 +1,12 @@
+<%- model_class = Manufacturer -%>
+<%= render 'shared/page_header',
+  flash: flash,
+  title: 'New Manufacturer',
+  description: "You can create a new manufacturer using the form below.
+    The manufacturer will represent the primary resource on this service.
+    Other records will be related to this manufacturer record. You can
+    also grant access to a manufacturer to any user groups that you
+    have created."
+%>
+
+<%= render 'form', manufacturer: @manufacturer, verrors: @verrors %>
