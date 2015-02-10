@@ -18,40 +18,16 @@ class Asset
 
   ## CONSTANTS --------------------------------------------------------
 
-  # CONDITION VALUES
+  CONDITION_VALUES = { excellent: 5, very_good: 4, good: 3, poor: 2, very_poor: 1}
 
-  EXCELLENT_CONDITION = 5
-  VERY_GOOD_CONDITION = 4
-  GOOD_CONDITION = 3
-  POOR_CONDITION = 2
-  VERY_POOR_CONDITION = 1
+  FAILURE_VALUES = { immenent: 5, likely: 4, neither: 3, unlikely: 2,
+    very_unlikely: 1, unknown: 0 }
 
-  # PROBABLILITY OF FAILURE
+  CONSEQUENCE_VALUES = { extremely_high: 5, high: 4, moderate: 3, low: 2,
+    very_low: 1}
 
-  IMMENENT_FAILURE = 5
-  LIKELY_FAILURE = 4
-  NEITHER_FAILURE = 3
-  UNLIKELY_FAILURE = 2
-  VERY_UNLIKELY_FAILURE = 1
-  UNKNOWN_FAILURE = 0
-
-  # CONSEQUENCE OF FAILURE
-
-  EXTREMELY_HIGH_CONSEQUENCE = 5
-  HIGH_CONSEQUENCE = 4
-  MODERATE_CONSEQUENCE = 3
-  LOW_CONSEQUENCE = 2
-  VERY_LOW_CONSEQUENCE = 1
-
-  # STATUS VALUES
-
-  ORDERED_STATUS = 1
-  IN_INVENTORY = 2
-  SCHEDULED_FOR_INSTALLATION = 3
-  OPERATIONAL = 4
-  SCHEDULED_FOR_REPLACEMENT = 5
-  REMOVED = 6
-  DOWN_FOR_MAINTENANCE = 7
+  STATUS_VALUES = { ordered: 1, in_inventory: 2, scheduled_for_installation: 3,
+    operational: 4, scheduled_for_replacement: 5, removed: 6, maintenance: 7}
 
   ## FIELDS -----------------------------------------------------------
 
@@ -75,6 +51,11 @@ class Asset
   # Relationships needed in the near future
   # belongs_to :category
   # belongs_to :manufacturer
+
+  ## DELEGATIONS ------------------------------------------------------
+
+  delegate :first_name, :last_name, to: :user, prefix: true
+  delegate :name, to: :organization, prefix: true
 
   ## VALIDATIONS ------------------------------------------------------
 

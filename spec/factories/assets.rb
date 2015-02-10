@@ -11,10 +11,10 @@ FactoryGirl.define do
     longitude "45.321"
     material "MyString"
     date_installed Date.new(2014, 12, 1)
-    condition Asset::GOOD_CONDITION
-    failure_probablity Asset::NEITHER_FAILURE
-    failure_consequence Asset::EXTREMELY_HIGH_CONSEQUENCE
-    status Asset::OPERATIONAL
+    condition Asset::CONDITION_VALUES[:good]
+    failure_probablity Asset::FAILURE_VALUES[:neither]
+    failure_consequence Asset::CONSEQUENCE_VALUES[:moderate]
+    status Asset::STATUS_VALUES[:operational]
   end
 
 end

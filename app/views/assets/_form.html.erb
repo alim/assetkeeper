@@ -1,0 +1,35 @@
+<%= render 'shared/validation_errors', verrors: verrors  %>
+
+<%= form_for project do |f| %>
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 6 %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-8 columns">
+      <label>Charter Document</label>
+      <% if project.charter_doc.present? %>
+        <label>Current file is - <%= project.charter_doc_file_name %></label>
+        <br/>
+      <% end %>
+      <%= f.file_field :charter_doc %>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, class: 'success-button' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                projects_path, class: 'cancel-button' %>
+  </div>
+<% end %>

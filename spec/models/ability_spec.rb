@@ -52,6 +52,32 @@ include_context 'subscription_setup'
       end
     end
 
+    describe "Asset access" do
+      let(:asset) { FactoryGirl.create(:asset, user: account_customer) }
+      let(:org) { FactoryGirl.create(:organization, owner: account_customer ) }
+
+      before(:each) {
+        account_customer.organization = org
+        asset.organization = org
+      }
+
+      it {is_expected.to be_able_to(:read, asset)}
+      it {is_expected.to be_able_to(:create, asset)}
+      it {is_expected.to be_able_to(:update, asset)}
+      it {is_expected.to be_able_to(:destroy, asset)}
+
+      context "different owner" do
+        let(:asset) { FactoryGirl.create(:asset, user: another_customer) }
+        let(:org) { FactoryGirl.create(:organization, owner: another_customer) }
+        before(:each) { account_customer.organization = nil }
+
+        it {is_expected.not_to be_able_to(:create, asset)}
+        it {is_expected.not_to be_able_to(:read, asset)}
+        it {is_expected.not_to be_able_to(:update, asset)}
+        it {is_expected.not_to be_able_to(:destroy, asset)}
+      end
+    end
+
     describe "Project access" do
       let(:project) { FactoryGirl.create(:project, user: account_customer) }
       let(:org) { FactoryGirl.create(:organization, owner: account_customer ) }
@@ -78,6 +104,7 @@ include_context 'subscription_setup'
 
       end
     end
+
     describe "Subscription Access Tests" do
 
       # Create a normal user

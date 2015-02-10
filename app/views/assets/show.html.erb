@@ -1,0 +1,113 @@
+<%- model_class = Project -%>
+<%= render 'shared/page_header',
+  flash: flash,
+  title: "Asset - #{@asset.name}",
+  description: "The information on this page shows you a asset record, which
+    includes the asset owner and any user groups associated with the
+    asset."
+%>
+<div class="row">
+  <div class="small-12 columns">
+    <%= render 'asset_subnav' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Name:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @asset.name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Description:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @asset.description.html_safe %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Material:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @asset.material.html_safe %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Condition:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @asset.condition_str %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Failure Likelihood:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @asset.failure_str %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Date Installed:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @asset.install_date %>
+  </div>
+</div>
+
+<br/>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Organization:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <% if @asset.organization_name %>
+      <%=link_to @asset.organization_name, @asset.organization %>
+    <% else %>
+      No organization associated with the asset.
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Location:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= @asset.location %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Coordinates:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= link_to("Google Map", @asset.google_map_url, class: "button radius tiny", target: "_blank") %>
+  </div>
+</div>
+
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              assets_path, :class => 'cancel-button'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_asset_path(@asset), :class => 'success-button' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              asset_path(@asset),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'delete-button right' %>
+</div>

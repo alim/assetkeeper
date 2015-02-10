@@ -1,0 +1,87 @@
+<%- model_class = Project -%>
+<% if current_user.role == User::SERVICE_ADMIN %>
+  <%= render 'shared/page_header',
+    flash: flash,
+    title: 'Service Asset Listing',
+    description: "This page will show you a complete listing of
+      assets that have been created across the <em>entire</em> system.
+      This view is a <em>Service Administrator</em> view and
+      should be used with caution. These assets and the records
+      associated with each assets maybe shared with user groups
+      that you designate."
+  %>
+<% else %>
+  <%= render 'shared/page_header',
+    flash: flash,
+    title: 'Asset Inventory',
+    description: "This page will show you a complete listing of
+      assets that you have created. These assets and the records
+      associated with each project maybe shared with user groups
+      that you manage. If you would like to create a <em>new</em>
+      asset, then use the 'New' button at the bottom at the page."
+  %>
+<% end %>
+
+<div class='row'>
+  <div class='12-small columns'>
+
+    <% if @assets.present? %>
+      <table class=""full-width"">
+        <thead>
+          <tr>
+            <th width="20%">Name</th>
+            <th width="20%">Description</th>
+            <th width="10">Condition</th>
+            <th width="10">Status</th>
+            <th width="15%">Asset Owner</th>
+            <th width="15%">Organization</th>
+            <th width="10%"><%=t '.actions', :default => t("helpers.actions") %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @assets.each do |asset| %>
+            <tr>
+              <td><%= link_to asset.name, asset_path(asset) %></td>
+              <td><%= asset.description.html_safe %></td>
+              <td><%= asset.condition_str %></td>
+              <td><%= asset.status_str %></td>
+              <td><%= asset.user_first_name %> <%= asset.user_last_name %></td>
+              <td>
+                <% if asset.organization.present? %>
+                  <%= asset.organization_name %>
+                <% else %>
+                  No Organization Specified
+                <% end %>
+              </td>
+              <td>
+                <%= link_to t('.edit', default: t("helpers.links.edit")),
+                            edit_asset_path(asset), class: 'intable-success-button' %>
+                <%= link_to t('.destroy', default: t("helpers.links.destroy")),
+                            asset_path(asset),
+                            method: :delete,
+                            data: { confirm: t('.confirm', default: t("helpers.links.confirm",
+                              default: 'Are you sure?')) },
+                            class: 'intable-delete-button' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>
+        No assets have been created yet. Click on the <strong>New</strong>
+        button below to create your first one.
+      </p>
+    <% end %>
+
+    <div class='digg_pagination'>
+      <%= will_paginate @assets %>
+    </div>
+  </div>
+</div>
+
+<div class='form-actions'>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_project_path,
+            :class => 'success-button' %>
+</div>

@@ -2,9 +2,14 @@
   <ul class="off-canvas-list">
 
     <li><label>Main Menu</label></li>
-    <li><a href="#">Item 1</a></li>
-    <li><a href="#">Item 2</a></li>
-    <li><a href="#">Item 3</a></li>
+    <li <%= "#{active(edit_user_registration_path)}" %> >
+      <%= link_to('<i class="fi-home sidebar-icon"></i> Home'.html_safe, admin_index_path) %>
+    </li>
+    <li <%= "#{active(edit_user_registration_path)}" %> >
+      <%= link_to('<i class="fi-database sidebar-icon"></i> Asset Inventory'.html_safe,
+        assets_path) %>
+    </li>
+
 
     <li><label>Settings</label></li>
 
