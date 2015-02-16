@@ -174,6 +174,7 @@ include_context 'manufacturer_setup'
       describe "Manufacturer Admin Access Tests" do
 
         manu_admin = FactoryGirl.create(:adminuser)
+
         subject(:admin_ability) { Ability.new(manu_admin) }
 
         it "Create a Manufacturer" do
@@ -198,6 +199,7 @@ include_context 'manufacturer_setup'
       describe "Manufacturer Non User Access Tests" do
 
         manu_non_admin = FactoryGirl.create(:user)
+
         subject(:user_ability) { Ability.new(manu_non_admin) }
 
         it "Create a Manufacturer" do
