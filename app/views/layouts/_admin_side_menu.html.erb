@@ -17,6 +17,14 @@
       <%= link_to '<i class="fi-torso"></i> Profile'.html_safe, edit_user_registration_path %>
     </li>
 
+    <!-- Service Administration Menu ========================= -->
+    <% if current_user.role == User::SERVICE_ADMIN %>
+      <li <%= "#{active(manufacturers_path)}" %> >
+        <%= link_to '<i class="fi-torsos"></i> Manufacturers'.html_safe,
+          manufacturers_path %>
+      </li>
+    <% end %>
+
     <!-- Projects -->
     <li <%= "#{active(projects_path)}" %> >
       <%= link_to '<i class="fi-list"></i> Projects'.html_safe, projects_path %>

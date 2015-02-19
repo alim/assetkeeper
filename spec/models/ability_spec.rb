@@ -5,6 +5,7 @@ require "cancan/matchers"
 describe Ability, :type => :model do
 include_context 'user_setup'
 include_context 'subscription_setup'
+include_context 'manufacturer_setup'
 
   let(:customer) { FactoryGirl.create(:user) }
   let(:account_customer) { FactoryGirl.create(:user_with_account) }
@@ -185,6 +186,63 @@ include_context 'subscription_setup'
 
         it "Delete a Subscription" do
           is_expected.not_to be_able_to(:destroy, subscription_fake_abnormal_customer)
+        end
+      end
+    end
+    describe "Manufacturer Access Tests" do
+      # CREATE A SINGLE MANUFACTURER -------------------------------------------
+
+      let(:fake_manufacturer) {
+       FactoryGirl.create(:manufacturer)
+      }
+
+       # Manufacturer Admin Tests with CRUD access rights
+
+      describe "Manufacturer Admin Access Tests" do
+
+        manu_admin = FactoryGirl.create(:adminuser)
+
+        subject(:admin_ability) { Ability.new(manu_admin) }
+
+        it "Create a Manufacturer" do
+          is_expected.to be_able_to(:create, fake_manufacturer)
+        end
+
+        it "Read a Manufacturer" do
+          is_expected.to be_able_to(:read, fake_manufacturer)
+        end
+
+        it "Update a Manufacturer" do
+          is_expected.to be_able_to(:update, fake_manufacturer)
+        end
+
+        it "Delete a Manufacturer" do
+          is_expected.to be_able_to(:destroy, fake_manufacturer)
+        end
+      end
+
+        # Manufacturer User Tests with CRUD access rights
+
+      describe "Manufacturer Non User Access Tests" do
+
+        manu_non_admin = FactoryGirl.create(:user)
+
+        subject(:user_ability) { Ability.new(manu_non_admin) }
+
+        it "Create a Manufacturer" do
+          is_expected.not_to be_able_to(:create, fake_manufacturer)
+        end
+
+        it "Read a Manufacturer" do
+          is_expected.to be_able_to(:read, fake_manufacturer)
+        end
+
+        it "Update a Manufacturer" do
+          is_expected.not_to be_able_to(:update, fake_manufacturer)
+        end
+
+        it "Delete a Manufacturer" do
+          is_expected.not_to be_able_to(:destroy, fake_manufacturer)
         end
       end
     end
