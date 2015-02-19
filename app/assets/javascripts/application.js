@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require foundation-datepicker
 // require turbolinks <- Disable this plugin when using Foundation
 //= require_tree .
 

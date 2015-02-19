@@ -46,7 +46,7 @@ module Organizational
   def relate_to_organization
     if self.respond_to?(:user)
       if (org = self.user.organization)
-        org.send(self.class.to_s.downcase.pluralize) << self
+        org.send(self.class.to_s.pluralize.underscore) << self
       end
     end
   end

@@ -3,17 +3,17 @@
 # infrastructure assets. It will rely on other classes for manufacturer
 # and categories.
 #######################################################################
-class Asset
+class AssetItem
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::TagsArentHard
 
-  # Scope definitions for organizational based queries
   include Organizational
+  include UserCreatable
 
   taggable_with :tags
 
-  # Add call to strip leading and trailing white spaces from all atributes
+  # Add call to strip leading and trailing white spaces from all attributes
   strip_attributes  # See strip_attributes for more information
 
   ## CONSTANTS --------------------------------------------------------
@@ -39,7 +39,7 @@ class Asset
   field :material, type: String
   field :date_installed, type: DateTime
   field :condition, type: Integer
-  field :failure_probablity, type: Integer
+  field :failure_probability, type: Integer
   field :failure_consequence, type: Integer
   field :status, type: Integer
 
@@ -64,7 +64,7 @@ class Asset
   validates_presence_of :description
   validates_presence_of :material
   validates_presence_of :condition
-  validates_presence_of :failure_probablity
+  validates_presence_of :failure_probability
   validates_presence_of :failure_consequence
   validates_presence_of :status
   validates_presence_of :user_id
@@ -86,22 +86,10 @@ class Asset
   # probability.
   #####################################################################
   def criticality
-    if self.failure_consequence && self.failure_probablity
-      self.failure_consequence * self.failure_probablity
+    if self.failure_consequence && self.failure_probability
+      self.failure_consequence * self.failure_probability
     else
       0
     end
   end
-
-  ## PUBLIC CLASS METHODS ---------------------------------------------
-
-  #####################################################################
-  # Create a new Asset and relate the user record to it.
-  #####################################################################
-  def self.create_with_user(params, user)
-     asset = Asset.new(params)
-     asset.user = user
-     asset
-  end
-
 end

@@ -45,7 +45,7 @@
     <div class="right inline"><strong>Charter document:</strong></div>
   </div>
   <div class="small-9 columns left">
-    <% if @project.organization_name %>
+    <% if @project.organization %>
       <%=link_to @project.organization_name, @project.organization %>
     <% else %>
       No organization associated with the project.

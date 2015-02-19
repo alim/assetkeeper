@@ -4,9 +4,6 @@
 # to which other records are related. Being a primary resource allows
 # us to manage, authorization for group access to a project and all its
 # related records.
-#
-# The controller uses an injection model for relating a project to a
-# a group. See lib/group_access.rb for injected methods.
 ########################################################################
 class ProjectsController < ApplicationController
   respond_to :html

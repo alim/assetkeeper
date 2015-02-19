@@ -1,20 +1,16 @@
 ########################################################################
-# The ProjectsController class is responsible for managing project
-# resources associated with the web service. It is the primary resource
-# to which other records are related. Being a primary resource allows
-# us to manage, authorization for group access to a project and all its
-# related records.
-#
-# The controller uses an injection model for relating a project to a
-# a group. See lib/group_access.rb for injected methods.
+# The AssetsController class is responsible for managing AssetItems
+# associated with a user and their organization. The user must be
+# authenticated.
 ########################################################################
-class AssetsController < ApplicationController
+class AssetItemsController < ApplicationController
   respond_to :html
+  decorates_assigned :asset_item
 
   ## CALL BACKS --------------------------------------------------------
   before_filter :authenticate_user!
 
-  before_action :set_asset, only: [:show, :edit, :update, :destroy]
+  before_action :set_asset_item, only: [:show, :edit, :update, :destroy]
 
   # CANCAN AUTHORIZATION -----------------------------------------------
   # This helper assumes that the instance variable @group is loaded
@@ -23,99 +19,101 @@ class AssetsController < ApplicationController
 
   ######################################################################
   # GET /assets
+  # GET /assets.json
   #
-  # The index method displays the current users list of projects. If
+  # The index method displays the current users list of assets. If
   # the signed in user is a User::SERVICE_ADMIN, then all assets are
   # listed.
   ######################################################################
   def index
-
     # Get page number
 		page = params[:page].nil? ? 1 : params[:page]
 
     if current_user.role == User::SERVICE_ADMIN
-      @assets = AssetDecorator.decorate_collection(Asset.all.paginate(page: page,
-        per_page: PAGE_COUNT))
+      @asset_items = AssetItemDecorator.decorate_collection(
+        AssetItem.all.asc(:name).paginate(page: page, per_page: PAGE_COUNT))
     else
-      @assets = AssetDecorator.decorate_collection(Asset.in_organization(current_user).paginate(
-        page: page,	per_page: PAGE_COUNT))
+      @asset_items = AssetItemDecorator.decorate_collection(AssetItem.in_organization(
+        current_user).asc(:name).paginate(page: page,  per_page: PAGE_COUNT))
     end
+
   end
 
   ######################################################################
   # GET /assets/1
+  # GET /assets/1.json
   #
   # The show method will show the asset record. The corresponding
   # view will show the owner name and list of user group names
   # associated with the asset.
   ######################################################################
   def show
-    @asset = @asset.decorate
   end
 
   ######################################################################
-  # GET /projects/new
+  # GET /assets/new
   #
-  # The new method will show the user a new project form. It will also
+  # The new method will show the user a new asset form. It will also
   # lookup any groups that the user may have to see, if they want to
   # grant access to those groups to the user.
   ######################################################################
   def new
-    @project = Project.new
+    @asset_item = AssetItem.new
   end
 
   ######################################################################
-  # GET /projects/1/edit
+  # GET /assets/1/edit
   #
   # The standard edit method will display the edit form and include the
-  # ability to select groups that will be given access to the project.
+  # ability to select groups that will be given access to the asset.
   ######################################################################
   def edit
   end
 
   ######################################################################
-  # POST /projects
+  # POST /assets
   #
-  # The create method will create a new project and relate any selected
+  # The create method will create a new asset and relate any selected
   # groups that the user selected.
   ######################################################################
   def create
-    @project = Project.create_with_user(asset_params, current_user)
+    @asset_item = AssetItem.create_with_user(asset_params, current_user)
 
-    if @project.save
-      @project.relate_to_organization
-      redirect_to @project, notice: 'Project was successfully created.'
+    if @asset_item.save
+      @asset_item.relate_to_organization
+      redirect_to @asset_item, notice: 'Asset was successfully created.'
     else
-      set_errors_render(@project, :new)
+      set_errors_render(@asset_item, :new)
     end
   end
 
   ######################################################################
-  # PATCH/PUT /projects/1
-  # PATCH/PUT /projects/1.json
+  # PATCH/PUT /assets/1
+  # PATCH/PUT /assets/1.json
   #
-  # The update will update the Project model object including any
+  # The update will update the AssetItem model object including any
   # changes to the organization associated with the current user.
   ######################################################################
   def update
-    if @project.update_attributes(asset_params)
-      @project.relate_to_organization
-      redirect_to @project, notice: 'Project was successfully updated.'
+    if @asset_item.update_attributes(asset_params)
+      @asset_item.relate_to_organization
+      redirect_to @asset_item, notice: 'Asset was successfully updated.'
     else
-      set_errors_render(@project, :edit)
+      set_errors_render(@asset_item, :edit)
     end
   end
 
   ######################################################################
-  # DELETE /projects/1
-  # DELETE /projects/1.json
+  # DELETE /assets/1
+  # DELETE /assets/1.json
   #
-  # The destroy project method will delete the project, but does not
-  # destroy the related groups that were given access to the project.
+  # The destroy asset method will delete the asset, but does not
+  # destroy the related groups that were given access to the asset.
   ######################################################################
   def destroy
-    @project.destroy
-    redirect_to projects_url, notice: "Project was successfully deleted."
+    asset_name = @asset_item.name
+    @asset_item.destroy
+    redirect_to asset_items_path, notice: "Asset #{asset_name} was successfully deleted."
   end
 
   ## PRIVATE INSTANCE METHODS ------------------------------------------
@@ -125,8 +123,8 @@ class AssetsController < ApplicationController
   ######################################################################
   # Use callbacks to share common setup or constraints between actions.
   ######################################################################
-  def set_asset
-    @asset = Asset.find(params[:id])
+  def set_asset_item
+    @asset_item = AssetItem.find(params[:id])
   end
 
   ######################################################################
@@ -134,8 +132,15 @@ class AssetsController < ApplicationController
   # white list through.
   ######################################################################
   def asset_params
-    params.require(:asset).permit(:name, :description, :location,
+    permitted_params = params.require(:asset_item).permit(:name, :description, :location,
       :latitude, :longitude, :material, :date_installed, :condition,
-      :failure_probablity, :failure_consequence, :status)
+      :failure_probability, :failure_consequence, :status)
+
+    # Parse the mm/dd/yyyy formatted date
+    permitted_params[:date_installed] =  DateTime.strptime(permitted_params[:date_installed],
+     "%m/%d/%Y").to_s if permitted_params[:date_installed]
+
+    permitted_params
   end
+
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Asset, :type => :model do
+RSpec.describe AssetItem, :type => :model do
   include_context 'asset_setup'
 
   before(:each) {
@@ -9,7 +9,7 @@ RSpec.describe Asset, :type => :model do
 
   after(:each) {
     User.delete_all
-    Asset.delete_all
+    AssetItem.delete_all
     Organization.delete_all
   }
 
@@ -24,7 +24,7 @@ RSpec.describe Asset, :type => :model do
     it { is_expected.to respond_to(:material) }
     it { is_expected.to respond_to(:date_installed) }
     it { is_expected.to respond_to(:condition) }
-    it { is_expected.to respond_to(:failure_probablity) }
+    it { is_expected.to respond_to(:failure_probability) }
     it { is_expected.to respond_to(:failure_consequence) }
     it { is_expected.to respond_to(:status) }
   end
@@ -58,8 +58,8 @@ RSpec.describe Asset, :type => :model do
         expect(@asset).not_to be_valid
       end
 
-      it "Should be invalid without a failure_probablity" do
-        @asset.failure_probablity = nil
+      it "Should be invalid without a failure_probability" do
+        @asset.failure_probability = nil
         expect(@asset).not_to be_valid
       end
 
@@ -74,7 +74,7 @@ RSpec.describe Asset, :type => :model do
       end
 
       it "Should be invalid without a user_id" do
-        asset = FactoryGirl.build(:asset)
+        asset = FactoryGirl.build(:asset_item)
         expect(asset).not_to be_valid
       end
 
@@ -94,25 +94,26 @@ RSpec.describe Asset, :type => :model do
 
     describe "scope tests" do
       let(:new_user) { FactoryGirl.create(:user) }
-      let(:other_asset) { FactoryGirl.create(:asset, user: new_user) }
-      before(:each){
+      let(:other_asset) { FactoryGirl.create(:asset_item, user: new_user) }
+
+      before(:each) do
         other_asset
-      }
+      end
 
       it "should find assets with matching user, but no organization" do
-        assets = Asset.in_organization(@asset.user)
+        assets = AssetItem.in_organization(@asset.user)
         assets.each do |asset|
           expect(asset.user_id).to eq(@asset.user.id)
           expect(asset.organization).to be_nil
         end
 
-        expect(assets.count).to be <  Asset.count
+        expect(assets.count).to be <  AssetItem.count
       end
 
       it "should find a subset of the assets" do
-        assets = Asset.in_organization(@asset.user)
+        assets = AssetItem.in_organization(@asset.user)
         expect(assets.count).to be > 0
-        expect(assets.count).to be <  Asset.count
+        expect(assets.count).to be <  AssetItem.count
       end
 
       it "should find all assets part of the user's organization" do
@@ -122,14 +123,14 @@ RSpec.describe Asset, :type => :model do
         org = FactoryGirl.create(:organization, owner: owner)
 
         # Find assets not matching owner
-        assets = Asset.ne(user_id: owner.id)
+        assets = AssetItem.ne(user_id: owner.id)
         expect(assets.count).to be > 0
 
         # Add assets to organization
-        org.assets << assets
+        org.asset_items << assets
 
         # user_assets = asset.where(user_id: @asset.user_id)
-        found_assets = Asset.in_organization(assets.last.user)
+        found_assets = AssetItem.in_organization(assets.last.user)
 
         expect(found_assets.count).to be > 0
 
@@ -167,11 +168,11 @@ RSpec.describe Asset, :type => :model do
 
   describe '#crticality' do
     it 'should calculate the correct crticality' do
-      expect(@asset.criticality).to eq(@asset.failure_consequence * @asset.failure_probablity)
+      expect(@asset.criticality).to eq(@asset.failure_consequence * @asset.failure_probability)
     end
 
-    it 'should return zero if failure_probablity is UNKNOWN' do
-      @asset.failure_probablity = Asset::FAILURE_VALUES[:unknown]
+    it 'should return zero if failure_probability is UNKNOWN' do
+      @asset.failure_probability = AssetItem::FAILURE_VALUES[:unknown]
       expect(@asset.criticality).to eq(0)
     end
   end
@@ -190,21 +191,21 @@ RSpec.describe Asset, :type => :model do
         longitude: "45.321",
         material: "MyString",
         date_installed: Date.new(2014, 12, 1),
-        condition: Asset::CONDITION_VALUES[:good],
-        failure_probablity: Asset::FAILURE_VALUES[:neither],
-        failure_consequence: Asset::CONSEQUENCE_VALUES[:extremely_high],
-        status: Asset::STATUS_VALUES[:operational]
+        condition: AssetItem::CONDITION_VALUES[:good],
+        failure_probability: AssetItem::FAILURE_VALUES[:neither],
+        failure_consequence: AssetItem::CONSEQUENCE_VALUES[:extremely_high],
+        status: AssetItem::STATUS_VALUES[:operational]
       }
     end
 
     it "should create a new asset" do
       expect {
-        Asset.create_with_user(asset_params, new_user).save
-      }.to change(Asset, :count).by(1)
+        AssetItem.create_with_user(asset_params, new_user).save
+      }.to change(AssetItem, :count).by(1)
     end
 
     it "should relate the asset to the correct user" do
-      asset = Asset.create_with_user(asset_params, new_user)
+      asset = AssetItem.create_with_user(asset_params, new_user)
       expect(asset.user).to eq(new_user)
     end
   end

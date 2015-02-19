@@ -53,7 +53,7 @@ include_context 'subscription_setup'
     end
 
     describe "Asset access" do
-      let(:asset) { FactoryGirl.create(:asset, user: account_customer) }
+      let(:asset) { FactoryGirl.create(:asset_item, user: account_customer) }
       let(:org) { FactoryGirl.create(:organization, owner: account_customer ) }
 
       before(:each) {
@@ -67,7 +67,7 @@ include_context 'subscription_setup'
       it {is_expected.to be_able_to(:destroy, asset)}
 
       context "different owner" do
-        let(:asset) { FactoryGirl.create(:asset, user: another_customer) }
+        let(:asset) { FactoryGirl.create(:asset_item, user: another_customer) }
         let(:org) { FactoryGirl.create(:organization, owner: another_customer) }
         before(:each) { account_customer.organization = nil }
 

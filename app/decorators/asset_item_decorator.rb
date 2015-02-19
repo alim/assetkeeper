@@ -1,4 +1,8 @@
-class AssetDecorator < ApplicationDecorator # Draper::Decorator
+#######################################################################
+# This decorator class wraps view oriented methods around the Asset
+# model. It uses the Draper decorator gem to help with this capability.
+#######################################################################
+class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   delegate_all
 
   #####################################################################
@@ -22,10 +26,24 @@ class AssetDecorator < ApplicationDecorator # Draper::Decorator
   end
 
   #####################################################################
+  # Returns an array of condition choices to be used with the select
+  # view helper
+  #####################################################################
+  def condition_choices
+    [
+      ["Excellent", 5],
+      ["Very Good", 4],
+      ["Good", 3],
+      ["Poor", 2],
+      ["Very Poor", 1]
+    ]
+  end
+
+  #####################################################################
   # Consequence value translator to string representation for views
   #####################################################################
   def consequence_str
-    case object.consequence
+    case object.failure_consequence
     when 5
       "Extremely High"
     when 4
@@ -42,12 +60,26 @@ class AssetDecorator < ApplicationDecorator # Draper::Decorator
   end
 
   #####################################################################
+  # Returns an array of condition choices to be used with the select
+  # view helper
+  #####################################################################
+  def consequence_choices
+    [
+      ["Extremely High", 5],
+      ["High", 4],
+      ["Moderate", 3],
+      ["Low", 2],
+      ["Very Low", 1]
+    ]
+  end
+
+  #####################################################################
   # Failure value translator to string representation for views
   #####################################################################
   def failure_str
-    case object.failure_probablity
+    case object.failure_probability
     when 5
-      "Immenent"
+      "Imminent"
     when 4
       "Likely"
     when 3
@@ -62,6 +94,20 @@ class AssetDecorator < ApplicationDecorator # Draper::Decorator
   end
 
   #####################################################################
+  # Returns an array of failure probability choices to be used with
+  # the select view helper
+  #####################################################################
+  def failure_choices
+    [
+      ["Imminent", 5],
+      ["Likely", 4],
+      ["Nominal", 3],
+      ["Unlikely", 2],
+      ["Very Unlikely", 1]
+    ]
+  end
+
+  #####################################################################
   # Returns a Google Map URL for the lat/long location of the asset.
   #####################################################################
   def google_map_url
@@ -73,7 +119,11 @@ class AssetDecorator < ApplicationDecorator # Draper::Decorator
   # Formats the date installed DateTime value to mm/dd/yyyy
   #####################################################################
   def install_date
-    object.date_installed.strftime("%m/%d/%Y")
+    if object.date_installed
+      object.date_installed.strftime("%m/%d/%Y")
+    else
+      "Not installed"
+    end
   end
 
   #####################################################################
@@ -86,11 +136,11 @@ class AssetDecorator < ApplicationDecorator # Draper::Decorator
     when 2
       "In Inventory"
     when 3
-      "Scheduled for Install"
+      "Scheduled Install"
     when 4
       "Operational"
     when 5
-      "Scheduled for Replacement"
+      "Scheduled Replacement"
     when 6
       "Removed"
     when 7
@@ -99,4 +149,21 @@ class AssetDecorator < ApplicationDecorator # Draper::Decorator
       "Unknown"
     end
   end
+
+  #####################################################################
+  # Returns an array of status choices to be used with the select
+  # view helper
+  #####################################################################
+  def status_choices
+    [
+      ["Ordered", 1],
+      ["In Inventory", 2],
+      ["Scheduled Install", 3],
+      ["Operational", 4],
+      ["Scheduled Replacement", 5],
+      ["Removed", 6],
+      ["In Maintenance", 7]
+    ]
+  end
+
 end

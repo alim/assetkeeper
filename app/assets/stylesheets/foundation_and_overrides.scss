@@ -1185,7 +1185,7 @@ $topbar-bg-color: $secondary-color;
 $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-$topbar-height: 70px;
+$topbar-height: 54px;
 $topbar-margin-bottom: 10;
 
 // Controlling the styles for the title in the top bar
@@ -1297,6 +1297,9 @@ $topbar-link-bg-active: $primary-color;
 
 // Load icons
 @import 'foundation-icons';
+
+// Load date picker
+@import 'foundation-datepicker';
 
 // Custom Form Definitions -------------------------------------------
 

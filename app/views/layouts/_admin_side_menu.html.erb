@@ -3,11 +3,11 @@
 
     <li><label>Main Menu</label></li>
     <li <%= "#{active(edit_user_registration_path)}" %> >
-      <%= link_to('<i class="fi-home sidebar-icon"></i> Home'.html_safe, admin_index_path) %>
+      <%= link_to('<i class="fi-home"></i> Home'.html_safe, admin_index_path) %>
     </li>
     <li <%= "#{active(edit_user_registration_path)}" %> >
-      <%= link_to('<i class="fi-database sidebar-icon"></i> Asset Inventory'.html_safe,
-        assets_path) %>
+      <%= link_to('<i class="fi-database"></i> Asset Inventory'.html_safe,
+        asset_items_path) %>
     </li>
 
 
