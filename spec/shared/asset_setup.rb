@@ -18,7 +18,9 @@ shared_context 'asset_setup' do
     @user_with_org = FactoryGirl.create(:user)
     @user_with_org.save
 
+    # Create organization and add users to it.
     @org = FactoryGirl.create(:organization, owner: @user_with_org)
+    5.times.each { @org.users << FactoryGirl.create(:user) }
     @org.save
 
     @user_with_org.organization = @org
