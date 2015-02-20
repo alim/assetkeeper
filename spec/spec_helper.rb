@@ -22,6 +22,7 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/cassettes'
   c.default_cassette_options = { record: :new_episodes }
   c.hook_into :webmock
+  c.ignore_hosts 'api.stripe.com'
 
   # Configure VCR and Rspec
   c.configure_rspec_metadata!
