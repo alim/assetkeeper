@@ -3,55 +3,31 @@
 # infrastructure assets. It will rely on other classes for manufacturer
 # and categories.
 #######################################################################
-class Asset
+class AssetItem
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::TagsArentHard
 
-  # Scope definitions for organizational based queries
   include Organizational
+  include UserCreatable
 
   taggable_with :tags
 
-  # Add call to strip leading and trailing white spaces from all atributes
+  # Add call to strip leading and trailing white spaces from all attributes
   strip_attributes  # See strip_attributes for more information
 
   ## CONSTANTS --------------------------------------------------------
 
-  # CONDITION VALUES
+  CONDITION_VALUES = { excellent: 5, very_good: 4, good: 3, poor: 2, very_poor: 1}
 
-  EXCELLENT_CONDITION = 5
-  VERY_GOOD_CONDITION = 4
-  GOOD_CONDITION = 3
-  POOR_CONDITION = 2
-  VERY_POOR_CONDITION = 1
+  FAILURE_VALUES = { immenent: 5, likely: 4, neither: 3, unlikely: 2,
+    very_unlikely: 1, unknown: 0 }
 
-  # PROBABLILITY OF FAILURE
+  CONSEQUENCE_VALUES = { extremely_high: 5, high: 4, moderate: 3, low: 2,
+    very_low: 1}
 
-  IMMENENT_FAILURE = 5
-  LIKELY_FAILURE = 4
-  NEITHER_FAILURE = 3
-  UNLIKELY_FAILURE = 2
-  VERY_UNLIKELY_FAILURE = 1
-  UNKNOWN_FAILURE = 0
-
-  # CONSEQUENCE OF FAILURE
-
-  EXTREMELY_HIGH_CONSEQUENCE = 5
-  HIGH_CONSEQUENCE = 4
-  MODERATE_CONSEQUENCE = 3
-  LOW_CONSEQUENCE = 2
-  VERY_LOW_CONSEQUENCE = 1
-
-  # STATUS VALUES
-
-  ORDERED_STATUS = 1
-  IN_INVENTORY = 2
-  SCHEDULED_FOR_INSTALLATION = 3
-  OPERATIONAL = 4
-  SCHEDULED_FOR_REPLACEMENT = 5
-  REMOVED = 6
-  DOWN_FOR_MAINTENANCE = 7
+  STATUS_VALUES = { ordered: 1, in_inventory: 2, scheduled_for_installation: 3,
+    operational: 4, scheduled_for_replacement: 5, removed: 6, maintenance: 7}
 
   ## FIELDS -----------------------------------------------------------
 
@@ -63,7 +39,7 @@ class Asset
   field :material, type: String
   field :date_installed, type: DateTime
   field :condition, type: Integer
-  field :failure_probablity, type: Integer
+  field :failure_probability, type: Integer
   field :failure_consequence, type: Integer
   field :status, type: Integer
 
@@ -76,6 +52,11 @@ class Asset
   # belongs_to :category
   # belongs_to :manufacturer
 
+  ## DELEGATIONS ------------------------------------------------------
+
+  delegate :first_name, :last_name, to: :user, prefix: true
+  delegate :name, to: :organization, prefix: true
+
   ## VALIDATIONS ------------------------------------------------------
 
   validates_presence_of :name
@@ -83,7 +64,7 @@ class Asset
   validates_presence_of :description
   validates_presence_of :material
   validates_presence_of :condition
-  validates_presence_of :failure_probablity
+  validates_presence_of :failure_probability
   validates_presence_of :failure_consequence
   validates_presence_of :status
   validates_presence_of :user_id
@@ -105,22 +86,10 @@ class Asset
   # probability.
   #####################################################################
   def criticality
-    if self.failure_consequence && self.failure_probablity
-      self.failure_consequence * self.failure_probablity
+    if self.failure_consequence && self.failure_probability
+      self.failure_consequence * self.failure_probability
     else
       0
     end
   end
-
-  ## PUBLIC CLASS METHODS ---------------------------------------------
-
-  #####################################################################
-  # Create a new Asset and relate the user record to it.
-  #####################################################################
-  def self.create_with_user(params, user)
-     asset = Asset.new(params)
-     asset.user = user
-     asset
-  end
-
 end

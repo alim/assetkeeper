@@ -28,7 +28,7 @@ class Organization
   # to the name of the class to which the groups will be given access
 
   has_many :projects
-  has_many :assets
+  has_many :asset_items
 
   ## VALIDATIONS -------------------------------------------------------
 
@@ -172,7 +172,7 @@ class Organization
   def relate_classes
     associated_classes.each do |rclass|
       oids = rclass.where(user_id: owner_id).pluck(:id)
-      assignment_method = rclass.to_s.downcase + "_ids="
+      assignment_method = rclass.to_s.underscore + "_ids="
       self.send(assignment_method, oids) if oids.present?
     end
   end
@@ -184,7 +184,7 @@ class Organization
   def unrelate_classes
     # Should generate a call like self.projects.clear
     associated_classes.each do |rclass|
-      self.send(rclass.to_s.downcase.pluralize + "=", nil)
+      self.send(rclass.to_s.pluralize.underscore + "=", nil)
     end
   end
 

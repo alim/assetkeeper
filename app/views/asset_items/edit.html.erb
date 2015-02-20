@@ -1,0 +1,9 @@
+<%- model_class = Project -%>
+<%= render 'shared/page_header',
+  flash: flash,
+  title: 'Edit Asset',
+  description: "You can edit an asset record using the form below. Please note that the
+    <em>Organization</em> field cannot be edited. It is shown for information purposes only."
+%>
+
+<%= render 'form', asset_model: asset_item, verrors: @verrors %>

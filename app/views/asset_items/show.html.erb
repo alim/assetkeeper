@@ -1,0 +1,137 @@
+<%- model_class = AssetItem -%>
+
+<%= render 'shared/page_header',
+  flash: flash,
+  title: "Asset - #{asset_item.name}",
+  description: "The information on this page shows you a asset record, which
+    includes the asset owner and any user groups associated with the
+    asset."
+%>
+
+<div class="row">
+  <div class="small-12 columns">
+    <%= render 'asset_subnav' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Name:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= asset_item.name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Description:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= asset_item.description.html_safe %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Status:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= asset_item.status_str %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Material:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= value_or_none(asset_item.material.html_safe) %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Condition:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= asset_item.condition_str %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Failure Probability:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= asset_item.failure_str %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Failure Consequence:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= asset_item.consequence_str %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Date Installed:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= value_or_none(asset_item.install_date) %>
+  </div>
+</div>
+
+<br/>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Organization:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <% if asset_item.organization %>
+      <%=link_to asset_item.organization_name, asset_item.organization %>
+    <% else %>
+      None specified
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Location:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <%= value_or_none(asset_item.location) %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-3 columns">
+    <div class="right inline"><strong>Coordinates:</strong></div>
+  </div>
+  <div class="small-9 columns left">
+    <% if asset_item.latitude && asset_item.longitude %>
+      <%= link_to("Google Map", asset_item.google_map_url, class: "button radius tiny", target: "_blank") %>
+    <% else %>
+      None specified
+    <% end %>
+  </div>
+</div>
+
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              asset_items_path, :class => 'cancel-button'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_asset_item_path(@asset_item), :class => 'success-button' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              asset_item_path(@asset_item),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'delete-button right' %>
+</div>
