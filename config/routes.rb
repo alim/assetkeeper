@@ -1,4 +1,6 @@
 AssetKeeper::Application.routes.draw do
+  resources :asset_items
+
   resources :manufacturers do
     resources :contacts
   end

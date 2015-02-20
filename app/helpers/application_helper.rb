@@ -36,4 +36,9 @@ module ApplicationHelper
     end
     return options
   end
+
+
+  def value_or_none(value)
+    value.present? ? value : 'None specified'
+  end
 end

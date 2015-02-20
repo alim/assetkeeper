@@ -1,0 +1,12 @@
+<%- model_class = AssetItem -%>
+<%= render 'shared/page_header',
+  flash: flash,
+  title: 'New Asset',
+  description: "You can create a new asset using the form below. Please note that the
+    organization field is automatically updated based on your User profile. If you
+    have created an organization associated with your user account, it will
+    automatically be associated with each new asset you create."
+%>
+
+<!-- use the decorator helper version of asset_item, instead of the instance @asset_item -->
+<%= render 'form', asset_model: asset_item, verrors: @verrors %>

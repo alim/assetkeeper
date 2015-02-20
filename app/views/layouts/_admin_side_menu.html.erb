@@ -2,15 +2,28 @@
   <ul class="off-canvas-list">
 
     <li><label>Main Menu</label></li>
-    <li><a href="#">Item 1</a></li>
-    <li><a href="#">Item 2</a></li>
-    <li><a href="#">Item 3</a></li>
+    <li <%= "#{active(edit_user_registration_path)}" %> >
+      <%= link_to('<i class="fi-home"></i> Home'.html_safe, admin_index_path) %>
+    </li>
+    <li <%= "#{active(edit_user_registration_path)}" %> >
+      <%= link_to('<i class="fi-database"></i> Asset Inventory'.html_safe,
+        asset_items_path) %>
+    </li>
+
 
     <li><label>Settings</label></li>
 
     <li <%= "#{active(edit_user_registration_path)}" %> >
       <%= link_to '<i class="fi-torso"></i> Profile'.html_safe, edit_user_registration_path %>
     </li>
+
+    <!-- Service Administration Menu ========================= -->
+    <% if current_user.role == User::SERVICE_ADMIN %>
+      <li <%= "#{active(manufacturers_path)}" %> >
+        <%= link_to '<i class="fi-torsos"></i> Manufacturers'.html_safe,
+          manufacturers_path %>
+      </li>
+    <% end %>
 
     <!-- Projects -->
     <li <%= "#{active(projects_path)}" %> >

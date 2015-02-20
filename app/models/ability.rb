@@ -16,6 +16,11 @@ class Ability
 			# that belong to part of their group.
 			if user.role == User::CUSTOMER
 
+        can :crud, AssetItem do |asset|
+          asset.organization_id == user.organization_id ||
+          asset.user_id == user.id
+        end
+
         can :crud, Account, user: {id: user.id}
         can :crud, Subscription, user_id: user.id
         can :read, Manufacturer
