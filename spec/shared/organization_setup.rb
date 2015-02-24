@@ -4,7 +4,7 @@ shared_context 'organization_setup' do
   # Single organization with multiple users
 	let(:single_organization_with_users) {
 		5.times.each { FactoryGirl.create(:user_with_account) }
-		@owner = User.first
+		@owner = User.last
 		@organization = FactoryGirl.create(:organization, owner: @owner)
 		User.all.each {|user| @organization.users << user}
 	}

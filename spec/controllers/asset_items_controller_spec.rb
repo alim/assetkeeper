@@ -15,7 +15,7 @@ describe AssetItemsController, :type => :controller do
   let(:material) {'Cast iron'}
   let(:install_date) {'02/15/2015'}
 
-  let(:asset) { AssetItem.where(user_id: @owner.id).first }
+  let(:asset) { AssetItem.where(user_id: @user_with_org.id).first }
 
    let(:login_nonowner_no_org) {
     sign_out subject.current_user
@@ -27,22 +27,15 @@ describe AssetItemsController, :type => :controller do
     sign_out subject.current_user
 
     # Find a user that is part of the org, but not the asset creator
-    sign_in User.find((@organization.users.pluck(:id).reject {|id| id == asset.user.id}).last)
+    sign_in User.find((@org.users.pluck(:id).reject {|id| id == asset.user.id}).last)
   }
 
   before(:each) {
-    # Setup asset with users
-    assets_with_users
+    # Setup asset with users and organization
+    assets_with_users_and_org
     create_users
 
-    # Create a organization and make the owner one the asset user
-    single_organization_with_users
-
-    # Setup asset to belong to the organization
-    @organization.asset_items << FactoryGirl.create(:asset_item, user: @owner)
-    AssetItem.all.each { |asset| @organization.asset_items << asset }
-
-    sign_in @owner
+    sign_in @user_with_org
   }
 
   after(:each) {
@@ -98,7 +91,7 @@ describe AssetItemsController, :type => :controller do
         get :index
         expect(assigns(:asset_items).count).not_to eq(0)
         assigns(:asset_items).each do |asset_item|
-          expect(asset_item.user.id).to eq(asset.user.id)
+          expect(asset_item.user.id).to eq(@user_with_org.id)
         end
       end
 
@@ -220,7 +213,7 @@ describe AssetItemsController, :type => :controller do
         end
 
         it "The requested asset should not be owned by the signed user" do
-          expect(@organization.users.pluck(:id)).to include(asset.user_id)
+          expect(@org.users.pluck(:id)).to include(asset.user_id)
           get :show, show_params
           expect(assigns(:asset_item).user.id).not_to eq(subject.current_user.id)
         end
@@ -378,7 +371,7 @@ describe AssetItemsController, :type => :controller do
         end
 
         it "AssetItem user.id should match signed_in_user.id" do
-          expect(@organization.users.pluck(:id)).to include(asset.user_id)
+          expect(@org.users.pluck(:id)).to include(asset.user_id)
           get :edit, edit_params
           expect(assigns(:asset_item).user.id).not_to eq(subject.current_user.id)
         end
@@ -414,7 +407,7 @@ describe AssetItemsController, :type => :controller do
         {
           name: name,
           description: desc,
-          organization_id: [@organization.id],
+          organization_id: [@org.id],
           location: loc,
           latitude: lat,
           longitude: long,
@@ -459,7 +452,7 @@ describe AssetItemsController, :type => :controller do
 
       it "should update the organization relationship" do
         post :create, asset_params
-        expect(assigns(:asset_item).organization_id).to eq(@organization.id)
+        expect(assigns(:asset_item).organization_id).to eq(@org.id)
       end
 
       it 'should update location' do
@@ -598,7 +591,7 @@ describe AssetItemsController, :type => :controller do
         {
           name: name + 'PhD',
           description: desc + 'more description',
-          organization_id: [@organization.id],
+          organization_id: [@org.id],
           location: loc + 'lower level',
           latitude: lat + '99',
           longitude: long + '99',
@@ -635,7 +628,7 @@ describe AssetItemsController, :type => :controller do
 
       it "Should update the organization relation" do
         put :update, update_params
-        expect(assigns(:asset_item).organization_id).to eq(@organization.id)
+        expect(assigns(:asset_item).organization_id).to eq(@org.id)
       end
 
       it "Should update the asset_item location" do

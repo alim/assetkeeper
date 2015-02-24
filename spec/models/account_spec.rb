@@ -27,7 +27,7 @@ describe Account, :type => :model do
 	# STATUS STRING CHECKS -----------------------------------------------
 	describe "Status string checks" do
 	  before(:each){
-	    @account = User.first.account
+	    @account = User.ne(account: nil).first.account
 	  }
 
 	  it "Should return Unknown string for UNKNOWN status" do
@@ -67,7 +67,8 @@ describe Account, :type => :model do
 
     describe "Saving with stripe attributes" do
 
-    	context "Valid attributes", :vcr do
+    	# context "Valid attributes", :vcr do
+    	context "Valid attributes" do
 
 		    let(:token) do
 		    	@token = get_token(name, cardnum, Date.today.month, (Date.today.year + 1),
@@ -125,7 +126,8 @@ describe Account, :type => :model do
 			  end
 			end
 
-			context 'Invalid stripe attributes', :vcr do
+			# context 'Invalid stripe attributes', :vcr do
+			context 'Invalid stripe attributes' do
 
 		    let(:token) do
 	    		@token = get_token(name, cardnum, Date.today.month, (Date.today.year + 1),
@@ -147,7 +149,7 @@ describe Account, :type => :model do
 			    expect(user.account.save_with_stripe(params)).to be_falsey
 
 			    expect(user.account.status).to eq(Account::INACTIVE)
-				  expect(user.account.errors.full_messages[0]).to match(/Customer Invalid token id: 123451234512345/)
+				  expect(user.account.errors.full_messages[0]).to match(/Customer There is no token with ID 123451234512345/)
 				end
 			end
 		end
@@ -156,7 +158,8 @@ describe Account, :type => :model do
 	    let(:new_email) { "janedoe@example.com" }
 	    let(:new_name) { "Jane Doe" }
 
-			context "Valid stripe account update tests", :vcr do
+			# context "Valid stripe account update tests", :vcr do
+			context "Valid stripe account update tests" do
 
 		    let(:first_token) do
 		    	@first_token = get_token(name, cardnum, Date.today.month, (Date.today.year + 1),
@@ -239,7 +242,8 @@ describe Account, :type => :model do
 			  end
 			end
 
-			context "Updating with invalid stripe attributes", :vcr do
+			# context "Updating with invalid stripe attributes", :vcr do
+			context "Updating with invalid stripe attributes" do
 
 		    let(:third_token) do
 		    	@third_token = get_token(name, cardnum, Date.today.month, (Date.today.year + 1),
@@ -281,7 +285,8 @@ describe Account, :type => :model do
 
 		describe "Get customer method" do
 
-			context "Valid customer get operation tests", :vcr do
+			# context "Valid customer get operation tests", :vcr do
+			context "Valid customer get operation tests" do
 
 				let(:name) { 'Mickey Mouse' }
 
@@ -334,7 +339,8 @@ describe Account, :type => :model do
 			  end
 			end
 
-			context 'Invalid get customer data tests', :vcr do
+			# context 'Invalid get customer data tests', :vcr do
+			context 'Invalid get customer data tests' do
 
 				let(:name) { 'Mickey Mouse' }
 

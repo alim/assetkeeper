@@ -72,8 +72,10 @@ class Account
       "Closed"
     when NO_STRIPE
       "No Stripe Account"
-    else
+    when UNKNOWN
       "Unknown"
+    else
+      "Invalid"
     end
   end
 
