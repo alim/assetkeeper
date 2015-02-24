@@ -27,7 +27,7 @@ describe Account, :type => :model do
 	# STATUS STRING CHECKS -----------------------------------------------
 	describe "Status string checks" do
 	  before(:each){
-	    @account = User.first.account
+	    @account = User.ne(account: nil).first.account
 	  }
 
 	  it "Should return Unknown string for UNKNOWN status" do
