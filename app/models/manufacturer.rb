@@ -34,9 +34,14 @@ class Manufacturer
   validates_presence_of :main_fax
   validates_presence_of :tags
 
+  ## INDICES & SCOPES -------------------------------------------------
+
+  scope :by_name, ->(name){ where(name: /^#{name}/i) }
+
   ## RELATIONSHIPS ----------------------------------------------------
 
   embeds_many :contacts
+  has_many :asset_items
 
   ## DELEGATIONS ------------------------------------------------------
 
