@@ -103,19 +103,6 @@
 
 <div class="row">
   <div class="small-3 columns">
-    <div class="right inline"><strong>Manufacturer:</strong></div>
-  </div>
-  <div class="small-9 columns left">
-    <% if @manu.manufacturer_choices[asset_item.manufacturer_index - 1] %>
-       <%= @manu.manufacturer_choices[asset_item.manufacturer_index - 1][0] %>
-    <% else %>
-      None specified
-    <% end %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="small-3 columns">
     <div class="right inline"><strong>Location:</strong></div>
   </div>
   <div class="small-9 columns left">
