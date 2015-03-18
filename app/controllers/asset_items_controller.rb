@@ -11,6 +11,7 @@ class AssetItemsController < ApplicationController
   before_filter :authenticate_user!
 
   before_action :set_asset_item, only: [:show, :edit, :update, :destroy]
+  before_action :manufacturer_decorate, only: [:new, :edit, :update, :show, :index]
 
   # CANCAN AUTHORIZATION -----------------------------------------------
   # This helper assumes that the instance variable @group is loaded
@@ -134,13 +135,20 @@ class AssetItemsController < ApplicationController
   def asset_params
     permitted_params = params.require(:asset_item).permit(:name, :description, :location,
       :latitude, :longitude, :material, :date_installed, :condition,
-      :failure_probability, :failure_consequence, :status)
+      :failure_probability, :failure_consequence, :status, :manufacturer_index)
 
     # Parse the mm/dd/yyyy formatted date
     permitted_params[:date_installed] =  DateTime.strptime(permitted_params[:date_installed],
      "%m/%d/%Y").to_s if permitted_params[:date_installed]
 
     permitted_params
+  end
+
+  ######################################################################
+  # Use callbacks to ensure a decorated manufacturer is created.
+  ######################################################################
+  def manufacturer_decorate
+    @manu = ManufacturerDecorator.new(Manufacturer.all)
   end
 
 end

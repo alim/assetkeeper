@@ -36,6 +36,7 @@
             <th width="10">Status</th>
             <th width="15%">Asset Owner</th>
             <th width="15%">Organization</th>
+            <th width="15%">Manufacturer</th>
             <th width="10%"><%=t '.actions', :default => t("helpers.actions") %></th>
           </tr>
         </thead>
@@ -52,6 +53,13 @@
                   <%= asset.organization_name %>
                 <% else %>
                   No Organization Specified
+                <% end %>
+              </td>
+              <td>
+                <% if @manu.manufacturer_choices[asset.manufacturer_index - 1] %>
+                 <%= @manu.manufacturer_choices[asset.manufacturer_index - 1][0] %>
+                <% else %>
+                 None specified
                 <% end %>
               </td>
               <td>

@@ -42,6 +42,7 @@ class AssetItem
   field :failure_probability, type: Integer
   field :failure_consequence, type: Integer
   field :status, type: Integer
+  field :manufacturer_index, type: Integer
 
   ## RELATIONSHIPS ----------------------------------------------------
 
@@ -57,6 +58,7 @@ class AssetItem
 
   delegate :first_name, :last_name, to: :user, prefix: true
   delegate :name, to: :organization, prefix: true
+  delegate :name, to: :manufacturer, prefix: true
 
   ## VALIDATIONS ------------------------------------------------------
 
