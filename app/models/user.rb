@@ -14,6 +14,11 @@ class User
   # Add call to strip leading and trailing white spaces from all attributes
   strip_attributes  # See strip_attributes for more information
 
+  # Callback to check if related organization can be destroyed, if not
+  # a Runtime Exception is raised. The calling code should catch this
+  # on destroy method calls.
+  before_destroy :check_org
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -89,8 +94,7 @@ class User
   embeds_one :account
 
   ## RESOURCES MANAGED BY A USER
-
-  has_many :projects, dependent: :destroy  # Example primary resource
+  has_many :projects, dependent: :destroy
   has_many :asset_items, dependent: :destroy
 
   ## DELEGATIONS ------------------------------------------------------
@@ -129,6 +133,32 @@ class User
       self.by_role(User::SERVICE_ADMIN)
     else
       self.all
+    end
+  end
+
+  ## PUBLIC INSTANCE METHODS ------------------------------------------
+
+  #####################################################################
+  # Checks to see if its safe to delete the organization. If there are
+  # other members in the organization and the current user is the owner
+  # then ownership must be changed to another user. This method will
+  # just raise a validation error.
+  #####################################################################
+  def check_org
+    # Ok to delete if there is no organization related to the current
+    # user object.
+    return true unless self.owns?
+
+    org = self.owns
+
+    # Ok to delete if the organization is owned by the current user
+    # and the current user is the only member
+    return true if (org.members.split.length == 1) &&
+      (org.members.include?(self.email))
+
+    # Cannot delete if there are other members in the organization
+    if (org.members.split.length > 1)
+      raise("Cannot delete User - related organization has other members")
     end
   end
 end

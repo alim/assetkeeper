@@ -12,11 +12,7 @@ shared_context 'user_setup' do
 	  5.times.each { FactoryGirl.create(:user_with_account) }
 	}
 
-	let(:delete_users) {
-		User.all.each do |user|
-			user.destroy
-		end
-	}
+	let(:delete_users) { User.destroy_all }
 
 	let(:signin_admin) {
 		@signed_in_user = FactoryGirl.create(:adminuser)

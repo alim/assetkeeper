@@ -6,7 +6,12 @@ shared_context 'organization_setup' do
 		4.times.each { FactoryGirl.create(:user_with_account) }
 		@owner = FactoryGirl.create(:user_with_account)
 		@organization = FactoryGirl.create(:organization, owner: @owner)
-		User.all.each {|user| @organization.users << user}
+		@organization.members = ''
+
+		User.all.each do |user|
+			@organization.users << user
+			@organization.members = @organization.members + '  ' + user.email
+		end
 	}
 
 	let(:multiple_organizations){
