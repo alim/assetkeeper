@@ -56,8 +56,8 @@
                 <% end %>
               </td>
               <td>
-              <% if asset.manufacturer_choices[asset.manufacturer_index - 1] %>
-                <%= asset.manufacturer_choices[asset.manufacturer_index - 1][0] %>
+              <% if asset.manufacturer_id %>
+                <%= asset.manufacturer_id %>
               <% else %>
                  None specified
                <% end %>

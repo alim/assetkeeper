@@ -128,8 +128,8 @@
     <div class="right inline"><strong>Manufacturer:</strong></div>
   </div>
   <div class="small-9 columns left">
-    <% if asset_item.manufacturer_choices[asset_item.manufacturer_index - 1] %>
-       <%= asset_item.manufacturer_choices[asset_item.manufacturer_index - 1][0] %>
+    <% if asset_item.manufacturer_id %>
+       <%= asset_item.manufacturer_id %>
     <% else %>
       None specified
     <% end %>

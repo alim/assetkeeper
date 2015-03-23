@@ -42,7 +42,6 @@ class AssetItem
   field :failure_probability, type: Integer
   field :failure_consequence, type: Integer
   field :status, type: Integer
-  field :manufacturer_index, type: Integer
 
   ## RELATIONSHIPS ----------------------------------------------------
 
