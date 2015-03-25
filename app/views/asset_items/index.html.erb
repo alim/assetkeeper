@@ -56,8 +56,8 @@
                 <% end %>
               </td>
               <td>
-              <% if asset.manufacturer_id %>
-                <%= asset.manufacturer_id %>
+              <% if asset.manufacturer %>
+                <%= link_to asset.manufacturer.name, manufacturer_path(asset.manufacturer) %>
               <% else %>
                  None specified
                <% end %>

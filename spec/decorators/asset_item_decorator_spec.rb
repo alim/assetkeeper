@@ -147,13 +147,9 @@ describe AssetItemDecorator do
 
       @manufacturers = Manufacturer.all
 
-      @count = 0
-
       @manufacturers.each do |p|
 
-        @count = @count + 1
-
-        @manufacturer_array.push([p.name, @count])
+        @manufacturer_array.push([p.name, p._id])
       end
     }
 
