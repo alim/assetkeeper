@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe AssetItemDecorator do
   include_context 'asset_setup'
+  include_context 'manufacturer_setup'
 
   before(:each) {
     assets_with_users_and_org
@@ -134,5 +135,31 @@ describe AssetItemDecorator do
     end
   end
 
+  describe '#manufacturer_choices' do
+
+    # CREATE A LIST OF MANUFACTURERS ------------------------------------------------
+
+    let(:create_manufacturer_array) {
+
+      create_manufacturers
+
+      @manufacturer_array ||= Array.new
+
+      @manufacturers = Manufacturer.all
+
+      @manufacturers.each do |p|
+
+        @manufacturer_array.push([p.name, p._id])
+      end
+    }
+
+    before(:each) {
+     create_manufacturer_array
+    }
+
+    it 'return the correct array' do
+      expect(@decorated_asset.manufacturer_choices).to eq(@manufacturer_array)
+    end
+  end
 
 end

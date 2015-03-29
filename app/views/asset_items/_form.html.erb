@@ -82,6 +82,11 @@
         <%= f.select(:failure_consequence, asset_model.consequence_choices) %>
       </div>
 
+       <div class="small-3 columns">
+        <label>Manufacturer</label>
+        <%= f.select(:manufacturer_id, asset_model.manufacturer_choices) %>
+      </div>
+
     </div>
 
 

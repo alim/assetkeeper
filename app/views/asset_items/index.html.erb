@@ -36,6 +36,7 @@
             <th width="10">Status</th>
             <th width="15%">Asset Owner</th>
             <th width="15%">Organization</th>
+            <th width="15%">Manufacturer</th>
             <th width="10%"><%=t '.actions', :default => t("helpers.actions") %></th>
           </tr>
         </thead>
@@ -53,6 +54,13 @@
                 <% else %>
                   No Organization Specified
                 <% end %>
+              </td>
+              <td>
+              <% if asset.manufacturer %>
+                <%= link_to asset.manufacturer.name, manufacturer_path(asset.manufacturer) %>
+              <% else %>
+                 None specified
+               <% end %>
               </td>
               <td>
                 <%= link_to t('.edit', default: t("helpers.links.edit")),
