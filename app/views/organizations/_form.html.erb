@@ -66,6 +66,28 @@
     </div>
   <% end %>
 
+  <% if (action_name == 'edit') && (organization.users.count > 1) %>
+    <div class='row'>
+      <div class='small-12 columns'>
+        <h4>Change Organization Owner</h4>
+        <p>
+          You can change the owner of this organization using the drop down list below.
+          Please be aware that once you change ownership you will no longer be able
+          to manage the organizations membership list. That responsibility will be
+          transferred to the new organization owner.
+        </p>
+
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='small-5 columns'>
+        <%= f.select(:owner_id, organization.owner_choices) %>
+       </div>
+       <div class='small-7 columns'>
+       </div>
+    </div>
+  <% end %>
 
   <div class="form-actions">
     <%= f.submit nil, class: 'success-button' %>
