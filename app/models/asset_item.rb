@@ -79,8 +79,52 @@ class AssetItem
   scope :by_name, ->(name){ where(name: /^#{name}/i) }
   scope :by_category, ->(cat){ where(category: cat) }
   scope :by_status, ->(status){ where(status: status) }
+  scope :by_manufacturer, ->(manufacturer_id){ where(:manufacturer_id => manufacturer_id) }
 
   ## PUBLIC INSTANCE METHODS ------------------------------------------
+
+  #####################################################################
+  # Class method to return the correct set of asset records from a
+  # search request.
+  #####################################################################
+  def self.search_by(search_type, search_term)
+    # Check for the type of search we are doing
+    case search_type
+    when 'manufacturer_id'
+
+      @search_manufacturer_id = nil
+      @search_manufacturers = Manufacturer.all
+
+      @search_manufacturers.each do |p|
+
+        if p.name == search_term
+          @search_manufacturer_id = p.id
+          break
+        end
+      end
+        if @search_manufacturer_id == nil
+          self.all
+        else
+          self.by_manufacturer(@search_manufacturer_id)
+        end
+    else # Unrecognized search type so return all
+      self.all
+    end
+  end
+
+  #####################################################################
+  # Class method to filter by role
+  #####################################################################
+  def self.filter_by(filter)
+    case filter
+    when 'customer'
+      self.by_role(User::CUSTOMER)
+    when 'service_admin'
+      self.by_role(User::SERVICE_ADMIN)
+    else
+      self.all
+    end
+  end
 
   #####################################################################
   # Calculates the criticality by multiplying consequence x failure

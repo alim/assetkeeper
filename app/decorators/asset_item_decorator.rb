@@ -176,8 +176,6 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
 
       @manufacturers = Manufacturer.all
 
-      @count = 0
-
       @manufacturers.each do |p|
 
         @list_of_manufacturers.push([p.name, p._id])

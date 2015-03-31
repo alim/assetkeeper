@@ -1,0 +1,17 @@
+<!-- Form for submitting a search request -->
+<%= form_tag asset_items_url, method: :get do %>
+  <div class='row collapse'>
+    <div class='small-6 medium-2 columns'>
+      <%= select_tag(:stype, asset_items_search_options) %>
+    </div>
+
+    <div class='small-6 medium-3 columns'>
+      <%= text_field_tag :search, nil, placeholder: "Search term" %>
+    </div>
+
+  <div class='row'>
+    <div class='small-12 columns'>
+      <%= submit_tag 'Search/Filter', class: 'button radius tiny secondary' %>
+    </div>
+  </div>
+<% end %>
