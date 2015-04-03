@@ -105,7 +105,6 @@ class OrganizationsController < ApplicationController
   # remove organization members and add new organization members.
   ######################################################################
   def update
-    binding.pry
     @organization.remove_members(params[:organization][:user_ids])
 
     if @organization.update_attributes(check_owner(organization_params))
@@ -161,7 +160,7 @@ class OrganizationsController < ApplicationController
   # the key from the params hash
   ####################################################################
   def check_owner(params)
-    params.delete(:owner_id) if params[:owner_id].empty?
+    params.delete(:owner_id) if params[:owner_id] && params[:owner_id].empty?
     params
   end
 
@@ -171,11 +170,13 @@ class OrganizationsController < ApplicationController
   # own an organization
   #####################################################################
   def update_owner(organization, owner_id)
-    new_owner = User.find(owner_id)
+    if owner_id
+      new_owner = User.find(owner_id)
 
-    unless new_owner.owns
-      new_owner.organization = organization
-      new_owner.save
+      unless new_owner.owns
+        new_owner.organization = organization
+        new_owner.save
+      end
     end
   end
 

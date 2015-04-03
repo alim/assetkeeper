@@ -23,6 +23,12 @@ describe OrganizationsController, :type => :controller do
     sign_in @signed_in_user
   }
 
+  let(:login_nonmember) {
+    sign_out @signed_in_user
+    @signed_in_user = FactoryGirl.create(:user)
+    sign_in @signed_in_user
+  }
+
   let(:create_projects){
       3.times.each do
         FactoryGirl.create(:project, user: @signed_in_user)
@@ -97,7 +103,7 @@ describe OrganizationsController, :type => :controller do
         expect(response).to render_template :show
       end
 
-      it "Should find matching user record" do
+      it "Should find matching organization record" do
         get :show, show_params
         expect(assigns(:organization).id).to eq(@organization.id)
       end
@@ -136,6 +142,20 @@ describe OrganizationsController, :type => :controller do
         expect(assigns(:organization).owner_id).to eq(@owner.id)
       end
 
+      context 'Non-owner that is a member' do
+        it "Should find matching organization record" do
+          login_nonowner
+          get :show, show_params
+          expect(assigns(:organization).id).to eq(@organization.id)
+        end
+
+        it "Organization owner_id should match requested organization owner_id" do
+          login_nonowner
+          get :show, show_params
+          expect(assigns(:organization).owner_id).to eq(@owner.id)
+        end
+      end
+
       context "Invalid examples" do
         it "Should not succeed, if not logged in" do
           sign_out @signed_in_user
@@ -159,8 +179,8 @@ describe OrganizationsController, :type => :controller do
           expect(flash[:alert]).to match(/^We are unable to find the requested Organization/)
         end
 
-        it "Should flash an alert if we cannot find a organization owner" do
-          login_nonowner
+        it "Should flash an alert if we cannot find a organization owner and non-member" do
+          login_nonmember
 
           get :show, show_params
           expect(flash[:alert]).to match(/You are not authorized to access the requested Organization/)

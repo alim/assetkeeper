@@ -35,6 +35,8 @@ include_context 'manufacturer_setup'
       end
     end
 
+    # TODO: Add spec for reading organization, if not owner but part of
+    # the organization
     describe "Organization access" do
       let(:organization) { FactoryGirl.create(:organization, owner: account_customer) }
 

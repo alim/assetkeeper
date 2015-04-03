@@ -25,7 +25,7 @@ class Ability
         can :crud, Subscription, user_id: user.id
         can :read, Manufacturer
 
-        can [:create, :edit, :update, :notify, :destroy], Organization, owner_id: user.id
+        can [:create, :read, :update, :notify, :destroy], Organization, owner_id: user.id
         can [:read], Organization do |org|
           user.organization == org
         end

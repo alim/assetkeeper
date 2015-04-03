@@ -32,6 +32,6 @@ describe "Sign up for new account", :type => :feature do
     fill_in 'Password', with: 'test'
     fill_in 'Password confirmation', with: 'test'
     click_button 'Sign Up'
-    expect(page).to have_content('Error')
+    expect(page).to have_content('Password is too short')
   end
 end

@@ -940,6 +940,8 @@ describe UsersController, :type => :controller do
         delete :destroy, {id: '99999'}
         expect(flash[:alert]).to match(/We are unable to find the requested User - ID/)
       end
+
+      # TODO: Add destroy spec for destroy with organization relationship
     end # Invalid examples
 
     describe "Authorization examples" do
