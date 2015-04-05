@@ -5,6 +5,7 @@ describe AssetItemsController, :type => :controller do
   include_context 'user_setup'
   include_context 'organization_setup'
   include_context 'asset_setup'
+  include_context 'manufacturer_setup'
 
   ## TEST SETUP --------------------------------------------------------
   let(:name) {"Sample Asset"}
@@ -968,5 +969,40 @@ describe AssetItemsController, :type => :controller do
 
     end # Authorization examples for delete
   end # delete examples
+  describe "Search by manufacturer name" do
 
+    before(:each){
+      create_manufacturers
+    }
+
+    it "Should return success for a single record exact match" do
+        asset_test = AssetItem.first
+        asset_test.manufacturer_id = Manufacturer.first.id
+        asset_test.save
+        get :index, {search: asset_test.manufacturer.name, stype: 'manufacturer_id'}
+        expect(response).to be_success
+     end
+
+     it "Should return a single record for exact match" do
+        asset_test2 = AssetItem.last
+        asset_test2.manufacturer_id = Manufacturer.last.id
+        asset_test2.save
+        get :index, {search: asset_test2.manufacturer.name, stype: 'manufacturer_id'}
+        expect(assigns(:asset_items).count).to eq(1)
+     end
+
+     it "Should return all records for empty manufacturer_id" do
+        count = AssetItem.count
+        count = ApplicationController::PAGE_COUNT if count > ApplicationController::PAGE_COUNT
+        get :index, {search: nil, stype: 'manufacturer_id'}
+        expect(assigns(:asset_items).count).to eq(count)
+     end
+
+     it "Should return all records for non-matching manufacturer_id" do
+        count = AssetItem.count
+        count = ApplicationController::PAGE_COUNT if count > ApplicationController::PAGE_COUNT
+        get :index, {search: "Acme", stype: 'manufacturer_id'}
+        expect(assigns(:asset_items).count).to eq(count)
+     end
+   end
 end
