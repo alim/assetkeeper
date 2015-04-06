@@ -719,7 +719,7 @@ describe OrganizationsController, :type => :controller do
         expect(assigns(:organization).owner_id).to eq(@signed_in_user.id)
       end
 
-      it "Should redirect to organizations_url, upon succesfull deletion of organization as admin" do
+      it "Should redirect to organizations_url, upon successful deletion of organization as admin" do
         login_admin
         delete :destroy, destroy_params
         expect(response).to redirect_to organizations_url
