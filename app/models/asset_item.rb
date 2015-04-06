@@ -92,10 +92,10 @@ class AssetItem
     case search_type
     when 'manufacturer_id'
 
-      if search_term == nil
+      if search_term == nil or search_term.length == 0
         self.all
       else
-        @manu = Manufacturer.where(name: search_term)
+        @manu = Manufacturer.where(name: /^#{search_term}/i)
 
         if @manu.count == 0
           self.all

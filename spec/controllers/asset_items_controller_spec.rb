@@ -991,6 +991,14 @@ describe AssetItemsController, :type => :controller do
         expect(assigns(:asset_items).count).to eq(1)
      end
 
+     it "Should return a single record for partial match" do
+        asset_test2 = AssetItem.last
+        asset_test2.manufacturer_id = Manufacturer.last.id
+        asset_test2.save
+        get :index, {search: "Herman", stype: 'manufacturer_id'}
+        expect(assigns(:asset_items).count).to eq(1)
+     end
+
      it "Should return all records for empty manufacturer_id" do
         count = AssetItem.count
         count = ApplicationController::PAGE_COUNT if count > ApplicationController::PAGE_COUNT
