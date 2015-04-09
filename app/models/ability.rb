@@ -30,7 +30,7 @@ class Ability
           user.organization == org
         end
 
-        can [:show, :edit, :update], User, id: user.id
+        can [:show, :update, :destroy], User, id: user.id
 
 				can :crud, Project do |project|
 					project.organization_id == user.organization_id ||

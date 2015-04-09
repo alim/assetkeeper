@@ -17,6 +17,12 @@ describe Ability, :type => :model do
   describe "Standard customer user" do
     subject(:ability) { Ability.new(account_customer) }
 
+    describe "User access" do
+      it { is_expected.to be_able_to(:show, account_customer) }
+      it { is_expected.to be_able_to(:update, account_customer) }
+      it { is_expected.to be_able_to(:destroy, account_customer) }
+    end
+
     describe "Account access" do
       let(:account) { account_customer.account }
 

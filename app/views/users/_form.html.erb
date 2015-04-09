@@ -40,15 +40,16 @@
   </div>
 
   <div class='row'>
-    <div class="small-6 columns">
-      <%= f.label :role %>
-      <%= f.radio_button :role, User::CUSTOMER %>
-      <label>Customer &nbsp&nbsp</label>
+    <% if current_user.role == User::SERVICE_ADMIN %>
+      <div class="small-6 columns">
+        <%= f.label :role %>
+        <%= f.radio_button :role, User::CUSTOMER %>
+        <label>Customer &nbsp&nbsp</label>
 
-      <%= f.radio_button :role, User::SERVICE_ADMIN %>
-      <label>Service Admin.</label>
-    </div>
-
+        <%= f.radio_button :role, User::SERVICE_ADMIN %>
+        <label>Service Admin.</label>
+      </div>
+    <% end %>
     <div class="small-6 columns">
       <% if controller.action_name == 'edit' %>
         <div id="credit_card_area">

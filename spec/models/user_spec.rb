@@ -373,7 +373,7 @@ describe User, :type => :model do
 			it 'should raise an exception' do
 				expect {
 					@owner.destroy
-				}.to raise_error(RuntimeError, "Cannot delete User - related organization has other members")
+				}.to raise_error(RuntimeError, "Cannot delete User - related organization has other members. Please change ownership, before deleting your account.")
 			end
 
 			it 'should not destroy the user' do

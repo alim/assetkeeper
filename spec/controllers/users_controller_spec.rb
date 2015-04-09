@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe UsersController, :type => :controller do
   include_context 'user_setup'
+  include_context 'organization_setup'
 
   let(:find_one_user) {
     @customer = User.where(role: User::CUSTOMER).first
@@ -19,6 +20,7 @@ describe UsersController, :type => :controller do
   }
 
   after(:each) {
+    Organization.destroy_all
     delete_users
   }
 
@@ -941,7 +943,29 @@ describe UsersController, :type => :controller do
         expect(flash[:alert]).to match(/We are unable to find the requested User - ID/)
       end
 
-      # TODO: Add destroy spec for destroy with organization relationship
+      context 'user organization has other members' do
+        before do
+          sign_out @signed_in_user
+          single_organization_with_users
+          sign_in @owner
+        end
+
+        it 'should not allow deletion' do
+          expect{
+            delete :destroy, { id: @owner.id }
+          }.to change(User, :count).by(0)
+        end
+
+        it 'should raise an error condition' do
+          delete :destroy, { id: @owner.id }
+          expect(flash[:alert]).to match(/Error deleting user/)
+        end
+
+        it 'should redirect to show action' do
+          delete :destroy, { id: @owner.id }
+          expect(response).to redirect_to(users_url)
+        end
+      end
     end # Invalid examples
 
     describe "Authorization examples" do

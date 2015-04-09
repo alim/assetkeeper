@@ -43,8 +43,8 @@ describe OrganizationsController, :type => :controller do
   }
 
   after(:each) {
-    delete_users
     Organization.delete_all
+    delete_users
     ActionMailer::Base.deliveries.clear
   }
 

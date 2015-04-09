@@ -30,6 +30,8 @@ class Organization
   has_many :projects
   has_many :asset_items
 
+  delegate :email, to: :owner, prefix: true
+
   ## VALIDATIONS -------------------------------------------------------
 
   validate :members_list
@@ -44,10 +46,10 @@ class Organization
   # Create a new project and relate the user record to it.
   #####################################################################
   def self.create_with_owner(org_params, owner)
-     org = Organization.new(org_params)
-     org.owner = owner
-     owner.organization = org
-     org
+    org = Organization.new(org_params)
+    org.owner = owner
+    owner.organization = org
+    org
   end
 
   ## PUBLIC INSTANCE METHODS -------------------------------------------

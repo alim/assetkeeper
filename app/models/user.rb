@@ -88,7 +88,7 @@ class User
   ## RELATIONSHIPS -----------------------------------------------------
 
   belongs_to :organization, inverse_of: :users
-  has_one :owns, class_name: 'Organization', inverse_of: :owns, dependent: :destroy
+  has_one :owns, class_name: 'Organization', inverse_of: :owner, dependent: :destroy
 
   has_one :subscription, dependent: :destroy
   embeds_one :account
@@ -153,12 +153,12 @@ class User
 
     # Ok to delete if the organization is owned by the current user
     # and the current user is the only member
-    return true if (org.members.split.length == 1) &&
-      (org.members.include?(self.email))
+    return true if (org.users.count == 1) &&
+      (org.users.first.email == self.email)
 
     # Cannot delete if there are other members in the organization
-    if (org.members.split.length > 1)
-      raise("Cannot delete User - related organization has other members")
+    if (org.users.count > 1)
+      raise("Cannot delete User - related organization has other members. Please change ownership, before deleting your account.")
     end
   end
 end
