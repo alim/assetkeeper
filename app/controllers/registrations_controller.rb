@@ -6,8 +6,7 @@
 # been transferred to another User.
 #######################################################################
 class RegistrationsController < Devise::RegistrationsController
-  # TODO: Need to build a spec for this controller
-  # DELETE /resource
+
   def destroy
     begin
 

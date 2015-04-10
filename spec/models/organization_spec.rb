@@ -12,8 +12,8 @@ describe Organization, :type => :model do
   }
 
   after(:each) {
-    User.destroy_all
     Organization.destroy_all
+    User.destroy_all
   }
 
   # ATTRIBUTE TESTS ----------------------------------------------------

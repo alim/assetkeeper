@@ -8,6 +8,7 @@ describe User, :type => :model do
 	}
 
 	after(:each) {
+		Organization.destroy_all
 		delete_users
   }
 
