@@ -12,6 +12,10 @@ describe "Sign up for new account", :type => :feature do
     fill_in 'Phone', with: '734.555.1212'
   }
 
+  after do
+    User.destroy_all
+  end
+
   it "should have a sign up page" do
     sign_up_page
     expect(page).to have_content('Sign Up')

@@ -16,6 +16,11 @@ describe "Sign up for new account", :type => :feature do
       sign_in_owner
     end
 
+    after do
+      Organization.destroy_all
+      User.destroy_all
+    end
+
     describe 'Edit actions' do
       let(:edit_org) { visit edit_organization_url(@organization) }
 

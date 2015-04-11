@@ -16,6 +16,11 @@ describe "Cancel account", :type => :feature do
       sign_in_owner
     end
 
+    after do
+      Organization.destroy_all
+      User.destroy_all
+    end
+
     describe 'Cancel account actions' do
       let(:edit_account) { visit edit_user_registration_url }
 
@@ -33,7 +38,6 @@ describe "Cancel account", :type => :feature do
       it 'Cancel should display a flash message' do
         edit_account
         click_link 'Cancel Account'
-        puts page.html
         expect(page).to have_content('Error deleting your account')
       end
     end
