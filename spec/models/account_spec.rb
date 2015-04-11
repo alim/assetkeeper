@@ -8,6 +8,7 @@ describe Account, :type => :model do
   }
 
   after(:each) {
+  	Organization.destroy_all
     User.destroy_all
   }
 

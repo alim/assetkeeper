@@ -13,6 +13,7 @@ describe "Sign up for new account", :type => :feature do
   }
 
   after do
+    Organization.destroy_all
     User.destroy_all
   end
 

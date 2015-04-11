@@ -173,6 +173,7 @@ describe Subscription, :type => :model do
     # DELETE ALL USERS AND CUSTOMERS ---------------------------------
 
     after(:each){
+      Organization.destroy_all
       User.destroy_all
       delete_customer(@customer)
       delete_stripe_coupon
