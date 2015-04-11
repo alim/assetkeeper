@@ -12,7 +12,10 @@ describe Ability, :type => :model do
   let(:another_customer) { FactoryGirl.create(:user_with_account) }
   let(:admin) { FactoryGirl.create(:adminuser) }
 
-  after(:each) { User.destroy_all }
+  after do
+    Organization.destroy_all
+    User.destroy_all
+  end
 
   describe "Standard customer user" do
     subject(:ability) { Ability.new(account_customer) }
