@@ -92,23 +92,15 @@ class AssetItem
     case search_type
     when 'manufacturer_id'
 
-      if search_term == nil or search_term.length == 0
-        self.all
+      if search_term && (search_term.length > 0) &&
+        ((manu = Manufacturer.where(name: /^#{search_term}/i)).count  > 0) &&
+        (manu.last.id)
+
+        self.by_manufacturer(manu.last.id)
       else
-        @manu = Manufacturer.where(name: /^#{search_term}/i)
-
-        if @manu.count == 0
-          self.all
-        else
-          @search_manufacturer_id = @manu.last.id
-
-          if @search_manufacturer_id == nil
-           self.all
-          else
-           self.by_manufacturer(@search_manufacturer_id)
-          end
-        end
+        self.all
       end
+
     else # Unrecognized search type so return all
       self.all
     end
