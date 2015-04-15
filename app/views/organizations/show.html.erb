@@ -47,7 +47,10 @@
             <th>First name</th>
             <th>Last name</th>
             <th>Email</th>
-            <th>Re-invite</th>
+
+            <% if current_user == @organization.owner %>
+              <th>Re-invite</th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -56,13 +59,17 @@
               <td><%= user.first_name %></td>
               <td><%= user.last_name %></td>
               <td><%= user.email %></td>
-              <td>
-        				<%= form_tag notify_organization_url(id: @organization.id),
-                  method: :put do %>
-        					<%= hidden_field_tag :uid, user.id %>
-        					<%= submit_tag 'Send Invite', class: "intable-info-button" %>
-        				<% end %>
-        			</td>
+
+              <% if current_user == @organization.owner %>
+                <td>
+          				<%= form_tag notify_organization_url(id: @organization.id),
+                    method: :put do %>
+          					<%= hidden_field_tag :uid, user.id %>
+          					<%= submit_tag 'Send Invite', class: "intable-info-button" %>
+          				<% end %>
+                </td>
+              <% end %>
+
             </tr>
           <% end %>
         </tbody>
@@ -97,15 +104,20 @@
 </div>
 
 <div class="form-actions">
-  <%= link_to t('.edit', default: t("helpers.links.edit")),
+  <% if current_user == @organization.owner %>
+    <%= link_to t('.edit', default: t("helpers.links.edit")),
               edit_organization_path(@organization), class: 'success-button' %>
+  <% end %>
 
   <%= link_to t('.back', default: t("helpers.links.back")),
               organizations_path, class: 'cancel-button'  %>
 
-  <%= link_to t('.destroy', default: t("helpers.links.destroy")),
+  <% if current_user == @organization.owner %>
+
+    <%= link_to t('.destroy', default: t("helpers.links.destroy")),
               organization_path(@organization),
               method: 'delete',
               data: { :confirm => t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
               class: 'delete-button right' %>
+  <% end %>
 </div>

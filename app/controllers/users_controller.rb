@@ -124,8 +124,13 @@ class UsersController < ApplicationController
   # include any dependent destroy specifications.
   ######################################################################
   def destroy
-    @user.destroy
-    redirect_to users_url, notice: "User account - #{@user.email} - deleted."
+    begin
+      @user.destroy
+      redirect_to users_url, notice: "User account - #{@user.email} - deleted."
+    rescue Exception => err
+      flash[:alert] = "Error deleting user - #{err.message}"
+      redirect_to users_url
+    end
   end
 
   ## PRIVATE INSTANCE METHODS ------------------------------------------

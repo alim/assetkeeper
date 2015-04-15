@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Sign up for new account", :type => :feature do 
+describe "Sign up for new account", :type => :feature do
   let(:sign_up_page) {
     visit new_user_registration_url
   }
@@ -12,9 +12,14 @@ describe "Sign up for new account", :type => :feature do
     fill_in 'Phone', with: '734.555.1212'
   }
 
+  after do
+    Organization.destroy_all
+    User.destroy_all
+  end
+
   it "should have a sign up page" do
     sign_up_page
-    page.has_content?('Sign Up')
+    expect(page).to have_content('Sign Up')
   end
 
   it "should allow us to enter sign up information" do
@@ -23,7 +28,7 @@ describe "Sign up for new account", :type => :feature do
     fill_in 'Password', with: 'test1234'
     fill_in 'Password confirmation', with: 'test1234'
     click_button 'Sign Up'
-    page.has_content?('Success')
+    expect(page).to have_content('Success')
   end
 
   it "should not allow too short password" do
@@ -31,7 +36,7 @@ describe "Sign up for new account", :type => :feature do
     sign_up_fields
     fill_in 'Password', with: 'test'
     fill_in 'Password confirmation', with: 'test'
-    click_button 'Sign Up'   
-    page.has_content?('Error') 
+    click_button 'Sign Up'
+    expect(page).to have_content('Password is too short')
   end
 end

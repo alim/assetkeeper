@@ -31,12 +31,12 @@ class AssetItemsController < ApplicationController
 
     if current_user.role == User::SERVICE_ADMIN
       @asset_items = AssetItemDecorator.decorate_collection(
-        AssetItem.all.asc(:name).paginate(page: page, per_page: PAGE_COUNT))
+        AssetItem.search_by(params[:stype], params[:search]).filter_by(
+      params[:role_filter]).paginate(page: page, per_page: PAGE_COUNT))
     else
-      @asset_items = AssetItemDecorator.decorate_collection(AssetItem.in_organization(
-        current_user).asc(:name).paginate(page: page,  per_page: PAGE_COUNT))
+      @asset_items = AssetItemDecorator.decorate_collection(AssetItem.search_by(params[:stype], params[:search]).filter_by(
+      params[:role_filter]).in_organization(current_user).asc(:name).paginate(page: page,  per_page: PAGE_COUNT))
     end
-
   end
 
   ######################################################################
@@ -134,7 +134,7 @@ class AssetItemsController < ApplicationController
   def asset_params
     permitted_params = params.require(:asset_item).permit(:name, :description, :location,
       :latitude, :longitude, :material, :date_installed, :condition,
-      :failure_probability, :failure_consequence, :status)
+      :failure_probability, :failure_consequence, :status, :manufacturer_id)
 
     # Parse the mm/dd/yyyy formatted date
     permitted_params[:date_installed] =  DateTime.strptime(permitted_params[:date_installed],

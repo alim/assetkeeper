@@ -23,8 +23,13 @@
     		    <tr>
     		      <td><%= link_to organization.name, organization_path(organization) %></td>
     		      <td><%= organization.description.html_safe %></td>
-    		      <td><%= get_owner_email(organization) %></td>
-
+              <td>
+                <% if organization.owner %>
+    		          <%= organization.owner_email %>
+                <% else %>
+                  No owner
+                <% end %>
+              </td>
     		      <td>
     		      	<% if current_user.admin? %>
     					    <%= link_to t('.edit', default: t("helpers.links.edit")),

@@ -47,6 +47,7 @@ class AssetItem
 
   belongs_to :user
   belongs_to :organization
+  belongs_to :manufacturer
 
   # Relationships needed in the near future
   # belongs_to :category
@@ -78,8 +79,46 @@ class AssetItem
   scope :by_name, ->(name){ where(name: /^#{name}/i) }
   scope :by_category, ->(cat){ where(category: cat) }
   scope :by_status, ->(status){ where(status: status) }
+  scope :by_manufacturer, ->(manufacturer_id){ where(:manufacturer_id => manufacturer_id) }
 
   ## PUBLIC INSTANCE METHODS ------------------------------------------
+
+  #####################################################################
+  # Class method to return the correct set of asset records from a
+  # search request.
+  #####################################################################
+  def self.search_by(search_type, search_term)
+    # Check for the type of search we are doing
+    case search_type
+    when 'manufacturer_id'
+
+      if search_term && (search_term.length > 0) &&
+        ((manu = Manufacturer.where(name: /^#{search_term}/i)).count  > 0) &&
+        (manu.last.id)
+
+        self.by_manufacturer(manu.last.id)
+      else
+        self.all
+      end
+
+    else # Unrecognized search type so return all
+      self.all
+    end
+  end
+
+  #####################################################################
+  # Class method to filter by role
+  #####################################################################
+  def self.filter_by(filter)
+    case filter
+    when 'customer'
+      self.by_role(User::CUSTOMER)
+    when 'service_admin'
+      self.by_role(User::SERVICE_ADMIN)
+    else
+      self.all
+    end
+  end
 
   #####################################################################
   # Calculates the criticality by multiplying consequence x failure

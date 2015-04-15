@@ -6,6 +6,9 @@
 class OrganizationsController < ApplicationController
   respond_to :html
 
+  # Decorate the Organization object.
+  decorates_assigned :organization
+
   # BEFORE CALLBACKS ---------------------------------------------------
   before_filter :authenticate_user!
 
@@ -104,8 +107,11 @@ class OrganizationsController < ApplicationController
   def update
     @organization.remove_members(params[:organization][:user_ids])
 
-    if @organization.update_attributes(organization_params)
+    if @organization.update_attributes(check_owner(organization_params))
+
+      update_owner(@organization, organization_params[:owner_id])
       @organization.notify_and_update_classes
+
       redirect_to @organization, notice: 'Organization was successfully updated.'
     else
       set_errors_render(@organization, :edit)
@@ -148,6 +154,31 @@ class OrganizationsController < ApplicationController
   ## PRIVATE INSTANCE METHODS ------------------------------------------
 
   private
+
+  ####################################################################
+  # The method checks to see if the owner_id is empty and deletes
+  # the key from the params hash
+  ####################################################################
+  def check_owner(params)
+    params.delete(:owner_id) if params[:owner_id] && params[:owner_id].empty?
+    params
+  end
+
+  #####################################################################
+  # Updates the new owner of the organization with owner relationship.
+  # It depends on the user to be present and that it does not already
+  # own an organization
+  #####################################################################
+  def update_owner(organization, owner_id)
+    if owner_id
+      new_owner = User.find(owner_id)
+
+      unless new_owner.owns
+        new_owner.organization = organization
+        new_owner.save
+      end
+    end
+  end
 
   ####################################################################
   # Use callbacks to share common setup or constraints between actions.

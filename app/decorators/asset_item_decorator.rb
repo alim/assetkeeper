@@ -166,4 +166,22 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     ]
   end
 
+  #####################################################################
+  # Returns an array of manufacturer choices to be used with the select
+  # view helper
+  #####################################################################
+
+  def manufacturer_choices
+     @list_of_manufacturers ||= Array.new
+
+      @manufacturers = Manufacturer.all
+
+      @manufacturers.each do |p|
+
+        @list_of_manufacturers.push([p.name, p._id])
+      end
+
+      @list_of_manufacturers
+  end
+
 end

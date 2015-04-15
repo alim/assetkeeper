@@ -17,7 +17,8 @@ AssetKeeper::Application.routes.draw do
 	end
 
   # The path_prefix sets up path helpers to prepend /auth to them
-  devise_for :users, path_prefix: 'auth'
+  # devise_for :users, path_prefix: 'auth'
+  devise_for :users, path_prefix: 'auth', controllers: { registrations: :registrations }
 
 	resources :users do
 	  # Account is an embedded document for a user with limited actions

@@ -24,8 +24,14 @@ class Ability
         can :crud, Account, user: {id: user.id}
         can :crud, Subscription, user_id: user.id
         can :read, Manufacturer
-        can [:crud, :notify], Organization, owner_id: user.id
-				can [:show, :edit, :update], User, id: user.id
+
+        can [:create, :read, :update, :notify, :destroy], Organization, owner_id: user.id
+        can [:read], Organization do |org|
+          user.organization == org
+        end
+
+        can [:show, :update, :destroy], User, id: user.id
+
 				can :crud, Project do |project|
 					project.organization_id == user.organization_id ||
           project.user_id == user.id

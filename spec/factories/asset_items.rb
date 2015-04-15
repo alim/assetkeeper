@@ -16,5 +16,4 @@ FactoryGirl.define do
     failure_consequence AssetItem::CONSEQUENCE_VALUES[:moderate]
     status AssetItem::STATUS_VALUES[:operational]
   end
-
 end

@@ -72,6 +72,7 @@ RSpec.configure do |config|
   # Clean and truncate database before each test run, include
   # error test runs
   config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
   end
 
