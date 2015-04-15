@@ -3,6 +3,10 @@ require 'spec_helper'
 describe User, :type => :model do
 	include_context 'user_setup'
 
+  before(:all) {
+  	User.destroy_all
+  }
+
 	before(:each) {
 		create_users
 	}

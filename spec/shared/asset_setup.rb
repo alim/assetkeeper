@@ -29,5 +29,4 @@ shared_context 'asset_setup' do
     5.times.each { FactoryGirl.create(:asset_item, user: @user_with_org, organization: @org) }
     @asset_with_org = AssetItem.last
   end
-
 end

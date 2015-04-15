@@ -2,6 +2,7 @@ require 'spec_helper'
 
 RSpec.describe AssetItem, :type => :model do
   include_context 'asset_setup'
+  include_context 'manufacturer_setup'
 
   before(:each) {
     assets_with_users
@@ -207,6 +208,45 @@ RSpec.describe AssetItem, :type => :model do
     it "should relate the asset to the correct user" do
       asset = AssetItem.create_with_user(asset_params, new_user)
       expect(asset.user).to eq(new_user)
+    end
+
+    describe "Search For Manufacturer" do
+      before(:each){
+        create_manufacturers
+      }
+
+      it "Should return a Non-Nil AssetItem Entry" do
+        asset_test = AssetItem.create_with_user(asset_params, new_user)
+        asset_test.manufacturer_id = Manufacturer.first.id
+        asset_test.save
+        expect(AssetItem.search_by('manufacturer_id', asset_test.manufacturer.name)).not_to be_nil
+      end
+
+      it "Should return a single AssetItem entry" do
+        asset_test2 = AssetItem.create_with_user(asset_params, new_user)
+        asset_test2.manufacturer_id = Manufacturer.last.id
+        asset_test2.save
+        asset_results = AssetItem.search_by('manufacturer_id', asset_test2.manufacturer.name)
+        expect(asset_results.count).to eq(1)
+      end
+
+      it "Should return all AssetItem entry for nil Manufacturer search" do
+        asset_test2 = AssetItem.create_with_user(asset_params, new_user)
+        asset_test2.manufacturer_id = Manufacturer.last.id
+        asset_test2.save
+        count = AssetItem.count
+        asset_results = AssetItem.search_by('manufacturer_id', nil)
+        expect(asset_results.count).to eq(count)
+      end
+
+      it "Should return all AssetItem entry for invalid Manufacturer search" do
+        asset_test2 = AssetItem.create_with_user(asset_params, new_user)
+        asset_test2.manufacturer_id = Manufacturer.last.id
+        asset_test2.save
+        count = AssetItem.count
+        asset_results = AssetItem.search_by('manufacturer_id', "Acme")
+        expect(asset_results.count).to eq(count)
+      end
     end
   end
 
