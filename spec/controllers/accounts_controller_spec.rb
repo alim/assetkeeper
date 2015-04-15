@@ -55,6 +55,7 @@ describe AccountsController, :type => :controller do
 	}
 
 	after(:each) {
+    Organization.destroy_all
 		delete_users
   }
 

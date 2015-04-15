@@ -12,6 +12,7 @@ describe User, :type => :model do
 	}
 
 	after(:each) {
+		Organization.destroy_all
 		delete_users
   }
 
@@ -337,5 +338,58 @@ describe User, :type => :model do
 	      expect(@user.account.status).to eq(Account::ACTIVE)
 	    end
 	  end
+	end
+
+	# Destroy Tests -----------------------------------------------------
+
+	describe '#destroy method tests' do
+		include_context 'organization_setup'
+
+		let(:user_no_org) { User.where(organization_id: nil).first }
+
+		context 'without organization relationship' do
+
+			it 'should destroy the user' do
+				expect {
+					user_no_org.destroy
+				}.to change{User.count}.by(-1)
+			end
+		end
+
+		context 'with organization and member is the owner' do
+			let(:org) { FactoryGirl.create(:organization, owner: user_no_org) }
+
+			before do
+				org.members = [user_no_org.email]
+			end
+
+			it 'should destroy the user' do
+				expect {
+					user_no_org.destroy
+				}.to change{User.count}.by(-1)
+			end
+		end
+
+		context 'with organization and multiple members' do
+			before do
+				single_organization_with_users
+			end
+
+			it 'should raise an exception' do
+				expect {
+					@owner.destroy
+				}.to raise_error(RuntimeError, "Cannot delete User - related organization has other members. Please change ownership, before deleting your account.")
+			end
+
+			it 'should not destroy the user' do
+				count = User.count
+				expect {
+					@owner.destroy
+				}.to raise_error(RuntimeError)
+
+				expect(count).to eq(User.count)
+				expect(User.where(id: @owner.id)).to_not be_nil
+			end
+		end
 	end
 end

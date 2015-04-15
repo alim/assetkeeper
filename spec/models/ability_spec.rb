@@ -1,21 +1,30 @@
 require "spec_helper"
 require "cancan/matchers"
 
-# TODO: Fill out ability tests
 describe Ability, :type => :model do
-include_context 'user_setup'
-include_context 'subscription_setup'
-include_context 'manufacturer_setup'
+  include_context 'user_setup'
+  include_context 'subscription_setup'
+  include_context 'manufacturer_setup'
+  include_context 'organization_setup'
 
   let(:customer) { FactoryGirl.create(:user) }
   let(:account_customer) { FactoryGirl.create(:user_with_account) }
   let(:another_customer) { FactoryGirl.create(:user_with_account) }
   let(:admin) { FactoryGirl.create(:adminuser) }
 
- after(:each) { User.destroy_all }
+  after do
+    Organization.destroy_all
+    User.destroy_all
+  end
 
   describe "Standard customer user" do
     subject(:ability) { Ability.new(account_customer) }
+
+    describe "User access" do
+      it { is_expected.to be_able_to(:show, account_customer) }
+      it { is_expected.to be_able_to(:update, account_customer) }
+      it { is_expected.to be_able_to(:destroy, account_customer) }
+    end
 
     describe "Account access" do
       let(:account) { account_customer.account }
@@ -43,13 +52,27 @@ include_context 'manufacturer_setup'
       it {is_expected.to be_able_to(:update, organization)}
       it {is_expected.to be_able_to(:destroy, organization)}
 
-      context "different owner" do
+      describe "different owner" do
         let(:organization) { FactoryGirl.create(:organization, owner: another_customer) }
 
         it {is_expected.not_to be_able_to(:create, organization)}
         it {is_expected.not_to be_able_to(:read, organization)}
         it {is_expected.not_to be_able_to(:update, organization)}
         it {is_expected.not_to be_able_to(:destroy, organization)}
+      end
+
+      describe 'organization member access' do
+        before do
+          single_organization_with_users
+          @org_member = @organization.users.where(:id.ne => @organization.owner.id).first
+        end
+
+        subject(:ability) { Ability.new(@org_member)}
+
+        it {is_expected.to be_able_to(:read, @organization)}
+        it {is_expected.not_to be_able_to(:create, @organization)}
+        it {is_expected.not_to be_able_to(:update, @organization)}
+        it {is_expected.not_to be_able_to(:destroy, @organization)}
       end
     end
 
