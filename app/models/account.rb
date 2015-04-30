@@ -14,7 +14,7 @@ class Account
   # CONSTANTS ---------------------------------------------------------
 
   # STRIPE ACCOUNT DESCRIPTION
-  ACCOUNT_NAME = "Acme"
+  ACCOUNT_NAME = 'Acme'
 
   # STATUS VALUES
 
@@ -47,15 +47,12 @@ class Account
   attr_accessor :stripe_cc_token, :cardholder_email, :cardholder_name
   attr_accessor :last4, :card_type, :expiration
 
-
   # VALIDATIONS --------------------------------------------------------
   validates_presence_of :status
-
 
   # RELATIONSHIPS ------------------------------------------------------
 
   embedded_in :user
-
 
   # PUBLIC INSTANCE METHODS --------------------------------------------
 
@@ -65,24 +62,24 @@ class Account
   def status_str
     case self.status
     when ACTIVE
-      "Active"
+      'Active'
     when INACTIVE
-      "Inactive"
+      'Inactive'
     when CLOSED
-      "Closed"
+      'Closed'
     when NO_STRIPE
-      "No Stripe Account"
+      'No Stripe Account'
     when UNKNOWN
-      "Unknown"
+      'Unknown'
     else
-      "Invalid"
+      'Invalid'
     end
   end
 
   #####################################################################
   # The get_customer method retrieves the customer information from
   # Stripe.com. It then stores some of the information in memory for
-  # desplaying to the user. None of the retrieved information is stored
+  # displaying to the user. None of the retrieved information is stored
   # in the database. The retrieved information sets in-memory instance
   # variables for:
   #
@@ -117,9 +114,8 @@ class Account
       return customer
     else
       return nil
-     end
+    end
   end
-
 
   #####################################################################
   # The save_with_stripe will save the account record and corresponding
@@ -136,7 +132,7 @@ class Account
     account_valid = true
     begin
 
-      if (account_valid = is_valid(params))
+      if (account_valid = is_valid?(params))
         # Create a stripe customer
         Stripe.api_key = ENV['API_KEY']
 
@@ -172,7 +168,7 @@ class Account
     account_valid = true
 
     begin
-      if (account_valid = is_valid(params))
+      if (account_valid = is_valid?(params))
         # Create a stripe customer
         Stripe.api_key = ENV['API_KEY']
         customer = Stripe::Customer.retrieve("#{self.customer_id}")
@@ -204,7 +200,6 @@ class Account
   # with the stored customer_id.
   #####################################################################
   def destroy
-
     # Destroy the customer account on Stripe.com if the id is present.
     if self.customer_id.present?
       begin
@@ -233,7 +228,7 @@ class Account
     logger.debug("[Account] stripe error = #{stripe_error.message}")
     errors[:customer_id] << stripe_error.message
     self.status = status if status
-    return false
+    false
   end
 
   #####################################################################
@@ -265,7 +260,6 @@ class Account
       '/' + customer_card.exp_year.to_s
   end
 
-
   ######################################################################
   # The get_default_card is a method that will return the default card
   # associated with a customer account.
@@ -279,32 +273,30 @@ class Account
       end
     end
 
-    return default_card
+    default_card
   end
 
   ######################################################################
-  # The is_valid helper method checks to make sure the user included
+  # The is_valid? helper method checks to make sure the user included
   # cardholder_name, cardholder_email, and that the stripe_cc_token
   # was returned from the Stipe.com service.
   ######################################################################
-  def is_valid(params)
-    account_valid = true
-
+  def is_valid?(params)
     if params[:cardholder_name].blank?
-      errors[:cardholder_name] << "cannot be blank."
-      account_valid = false
+      errors[:cardholder_name] << 'cannot be blank.'
+      return false
     end
 
     if params[:cardholder_email].blank?
-      errors[:cardholder_email] << "cannot be blank."
-      account_valid = false
+      errors[:cardholder_email] << 'cannot be blank.'
+      return false
     end
 
     if params[:account][:stripe_cc_token].blank?
-      errors[:base] << "- Could not get a valid response from Stripe.com"
-      account_valid = false
+      errors[:base] << '- Could not get a valid response from Stripe.com'
+      return false
     end
 
-    return account_valid
+    true
   end
 end

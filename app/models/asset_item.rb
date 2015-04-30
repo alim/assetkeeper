@@ -84,6 +84,20 @@ class AssetItem
   ## PUBLIC INSTANCE METHODS ------------------------------------------
 
   #####################################################################
+  # Calculates the criticality by multiplying consequence x failure
+  # probability.
+  #####################################################################
+  def criticality
+    if failure_consequence && failure_probability
+      failure_consequence * failure_probability
+    else
+      0
+    end
+  end
+
+  ## CLASS METHODS ----------------------------------------------------
+
+  #####################################################################
   # Class method to return the correct set of asset records from a
   # search request.
   #####################################################################
@@ -92,17 +106,14 @@ class AssetItem
     case search_type
     when 'manufacturer_id'
 
-      if search_term && (search_term.length > 0) &&
-        ((manu = Manufacturer.where(name: /^#{search_term}/i)).count  > 0) &&
-        (manu.last.id)
-
-        self.by_manufacturer(manu.last.id)
+      if (mid = find_manufacturer_id(search_term))
+        by_manufacturer(mid)
       else
-        self.all
+        all
       end
 
     else # Unrecognized search type so return all
-      self.all
+      all
     end
   end
 
@@ -112,23 +123,23 @@ class AssetItem
   def self.filter_by(filter)
     case filter
     when 'customer'
-      self.by_role(User::CUSTOMER)
+      by_role(User::CUSTOMER)
     when 'service_admin'
-      self.by_role(User::SERVICE_ADMIN)
+      by_role(User::SERVICE_ADMIN)
     else
-      self.all
+      all
     end
   end
 
   #####################################################################
-  # Calculates the criticality by multiplying consequence x failure
-  # probability.
+  # Helper class method to find the manufacturer's id based on the
+  # search term.
   #####################################################################
-  def criticality
-    if self.failure_consequence && self.failure_probability
-      self.failure_consequence * self.failure_probability
-    else
-      0
-    end
+  def self.find_manufacturer_id(search_term)
+    return nil unless search_term && (search_term.length > 0)
+    manu = Manufacturer.where(name: /^#{search_term}/i).last
+    manu ? manu.id : nil
   end
+
+  private_class_method :find_manufacturer_id
 end

@@ -7,7 +7,7 @@ class Contact
   include Mongoid::Document
   include Mongoid::Timestamps
 
- # ATTRIBUTES ---------------------------------------------------------
+  # ATTRIBUTES ---------------------------------------------------------
 
   field :name, type: String
   field :email, type: String
@@ -16,12 +16,9 @@ class Contact
 
 	# VALIDATIONS -------------------------------------------------------
 
-  validates :name, :email, :body, :presence => true
-  validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => true
+  validates :name, :email, :body, presence: true
+  validates :email, format: { with: %r{.+@.+\..+} }, allow_blank: true
 
 	# RELATIONSHIPS -------------------------------------------------------
   embedded_in :manufacturer
-
-  # INSTANCE METHODS --------------------------------------------------
-
 end
