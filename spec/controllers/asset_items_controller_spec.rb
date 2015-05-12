@@ -1013,4 +1013,43 @@ describe AssetItemsController, :type => :controller do
         expect(assigns(:asset_items).count).to eq(count)
      end
    end
+
+   describe "Search by tags" do
+
+    it "Should return success for a single record exact match" do
+        asset_test = AssetItem.first
+        get :index, {search: 'Steel', stype: 'tags'}
+        expect(response).to be_success
+     end
+
+     it "Should return a single record for exact match" do
+        asset_test2 = AssetItem.last
+        asset_test2.tags = "Rubber"
+        asset_test2.save
+        get :index, {search: 'Rubber', stype: 'tags'}
+        expect(assigns(:asset_items).count).to eq(1)
+     end
+
+     it "Should return a single record for partial match" do
+        asset_test2 = AssetItem.last
+        asset_test2.tags = "Ceramic"
+        asset_test2.save
+        get :index, {search: "Cera", stype: 'tags'}
+        expect(assigns(:asset_items).count).to eq(1)
+     end
+
+     it "Should return all records for empty tags" do
+        count = AssetItem.count
+        count = ApplicationController::PAGE_COUNT if count > ApplicationController::PAGE_COUNT
+        get :index, {search: nil, stype: 'tags'}
+        expect(assigns(:asset_items).count).to eq(count)
+     end
+
+     it "Should return no records for non-matching tags" do
+        count = AssetItem.count
+        count = ApplicationController::PAGE_COUNT if count > ApplicationController::PAGE_COUNT
+        get :index, {search: "Porcelain", stype: 'tags'}
+        expect(assigns(:asset_items).count).to eq(0)
+     end
+   end
 end

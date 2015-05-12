@@ -248,6 +248,42 @@ RSpec.describe AssetItem, :type => :model do
         expect(asset_results.count).to eq(count)
       end
     end
+
+    describe "Search For Tags" do
+
+      it "Should return a Non-Nil AssetItem Entry" do
+        asset_test = AssetItem.create_with_user(asset_params, new_user)
+        expect(AssetItem.search_by('tags', 'Steel')).not_to be_nil
+      end
+
+      it "Should return all AssetItem entries for specific Tags search" do
+        asset_test2 = AssetItem.create_with_user(asset_params, new_user)
+        count = AssetItem.count
+        asset_results = AssetItem.search_by('tags', 'Steel')
+        expect(asset_results.count).to eq(count)
+      end
+
+      it "Should return a single AssetItem entry" do
+        asset_test2 = AssetItem.create_with_user(asset_params, new_user)
+        asset_test2.tags = "Wood"
+        asset_test2.save
+        asset_results = AssetItem.search_by('tags', 'Wood')
+        expect(asset_results.count).to eq(1)
+      end
+
+      it "Should return all AssetItem entries for nil Tags search" do
+        asset_test2 = AssetItem.create_with_user(asset_params, new_user)
+        count = AssetItem.count
+        asset_results = AssetItem.search_by('tags', nil)
+        expect(asset_results.count).to eq(count)
+      end
+
+      it "Should return no AssetItem entries for invalid Tags search" do
+        asset_test2 = AssetItem.create_with_user(asset_params, new_user)
+        asset_results = AssetItem.search_by('tags', 'Rubber')
+        expect(asset_results.count).to eq(0)
+      end
+    end
   end
 
 

@@ -6,9 +6,11 @@ module AssetItemsHelper
   #####################################################################
   def asset_items_search_options
     return options_for_select([
-      ['Manufacturer', 'manufacturer_id']
+      ['Manufacturer', 'manufacturer_id'],
+      ['Tags', 'tags']
     ]
     )
   end
 
 end
+
