@@ -62,7 +62,6 @@ gem 'figaro'
 gem 'stripe'
 
 # Gem for tagging
-gem 'mongoid-tags-arent-hard'
 gem 'mongoid_taggable'
 
 # Decorator gem
