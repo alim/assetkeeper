@@ -15,5 +15,6 @@ FactoryGirl.define do
     failure_probability AssetItem::FAILURE_VALUES[:neither]
     failure_consequence AssetItem::CONSEQUENCE_VALUES[:moderate]
     status AssetItem::STATUS_VALUES[:operational]
+    tags "Steel, Round"
   end
 end

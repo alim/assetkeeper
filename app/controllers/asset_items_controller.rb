@@ -134,7 +134,7 @@ class AssetItemsController < ApplicationController
   def asset_params
     permitted_params = params.require(:asset_item).permit(:name, :description, :location,
       :latitude, :longitude, :material, :date_installed, :condition,
-      :failure_probability, :failure_consequence, :status, :manufacturer_id)
+      :failure_probability, :failure_consequence, :status, :manufacturer_id, :title, :content, :tags)
 
     # Parse the mm/dd/yyyy formatted date
     permitted_params[:date_installed] =  DateTime.strptime(permitted_params[:date_installed],

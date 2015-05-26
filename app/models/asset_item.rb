@@ -6,12 +6,10 @@
 class AssetItem
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::TagsArentHard
+  include Mongoid::Taggable
 
   include Organizational
   include UserCreatable
-
-  taggable_with :tags
 
   # Add call to strip leading and trailing white spaces from all attributes
   strip_attributes  # See strip_attributes for more information
@@ -42,6 +40,9 @@ class AssetItem
   field :failure_probability, type: Integer
   field :failure_consequence, type: Integer
   field :status, type: Integer
+
+  field :title
+  field :content
 
   ## RELATIONSHIPS ----------------------------------------------------
 
@@ -80,6 +81,7 @@ class AssetItem
   scope :by_category, ->(cat){ where(category: cat) }
   scope :by_status, ->(status){ where(status: status) }
   scope :by_manufacturer, ->(manufacturer_id){ where(:manufacturer_id => manufacturer_id) }
+  scope :by_tag, ->(tag){ self.tagged_with(/^#{tag}/i) }
 
   ## PUBLIC INSTANCE METHODS ------------------------------------------
 
@@ -90,7 +92,8 @@ class AssetItem
   def self.search_by(search_type, search_term)
     # Check for the type of search we are doing
     case search_type
-    when 'manufacturer_id'
+    # Search for Manufacturers
+     when 'manufacturer_id'
 
       if search_term && (search_term.length > 0) &&
         ((manu = Manufacturer.where(name: /^#{search_term}/i)).count  > 0) &&
@@ -100,7 +103,13 @@ class AssetItem
       else
         self.all
       end
-
+    # Search for Tags
+     when 'tags'
+      if search_term && (search_term.length > 0)
+        self.by_tag(search_term)
+      else
+       self.all
+      end
     else # Unrecognized search type so return all
       self.all
     end

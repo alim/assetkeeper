@@ -43,6 +43,7 @@
             <th width="15%">Asset Owner</th>
             <th width="15%">Organization</th>
             <th width="15%">Manufacturer</th>
+            <th width="15%">Tags</th>
             <th width="10%"><%=t '.actions', :default => t("helpers.actions") %></th>
           </tr>
         </thead>
@@ -67,6 +68,13 @@
               <% else %>
                  None specified
                <% end %>
+              </td>
+               <td>
+                <% if asset.tags.present? %>
+                  <%= asset.tags %>
+                <% else %>
+                  None Specified
+                <% end %>
               </td>
               <td>
                 <%= link_to t('.edit', default: t("helpers.links.edit")),
