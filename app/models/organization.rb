@@ -15,8 +15,7 @@ class Organization
   field :name, type: String
   field :description, type: String
 
-  attr_accessor :members
-
+  # attr_accessor :members
 
   ## RELATIONSHIPS -----------------------------------------------------
 
@@ -55,44 +54,45 @@ class Organization
   ## PUBLIC INSTANCE METHODS -------------------------------------------
 
   ######################################################################
-  # The members_list method will parse the membership list of email
-  # addresses check them for valid email format.
+  # Creates an instance variable to hold the UserEmailList. The members
+  # list is passed as a parameter during the creation or editing of an
+  # Organization records.
+  ######################################################################
+  def members=(email_list)
+    @org_email_list = UserEmailList.new(email_list)
+  end
+
+  ######################################################################
+  # Returns the list of member email addresses
+  ######################################################################
+  def members
+    @org_email_list && @org_email_list.email_list
+  end
+
+  ######################################################################
+  # Checks each email address and adds a validation error, if an
+  # email address is invalid. One error message is added for each invalid
+  # email address.
   ######################################################################
   def members_list
-    if self.members.present?
-      email_list = self.members.split
-      email_list.each do |email|
-        if !email.match(/^.+@.+\..+/)
-          self.errors.add(:members, "invalid email address - #{email}")
-        end
-      end
+    @org_email_list && (errors = @org_email_list.check_list)
+    return true unless errors
+    errors.each do |error|
+      self.errors.add(:members, "invalid email addresses #{error}")
     end
   end
 
   ######################################################################
-  # The create_notify method will look to see if members have been assigned
-  # to the Group. For each email address that has nil user record, this
-  # method will create a new User record for the requested member. The
-  # new user will be notified of their new account. Each newly created
-  # user will be associated with the current group.
+  # Creates or looks up a user for each email address. The list of
+  # users are then notified of their affiliation to the organization.
   ######################################################################
   def create_notify
-    member_list = lookup_users
-    if member_list.present?
-      plen = 12
+    @org_email_list && (users = @org_email_list.create_users)
+    return nil unless users
 
-      member_list.each do |member, user|
-        if user.nil?
-          # Create a new user
-          new_password = Devise.friendly_token.first(plen)
-          user = User.create!(first_name: '*None*', last_name: '*None*',
-            role: User::CUSTOMER, email: member.dup, password: new_password,
-            password_confirmation: new_password, phone: '888.555.1212')
-        end
-
-        self.users << user
-        OrganizationMailer.member_email(user, self).deliver
-      end
+    users.each do |user|
+      self.users << user
+      OrganizationMailer.member_email(user, self).deliver
     end
   end
 
@@ -104,52 +104,15 @@ class Organization
   # * user - User object to notify
   ######################################################################
   def invite_member(user)
-    plen = 12
-
     if user.sign_in_count == 0
-      user.password = user.password_confirmation = Devise.friendly_token.first(plen)
+      user.password = user.password_confirmation = Devise.friendly_token
+        .first(UserEmailList::PASSWORD_LENGTH)
 
-      if user.save
-        OrganizationMailer.member_email(user, self).deliver
-      else
-        return false
-      end
+      user.save ? OrganizationMailer.member_email(user, self).deliver : false
     else
-      # Notify current user that they are now a member of the group
       OrganizationMailer.member_email(user, self).deliver
     end
   end
-
-
-  ######################################################################
-  # The lookup_user method will take an string of white-space separated
-  # email addresses and return a hash based on the email addresses
-  # as keys. The value of the hash will be a User or nil, depending on
-  # whether the email address indicates a current user. The method will
-  # return HASH, if it can successfully process all user email addresses
-  # or nil if it cannot. The method will check for valid email
-  # address format, while processing. The method also takes the Group
-  # record as the parameter. It assumes that group.members holds the
-  # email list.
-  ######################################################################
-  def lookup_users
-    users = {}     # Hash for returning results
-
-    if members.present?
-      elist = members.split
-
-      # Look for a current user
-      elist.each do |email|
-        if (user = User.where(email: email).first).present?
-          users[email] = user
-        else
-          users[email] = nil
-        end
-      end
-    end
-    users
-  end
-
 
   ######################################################################
   # The remove_member method will remove selected group members
@@ -158,13 +121,12 @@ class Organization
   # group
   ######################################################################
   def remove_members(members)
-    if members.present?
-      members.each do |uid|
-        user = User.find(uid)
-        self.users.delete(user)
-      end
-      self.reload
+    return unless members.present?
+    members.each do |uid|
+      user = User.find(uid)
+      users.delete(user)
     end
+    reload
   end
 
   ######################################################################
@@ -174,8 +136,8 @@ class Organization
   def relate_classes
     associated_classes.each do |rclass|
       oids = rclass.where(user_id: owner_id).pluck(:id)
-      assignment_method = rclass.to_s.underscore + "_ids="
-      self.send(assignment_method, oids) if oids.present?
+      assignment_method = rclass.to_s.underscore + '_ids='
+      send(assignment_method, oids) if oids.present?
     end
   end
 
@@ -184,9 +146,9 @@ class Organization
   # all other classes from the Organization object.
   #####################################################################
   def unrelate_classes
-    # Should generate a call like self.projects.clear
+    # Should generate a call like projects.clear
     associated_classes.each do |rclass|
-      self.send(rclass.to_s.pluralize.underscore + "=", nil)
+      send(rclass.to_s.pluralize.underscore + '=', nil)
     end
   end
 
@@ -205,14 +167,14 @@ class Organization
   # the hash values will be class instances.
   #####################################################################
   def managed_classes
-
     classes = {}
-    if (related_classes = reflect_on_all_associations(:has_many)).present?
-      related_classes.each do |rclass|
-        class_name = rclass.name.to_s.camelize.singularize.constantize
-        if class_name != User && (records = class_name.where(organization_id: self.id)).present?
-          classes[class_name.to_s.downcase.to_sym] = records
-        end
+    return unless (related_classes = reflect_on_all_associations(:has_many)).present?
+
+    related_classes.each do |rclass|
+      class_name = rclass.name.to_s.camelize.singularize.constantize
+      records = class_name.where(organization_id: id)
+      if class_name != User && records.present?
+        classes[class_name.to_s.downcase.to_sym] = records
       end
     end
 

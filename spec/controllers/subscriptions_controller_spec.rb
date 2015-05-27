@@ -151,6 +151,7 @@ describe SubscriptionsController, :type => :controller do
     delete_stripe_coupon
     delete_silver_plan
     delete_bronze_plan
+    Organization.destroy_all
 		delete_users
     Subscription.destroy_all
   }

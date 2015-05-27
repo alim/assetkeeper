@@ -47,8 +47,9 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   #
-  # Shows the organization information and the list of organization members. It also
-  # allows you to re-send the organization invite to a given user.
+  # Shows the organization information and the list of organization
+  # members. It also allows you to re-send the organization invite to
+  # a given user.
   ######################################################################
   def show
     @user = User.find(@organization.owner_id)
@@ -170,14 +171,12 @@ class OrganizationsController < ApplicationController
   # own an organization
   #####################################################################
   def update_owner(organization, owner_id)
-    if owner_id
-      new_owner = User.find(owner_id)
+    return nil unless owner_id
+    new_owner = User.find(owner_id)
 
-      unless new_owner.owns
-        new_owner.organization = organization
-        new_owner.save
-      end
-    end
+    return nil unless new_owner.owns
+    new_owner.organization = organization
+    new_owner.save
   end
 
   ####################################################################
@@ -197,5 +196,4 @@ class OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit(:name, :description, :owner_id, :members)
   end
-
 end

@@ -19,6 +19,7 @@ describe OrganizationMailer, :type => :mailer do
 
   after(:each) do
     ActionMailer::Base.deliveries.clear
+    Organization.destroy_all
     User.destroy_all
   end
 

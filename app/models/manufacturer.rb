@@ -52,9 +52,8 @@ class Manufacturer
   #####################################################################
   def self.create_with_user(manufacturer_params, user)
     if user.role == User::SERVICE_ADMIN
-     manufacturer = Manufacturer.new(manufacturer_params)
-     manufacturer
+      manufacturer = Manufacturer.new(manufacturer_params)
+      manufacturer
     end
   end
-
 end
