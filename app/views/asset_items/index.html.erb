@@ -40,6 +40,9 @@
             <th width="20%">Description</th>
             <th width="10">Condition</th>
             <th width="10">Status</th>
+            <th width="15%">Part Number</th>
+            <th width="15%">Model Type</th>
+            <th width="15%">Serial Number</th>
             <th width="15%">Asset Owner</th>
             <th width="15%">Organization</th>
             <th width="15%">Manufacturer</th>
@@ -54,6 +57,9 @@
               <td><%= asset.description.html_safe %></td>
               <td><%= asset.condition_str %></td>
               <td><%= asset.status_str %></td>
+              <td><%= asset.part_number %></td>
+              <td><%= asset.model_type %></td>
+              <td><%= asset.serial_number %></td>
               <td><%= asset.user_first_name %> <%= asset.user_last_name %></td>
               <td>
                 <% if asset.organization.present? %>

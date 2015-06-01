@@ -24,6 +24,9 @@ RSpec.describe AssetItem, :type => :model do
     it { is_expected.to respond_to(:latitude) }
     it { is_expected.to respond_to(:material) }
     it { is_expected.to respond_to(:date_installed) }
+    it { is_expected.to respond_to(:part_number) }
+    it { is_expected.to respond_to(:model_type) }
+    it { is_expected.to respond_to(:serial_number) }
     it { is_expected.to respond_to(:condition) }
     it { is_expected.to respond_to(:failure_probability) }
     it { is_expected.to respond_to(:failure_consequence) }
@@ -51,6 +54,21 @@ RSpec.describe AssetItem, :type => :model do
 
       it "Should be invalid without a material" do
         @asset.material = nil
+        expect(@asset).not_to be_valid
+      end
+
+      it "Should be invalid without a part number" do
+        @asset.part_number = nil
+        expect(@asset).not_to be_valid
+      end
+
+      it "Should be invalid without a model type" do
+        @asset.model_type = nil
+        expect(@asset).not_to be_valid
+      end
+
+      it "Should be invalid without a serial number" do
+        @asset.serial_number = nil
         expect(@asset).not_to be_valid
       end
 
@@ -191,6 +209,9 @@ RSpec.describe AssetItem, :type => :model do
         latitude: "44.122",
         longitude: "45.321",
         material: "MyString",
+        part_number: "123ABC",
+        model_type: "Pipe",
+        serial_number: "12453ANDB",
         date_installed: Date.new(2014, 12, 1),
         condition: AssetItem::CONDITION_VALUES[:good],
         failure_probability: AssetItem::FAILURE_VALUES[:neither],
