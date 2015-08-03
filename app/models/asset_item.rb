@@ -52,8 +52,8 @@ class AssetItem
   belongs_to :user
   belongs_to :organization
   belongs_to :manufacturer
-  belongs_to :category
-  has_many :categories
+  #belongs_to :category
+  #has_many :categories
 
   # Relationships needed in the near future
   # belongs_to :category
