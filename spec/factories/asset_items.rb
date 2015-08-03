@@ -10,6 +10,9 @@ FactoryGirl.define do
     latitude "42.4533308"
     longitude "-83.9437406"
     material "MyString"
+    part_number "123NO567"
+    model_type "Pipe"
+    serial_number "898484821822US45"
     date_installed Date.new(2014, 12, 1)
     condition AssetItem::CONDITION_VALUES[:good]
     failure_probability AssetItem::FAILURE_VALUES[:neither]

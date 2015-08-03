@@ -15,6 +15,9 @@ describe AssetItemsController, :type => :controller do
   let(:long) {'-83.8820567'}
   let(:material) {'Cast iron'}
   let(:install_date) {'02/15/2015'}
+  let(:part) {"123ABC"}
+  let(:model) {"Pipe"}
+  let(:serial) {"1234ABC098"}
 
   let(:asset) { AssetItem.where(user_id: @user_with_org.id).first }
 
@@ -414,6 +417,9 @@ describe AssetItemsController, :type => :controller do
           longitude: long,
           material: material,
           date_installed: install_date,
+          part_number: part,
+          model_type: model,
+          serial_number: serial,
           condition: AssetItem::CONDITION_VALUES[:good],
           failure_probability: AssetItem::FAILURE_VALUES[:unlikely],
           failure_consequence: AssetItem::CONSEQUENCE_VALUES[:high],
@@ -598,6 +604,9 @@ describe AssetItemsController, :type => :controller do
           longitude: long + '99',
           material: material + ' and cement',
           date_installed: '03/15/2015',
+          part_number: '123RRR',
+          model_type: 'Pipe Holder',
+          serial_number: '3450001NNJM',
           condition: AssetItem::CONDITION_VALUES[:very_good],
           failure_probability: AssetItem::FAILURE_VALUES[:very_unlikely],
           failure_consequence: AssetItem::CONSEQUENCE_VALUES[:moderate],
