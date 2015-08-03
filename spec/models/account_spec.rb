@@ -150,7 +150,8 @@ describe Account, :type => :model do
 			    expect(user.account.save_with_stripe(params)).to be_falsey
 
 			    expect(user.account.status).to eq(Account::INACTIVE)
-				  expect(user.account.errors.full_messages[0]).to match(/Customer There is no token with ID 123451234512345/)
+				  #expect(user.account.errors.full_messages[0]).to match(/Customer There is no token with ID 123451234512345/)
+				  expect(user.account.errors.full_messages[0]).to match(/Customer No such token: 123451234512345/)
 				end
 			end
 		end
