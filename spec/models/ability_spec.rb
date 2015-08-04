@@ -102,33 +102,6 @@ describe Ability, :type => :model do
       end
     end
 
-    describe "Project access" do
-      let(:project) { FactoryGirl.create(:project, user: account_customer) }
-      let(:org) { FactoryGirl.create(:organization, owner: account_customer ) }
-
-      before(:each) {
-        account_customer.organization = org
-        project.organization = org
-      }
-
-      it {is_expected.to be_able_to(:read, project)}
-      it {is_expected.to be_able_to(:create, project)}
-      it {is_expected.to be_able_to(:update, project)}
-      it {is_expected.to be_able_to(:destroy, project)}
-
-      context "different owner" do
-        let(:project) { FactoryGirl.create(:project, user: another_customer) }
-        let(:org) { FactoryGirl.create(:organization, owner: another_customer) }
-        before(:each) { account_customer.organization = nil }
-
-        it {is_expected.not_to be_able_to(:create, project)}
-        it {is_expected.not_to be_able_to(:read, project)}
-        it {is_expected.not_to be_able_to(:update, project)}
-        it {is_expected.not_to be_able_to(:destroy, project)}
-
-      end
-    end
-
     describe "Subscription Access Tests" do
 
       # Create a normal user

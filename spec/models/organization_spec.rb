@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Organization, :type => :model do
   include_context 'user_setup'
   include_context 'organization_setup'
-  include_context 'project_setup'
 
   # SETUP --------------------------------------------------------------
   let(:one_organization) {
@@ -204,7 +203,7 @@ describe Organization, :type => :model do
   end
 
   # RELATE CLASSES ----------------------------------------------------
-  describe '#relate_classes' do
+  pending '#relate_classes' do
     before(:each) {
       single_organization_with_users
       10.times.each { FactoryGirl.create(:project, user: @owner)}
@@ -235,7 +234,7 @@ describe Organization, :type => :model do
 
   ## MANAGE CLASSES ---------------------------------------------------
 
-  describe '#managed_classes' do
+  pending '#managed_classes' do
     before(:each) {
       single_organization_with_users
       10.times.each { FactoryGirl.create(:project, user: @owner)}
@@ -257,7 +256,7 @@ describe Organization, :type => :model do
 
   ## UNRELATE CLASSES -------------------------------------------------
 
-  describe '#unrelate_classes' do
+  pending '#unrelate_classes' do
     let(:setup_projects) {
       Project.all.each do |project|
         expect(project.organization).to be_nil

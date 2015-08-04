@@ -31,12 +31,6 @@ class Ability
         end
 
         can [:show, :update, :destroy], User, id: user.id
-
-				can :crud, Project do |project|
-					project.organization_id == user.organization_id ||
-          project.user_id == user.id
-				end
-
 			end
 		end
   end

@@ -26,7 +26,6 @@ class Organization
   # represents a Project in our service. We also set a class constant
   # to the name of the class to which the groups will be given access
 
-  has_many :projects
   has_many :asset_items
   has_many :photos
 
