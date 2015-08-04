@@ -28,6 +28,7 @@ class Organization
 
   has_many :projects
   has_many :asset_items
+  has_many :photos
 
   delegate :email, to: :owner, prefix: true
 

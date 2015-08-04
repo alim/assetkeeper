@@ -49,6 +49,7 @@ class AssetItem
   belongs_to :user
   belongs_to :organization
   belongs_to :manufacturer
+  has_many :photos
 
   # Relationships needed in the near future
   # belongs_to :category

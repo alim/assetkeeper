@@ -96,6 +96,7 @@ class User
   ## RESOURCES MANAGED BY A USER
   has_many :projects, dependent: :destroy
   has_many :asset_items, dependent: :destroy
+  has_many :photos, dependent: :destroy
 
   ## DELEGATIONS ------------------------------------------------------
 

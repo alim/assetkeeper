@@ -9,16 +9,13 @@ module UserCreatable
   ## CLASS METHODS ----------------------------------------------------
 
   module ClassMethods
-
     #####################################################################
     # Create a new Object and relate the user record to it.
     #####################################################################
     def create_with_user(params, user)
-      new_object = self.new(params)
+      new_object = new(params)
       new_object.user = user
       new_object
     end
-
   end
-
 end
