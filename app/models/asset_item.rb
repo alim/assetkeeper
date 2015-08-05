@@ -40,6 +40,9 @@ class AssetItem
   field :failure_probability, type: Integer
   field :failure_consequence, type: Integer
   field :status, type: Integer
+  field :part_number, type: String
+  field :model_type, type: String
+  field :serial_number, type: String
 
   field :title
   field :content
@@ -66,6 +69,9 @@ class AssetItem
   validates_uniqueness_of :name
   validates_presence_of :description
   validates_presence_of :material
+  validates_presence_of :part_number
+  validates_presence_of :model_type
+  validates_presence_of :serial_number
   validates_presence_of :condition
   validates_presence_of :failure_probability
   validates_presence_of :failure_consequence
