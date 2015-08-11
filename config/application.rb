@@ -1,12 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "sprockets/railtie"
-require "rails/test_unit/railtie"
+require 'active_model/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'sprockets/railtie'
+require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -19,7 +19,7 @@ module AssetKeeper
     config.autoload_paths += %W(#{config.root}/lib)
 
     # Default local host for mailer - over ride in different environments
-    config.action_mailer.default_url_options = { host: "localhost:3000" }
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
     # Raise mailer exceptions
     config.action_mailer.raise_delivery_errors = true

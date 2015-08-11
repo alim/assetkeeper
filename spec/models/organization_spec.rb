@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Organization, :type => :model do
+describe Organization, type: :model do
   include_context 'user_setup'
   include_context 'organization_setup'
 
@@ -18,8 +18,8 @@ describe Organization, :type => :model do
   # ATTRIBUTE TESTS ----------------------------------------------------
   describe 'Attribute tests' do
     it { is_expected.to respond_to(:name) }
-		it { is_expected.to respond_to(:description) }
-		it { is_expected.to respond_to(:owner) }
+    it { is_expected.to respond_to(:description) }
+    it { is_expected.to respond_to(:owner) }
   end
 
   # VALIDATION TESTS ---------------------------------------------------

@@ -23,12 +23,12 @@ class Photo
   field :long, type: String
 
   has_mongoid_attached_file :image,
-    path: ':image/:id/:style.:extension',
-    :styles => {
-      :small    => ['100x100#',   :jpg],
-      :medium   => ['250x250',    :jpg],
-      :large    => ['600x600>',   :jpg]
-    }
+                            path: ':image/:id/:style.:extension',
+                            styles: {
+                              small:   ['100x100#',   :jpg],
+                              medium:  ['250x250',    :jpg],
+                              large:   ['600x600>',   :jpg]
+                            }
 
   ## RELATIONSHIPS -----------------------------------------------------
 
@@ -39,5 +39,5 @@ class Photo
   ## VALIDATIONS -------------------------------------------------------
 
   validates_attachment_content_type :image,
-    content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+    content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 end
