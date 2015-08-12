@@ -35,12 +35,12 @@ RSpec.describe ManufacturersController, :type => :controller do
   let(:create_params) {
       {manufacturer:
         {
-         name: @fake_manufacturer.name,
-         address: @fake_manufacturer.address,
-         website: @fake_manufacturer.website,
-         main_phone: @fake_manufacturer.main_phone,
-         main_fax: @fake_manufacturer.main_fax,
-         tags: @fake_manufacturer.tags,
+          name: @fake_manufacturer.name,
+          address: @fake_manufacturer.address,
+          website: @fake_manufacturer.website,
+          main_phone: @fake_manufacturer.main_phone,
+          main_fax: @fake_manufacturer.main_fax,
+          tags: @fake_manufacturer.tags,
         }
       }
     }
