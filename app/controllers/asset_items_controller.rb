@@ -27,15 +27,17 @@ class AssetItemsController < ApplicationController
   ######################################################################
   def index
     # Get page number
-		page = params[:page].nil? ? 1 : params[:page]
+    page = params[:page].nil? ? 1 : params[:page]
 
     if current_user.role == User::SERVICE_ADMIN
       @asset_items = AssetItemDecorator.decorate_collection(
         AssetItem.search_by(params[:stype], params[:search]).filter_by(
-      params[:role_filter]).paginate(page: page, per_page: PAGE_COUNT))
+          params[:role_filter]).paginate(page: page, per_page: PAGE_COUNT))
     else
-      @asset_items = AssetItemDecorator.decorate_collection(AssetItem.search_by(params[:stype], params[:search]).filter_by(
-      params[:role_filter]).in_organization(current_user).asc(:name).paginate(page: page,  per_page: PAGE_COUNT))
+      @asset_items = AssetItemDecorator.decorate_collection(
+        AssetItem.search_by(params[:stype], params[:search]).filter_by(
+          params[:role_filter]).in_organization(current_user).asc(:name).paginate(
+            page: page,  per_page: PAGE_COUNT))
     end
   end
 
@@ -132,15 +134,14 @@ class AssetItemsController < ApplicationController
   # white list through.
   ######################################################################
   def asset_params
-    permitted_params = params.require(:asset_item).permit(:name, :description, :location,
-      :latitude, :longitude, :material, :date_installed, :condition,
-      :failure_probability, :failure_consequence, :status, :manufacturer_id, :title, :content, :tags, :part_number, :model_type, :serial_number)
+    permitted_params = params.require(:asset_item).permit(:name, :description,
+      :location, :latitude, :longitude, :material, :date_installed, :condition,
+      :failure_probability, :failure_consequence, :status, :manufacturer_id,
+      :title, :content, :tags, :part_number, :model_type, :serial_number)
 
     # Parse the mm/dd/yyyy formatted date
-    permitted_params[:date_installed] =  DateTime.strptime(permitted_params[:date_installed],
-     "%m/%d/%Y").to_s if permitted_params[:date_installed]
-
+    permitted_params[:date_installed] =  DateTime.strptime(
+      permitted_params[:date_installed], '%m/%d/%Y').to_s if permitted_params[:date_installed]
     permitted_params
   end
-
 end

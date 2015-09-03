@@ -16,16 +16,16 @@ class AssetItem
 
   ## CONSTANTS --------------------------------------------------------
 
-  CONDITION_VALUES = { excellent: 5, very_good: 4, good: 3, poor: 2, very_poor: 1}
+  CONDITION_VALUES = { excellent: 5, very_good: 4, good: 3, poor: 2, very_poor: 1 }
 
   FAILURE_VALUES = { immenent: 5, likely: 4, neither: 3, unlikely: 2,
-    very_unlikely: 1, unknown: 0 }
+                     very_unlikely: 1, unknown: 0 }
 
   CONSEQUENCE_VALUES = { extremely_high: 5, high: 4, moderate: 3, low: 2,
-    very_low: 1}
+                         very_low: 1 }
 
   STATUS_VALUES = { ordered: 1, in_inventory: 2, scheduled_for_installation: 3,
-    operational: 4, scheduled_for_replacement: 5, removed: 6, maintenance: 7}
+                    operational: 4, scheduled_for_replacement: 5, removed: 6, maintenance: 7 }
 
   ## FIELDS -----------------------------------------------------------
 
@@ -80,15 +80,15 @@ class AssetItem
 
   ## INDICES & SCOPES -------------------------------------------------
 
-  index({name: 1}, {name: 'name_index'})
-  index({condition: 1}, {name: 'condition_index'})
-  index({status: 1}, {name: 'status_index'})
+  index({ name: 1 }, name: 'name_index')
+  index({ condition: 1 }, name: 'condition_index')
+  index({ status: 1 }, name: 'status_index')
 
-  scope :by_name, ->(name){ where(name: /^#{name}/i) }
-  scope :by_category, ->(cat){ where(category: cat) }
-  scope :by_status, ->(status){ where(status: status) }
-  scope :by_manufacturer, ->(manufacturer_id){ where(:manufacturer_id => manufacturer_id) }
-  scope :by_tag, ->(tag){ self.tagged_with(/^#{tag}/i) }
+  scope :by_name, ->(name) { where(name: /^#{name}/i) }
+  scope :by_category, ->(cat) { where(category: cat) }
+  scope :by_status, ->(status) { where(status: status) }
+  scope :by_manufacturer, ->(manufacturer_id) { where(manufacturer_id: manufacturer_id) }
+  scope :by_tag, ->(tag) { tagged_with(/^#{tag}/i) }
 
   ## PUBLIC INSTANCE METHODS ------------------------------------------
 
@@ -114,19 +114,18 @@ class AssetItem
     # Check for the type of search we are doing
     case search_type
     # Search for Manufacturers
-     when 'manufacturer_id'
-
+    when 'manufacturer_id'
       if (mid = find_manufacturer_id(search_term))
         by_manufacturer(mid)
       else
         all
       end
     # Search for Tags
-     when 'tags'
+    when 'tags'
       if search_term && (search_term.length > 0)
-        self.by_tag(search_term)
+        by_tag(search_term)
       else
-       self.all
+        all
       end
     else # Unrecognized search type so return all
       all
@@ -135,6 +134,9 @@ class AssetItem
 
   #####################################################################
   # Class method to filter by role
+  # TODO: Need to fix this to filter by user_role and add specs to
+  # test progressive selection by user_role such that a customer
+  # only sees records that are part of thier organization.
   #####################################################################
   def self.filter_by(filter)
     case filter

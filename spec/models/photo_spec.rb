@@ -21,30 +21,28 @@ RSpec.describe Photo, type: :model do
       it 'have an attachment' do
         expect(@photo).to have_mongoid_attached_file(:image)
       end
+
+      it 'be valid without a name' do
+        @photo.name = nil
+        expect(@photo).to be_valid
+      end
+
+      it 'be valid without a description' do
+        @photo.description = nil
+        expect(@photo).to be_valid
+      end
     end
 
-    pending 'Invalid tests', :vcr do
-      it 'Should be invalid without a name' do
-        @photo.name = nil
-        expect(@photo).not_to be_valid
-      end
-
-      it 'Should be invalid without a description' do
-        @photo.description = nil
-        expect(@photo).not_to be_valid
-      end
-
-      it 'Should be invalid without a user_id' do
-        photo = FactoryGirl.build(:photo_item)
+    describe 'Invalid tests', :vcr do
+      it 'be invalid without a user_id' do
+        photo = FactoryGirl.build(:photo)
         expect(photo).not_to be_valid
       end
 
-      it 'photo should be destroyed, if user is destroyed' do
-        user = @photo.user
-        user.destroy
+      it 'invalid with wrong attachment type' do
         expect {
-          @photo.reload
-        }.to raise_error(Mongoid::Errors::DocumentNotFound)
+          FactoryGirl.create(:photo_no_file, user: FactoryGirl.create(:user) )
+        }.to raise_error
       end
     end
   end
@@ -147,6 +145,14 @@ RSpec.describe Photo, type: :model do
     it 'should relate the photo to the correct user' do
       photo = Photo.create_with_user(photo_params, new_user)
       expect(photo.user).to eq(new_user)
+    end
+
+    it 'photo should be destroyed, if user is destroyed' do
+      user = @photo.user
+      user.destroy
+      expect {
+        @photo.reload
+      }.to raise_error(Mongoid::Errors::DocumentNotFound)
     end
   end
 end
