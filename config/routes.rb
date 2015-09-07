@@ -5,8 +5,6 @@ AssetKeeper::Application.routes.draw do
     resources :contacts
   end
 
-  resources :projects
-
   resources :subscriptions
 
   resources :organizations do

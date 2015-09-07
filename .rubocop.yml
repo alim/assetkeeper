@@ -1,0 +1,25 @@
+# Common configuration.
+AllCops:
+  Exclude:
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'spec/**/*'
+
+# Offense count: 3
+# Configuration parameters: CountComments.
+Metrics/ClassLength:
+  Max: 150
+
+# Offense count: 330
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 100
+
+# Offense count: 25
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Max: 20
+
+# Offense count: 1
+Metrics/PerceivedComplexity:
+  Max: 8

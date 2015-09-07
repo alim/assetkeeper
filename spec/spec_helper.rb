@@ -1,3 +1,4 @@
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -7,6 +8,7 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'vcr'
 require 'webmock/rspec'
+require "paperclip/matchers"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/shared/ and its subdirectories.
@@ -76,7 +78,13 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  # Add VCR helpers
-  # config.extend VCR::RSpec::Macros
+  # Paperclip support for testing
+  #config.include Paperclip::Shoulda::Matchers
+end
 
+# Add custom matcher for mongoid attachment
+RSpec::Matchers.define :have_mongoid_attached_file do |expected|
+  match do |actual|
+    have_fields(":#{actual}_content_type", ":#{actual}_file_name", ":#{actual}_file_size", ":#{actual}_updated_at")
+  end
 end

@@ -12,11 +12,6 @@ describe ApplicationHelper, :type => :helper do
       expect(helper.active('/settings')).to eq("class=active")
     end
 
-    it "if project path and settings selected, should return active" do
-      helper.request.path = projects_path
-      expect(helper.active('/settings')).to eq("class=active")
-    end
-
     it "if edit user path and settings selected, should return active" do
       helper.request.path = edit_user_registration_path
       expect(helper.active('/settings')).to eq("class=active")

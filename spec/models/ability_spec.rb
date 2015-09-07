@@ -1,5 +1,5 @@
-require "spec_helper"
-require "cancan/matchers"
+require 'spec_helper'
+require 'cancan/matchers'
 
 describe Ability, :type => :model do
   include_context 'user_setup'
@@ -17,48 +17,48 @@ describe Ability, :type => :model do
     User.destroy_all
   end
 
-  describe "Standard customer user" do
+  describe 'Standard customer user' do
     subject(:ability) { Ability.new(account_customer) }
 
-    describe "User access" do
+    describe 'User access' do
       it { is_expected.to be_able_to(:show, account_customer) }
       it { is_expected.to be_able_to(:update, account_customer) }
       it { is_expected.to be_able_to(:destroy, account_customer) }
     end
 
-    describe "Account access" do
+    describe 'Account access' do
       let(:account) { account_customer.account }
 
-      it {is_expected.to be_able_to(:create, account)}
-      it {is_expected.to be_able_to(:read, account)}
-      it {is_expected.to be_able_to(:update, account)}
-      it {is_expected.to be_able_to(:destroy, account)}
+      it { is_expected.to be_able_to(:create, account) }
+      it { is_expected.to be_able_to(:read, account) }
+      it { is_expected.to be_able_to(:update, account) }
+      it { is_expected.to be_able_to(:destroy, account) }
 
-      context "with a different user" do
+      context 'with a different user' do
         let(:account) { another_customer.account }
 
-        it {is_expected.not_to be_able_to(:create, account)}
-        it {is_expected.not_to be_able_to(:read, account)}
-        it {is_expected.not_to be_able_to(:update, account)}
-        it {is_expected.not_to be_able_to(:destroy, account)}
+        it { is_expected.not_to be_able_to(:create, account) }
+        it { is_expected.not_to be_able_to(:read, account) }
+        it { is_expected.not_to be_able_to(:update, account) }
+        it { is_expected.not_to be_able_to(:destroy, account) }
       end
     end
 
-    describe "Organization access" do
+    describe 'Organization access' do
       let(:organization) { FactoryGirl.create(:organization, owner: account_customer) }
 
-      it {is_expected.to be_able_to(:create, organization)}
-      it {is_expected.to be_able_to(:read, organization)}
-      it {is_expected.to be_able_to(:update, organization)}
-      it {is_expected.to be_able_to(:destroy, organization)}
+      it { is_expected.to be_able_to(:create, organization) }
+      it { is_expected.to be_able_to(:read, organization) }
+      it { is_expected.to be_able_to(:update, organization) }
+      it { is_expected.to be_able_to(:destroy, organization) }
 
-      describe "different owner" do
+      describe 'different owner' do
         let(:organization) { FactoryGirl.create(:organization, owner: another_customer) }
 
-        it {is_expected.not_to be_able_to(:create, organization)}
-        it {is_expected.not_to be_able_to(:read, organization)}
-        it {is_expected.not_to be_able_to(:update, organization)}
-        it {is_expected.not_to be_able_to(:destroy, organization)}
+        it { is_expected.not_to be_able_to(:create, organization) }
+        it { is_expected.not_to be_able_to(:read, organization) }
+        it { is_expected.not_to be_able_to(:update, organization) }
+        it { is_expected.not_to be_able_to(:destroy, organization) }
       end
 
       describe 'organization member access' do
@@ -67,16 +67,16 @@ describe Ability, :type => :model do
           @org_member = @organization.users.where(:id.ne => @organization.owner.id).first
         end
 
-        subject(:ability) { Ability.new(@org_member)}
+        subject(:ability) { Ability.new(@org_member) }
 
-        it {is_expected.to be_able_to(:read, @organization)}
-        it {is_expected.not_to be_able_to(:create, @organization)}
-        it {is_expected.not_to be_able_to(:update, @organization)}
-        it {is_expected.not_to be_able_to(:destroy, @organization)}
+        it { is_expected.to be_able_to(:read, @organization) }
+        it { is_expected.not_to be_able_to(:create, @organization) }
+        it { is_expected.not_to be_able_to(:update, @organization) }
+        it { is_expected.not_to be_able_to(:destroy, @organization) }
       end
     end
 
-    describe "Asset access" do
+    describe 'Asset access' do
       let(:asset) { FactoryGirl.create(:asset_item, user: account_customer) }
       let(:org) { FactoryGirl.create(:organization, owner: account_customer ) }
 
@@ -85,51 +85,24 @@ describe Ability, :type => :model do
         asset.organization = org
       }
 
-      it {is_expected.to be_able_to(:read, asset)}
-      it {is_expected.to be_able_to(:create, asset)}
-      it {is_expected.to be_able_to(:update, asset)}
-      it {is_expected.to be_able_to(:destroy, asset)}
+      it { is_expected.to be_able_to(:read, asset) }
+      it { is_expected.to be_able_to(:create, asset) }
+      it { is_expected.to be_able_to(:update, asset) }
+      it { is_expected.to be_able_to(:destroy, asset) }
 
-      context "different owner" do
+      context 'different owner' do
         let(:asset) { FactoryGirl.create(:asset_item, user: another_customer) }
         let(:org) { FactoryGirl.create(:organization, owner: another_customer) }
         before(:each) { account_customer.organization = nil }
 
-        it {is_expected.not_to be_able_to(:create, asset)}
-        it {is_expected.not_to be_able_to(:read, asset)}
-        it {is_expected.not_to be_able_to(:update, asset)}
-        it {is_expected.not_to be_able_to(:destroy, asset)}
+        it { is_expected.not_to be_able_to(:create, asset) }
+        it { is_expected.not_to be_able_to(:read, asset) }
+        it { is_expected.not_to be_able_to(:update, asset) }
+        it { is_expected.not_to be_able_to(:destroy, asset) }
       end
     end
 
-    describe "Project access" do
-      let(:project) { FactoryGirl.create(:project, user: account_customer) }
-      let(:org) { FactoryGirl.create(:organization, owner: account_customer ) }
-
-      before(:each) {
-        account_customer.organization = org
-        project.organization = org
-      }
-
-      it {is_expected.to be_able_to(:read, project)}
-      it {is_expected.to be_able_to(:create, project)}
-      it {is_expected.to be_able_to(:update, project)}
-      it {is_expected.to be_able_to(:destroy, project)}
-
-      context "different owner" do
-        let(:project) { FactoryGirl.create(:project, user: another_customer) }
-        let(:org) { FactoryGirl.create(:organization, owner: another_customer) }
-        before(:each) { account_customer.organization = nil }
-
-        it {is_expected.not_to be_able_to(:create, project)}
-        it {is_expected.not_to be_able_to(:read, project)}
-        it {is_expected.not_to be_able_to(:update, project)}
-        it {is_expected.not_to be_able_to(:destroy, project)}
-
-      end
-    end
-
-    describe "Subscription Access Tests" do
+    describe 'Subscription Access Tests' do
 
       # Create a normal user
       let(:normal_user) { FactoryGirl.create(:user) }
@@ -148,71 +121,71 @@ describe Ability, :type => :model do
       }
 
       # Subscription Admin Tests with CRUD access rights
-      describe "Subscription Admin Access Tests" do
+      describe 'Subscription Admin Access Tests' do
 
         sub_admin = FactoryGirl.create(:adminuser)
         subject(:admin_ability) { Ability.new(sub_admin) }
 
-        it "Create a Subscription" do
+        it 'Create a Subscription' do
           is_expected.to be_able_to(:create, subscription_fake_customer)
         end
 
-        it "Read a Subscription" do
+        it 'Read a Subscription' do
           is_expected.to be_able_to(:read, subscription_fake_customer)
         end
 
-        it "Update a Subscription" do
+        it 'Update a Subscription' do
           is_expected.to be_able_to(:update, subscription_fake_customer)
         end
 
-        it "Delete a Subscription" do
+        it 'Delete a Subscription' do
           is_expected.to be_able_to(:destroy, subscription_fake_customer)
         end
       end
 
       # Subscription User Tests with CRUD access rights
-      describe "Subscription User Access Tests" do
+      describe 'Subscription User Access Tests' do
 
         subject(:user_ability) { Ability.new(normal_user) }
 
-        it "Create a Subscription" do
+        it 'Create a Subscription' do
           is_expected.to be_able_to(:create, subscription_fake_customer)
         end
 
-        it "Read a Subscription" do
+        it 'Read a Subscription' do
           is_expected.to be_able_to(:read, subscription_fake_customer)
         end
 
-        it "Update a Subscription" do
+        it 'Update a Subscription' do
           is_expected.to be_able_to(:update, subscription_fake_customer)
         end
 
-        it "Delete a Subscription" do
+        it 'Delete a Subscription' do
           is_expected.to be_able_to(:destroy, subscription_fake_customer)
         end
       end
 
       # Subscription User Tests with Non CRUD access rights
-      describe "Subscription Non User Access Tests" do
+      describe 'Subscription Non User Access Tests' do
 
-        it "Create a Subscription" do
+        it 'Create a Subscription' do
           is_expected.not_to be_able_to(:create, subscription_fake_abnormal_customer)
         end
 
-        it "Read a Subscription" do
+        it 'Read a Subscription' do
           is_expected.not_to be_able_to(:read, subscription_fake_abnormal_customer)
         end
 
-        it "Update a Subscription" do
+        it 'Update a Subscription' do
           is_expected.not_to be_able_to(:update, subscription_fake_abnormal_customer)
         end
 
-        it "Delete a Subscription" do
+        it 'Delete a Subscription' do
           is_expected.not_to be_able_to(:destroy, subscription_fake_abnormal_customer)
         end
       end
     end
-    describe "Manufacturer Access Tests" do
+    describe 'Manufacturer Access Tests' do
       # CREATE A SINGLE MANUFACTURER -------------------------------------------
 
       let(:fake_manufacturer) {
@@ -221,50 +194,50 @@ describe Ability, :type => :model do
 
        # Manufacturer Admin Tests with CRUD access rights
 
-      describe "Manufacturer Admin Access Tests" do
+      describe 'Manufacturer Admin Access Tests' do
 
         manu_admin = FactoryGirl.create(:adminuser)
 
         subject(:admin_ability) { Ability.new(manu_admin) }
 
-        it "Create a Manufacturer" do
+        it 'Create a Manufacturer' do
           is_expected.to be_able_to(:create, fake_manufacturer)
         end
 
-        it "Read a Manufacturer" do
+        it 'Read a Manufacturer' do
           is_expected.to be_able_to(:read, fake_manufacturer)
         end
 
-        it "Update a Manufacturer" do
+        it 'Update a Manufacturer' do
           is_expected.to be_able_to(:update, fake_manufacturer)
         end
 
-        it "Delete a Manufacturer" do
+        it 'Delete a Manufacturer' do
           is_expected.to be_able_to(:destroy, fake_manufacturer)
         end
       end
 
         # Manufacturer User Tests with CRUD access rights
 
-      describe "Manufacturer Non User Access Tests" do
+      describe 'Manufacturer Non User Access Tests' do
 
         manu_non_admin = FactoryGirl.create(:user)
 
         subject(:user_ability) { Ability.new(manu_non_admin) }
 
-        it "Create a Manufacturer" do
+        it 'Create a Manufacturer' do
           is_expected.not_to be_able_to(:create, fake_manufacturer)
         end
 
-        it "Read a Manufacturer" do
+        it 'Read a Manufacturer' do
           is_expected.to be_able_to(:read, fake_manufacturer)
         end
 
-        it "Update a Manufacturer" do
+        it 'Update a Manufacturer' do
           is_expected.not_to be_able_to(:update, fake_manufacturer)
         end
 
-        it "Delete a Manufacturer" do
+        it 'Delete a Manufacturer' do
           is_expected.not_to be_able_to(:destroy, fake_manufacturer)
         end
       end

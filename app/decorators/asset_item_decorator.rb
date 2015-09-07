@@ -11,17 +11,17 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   def condition_str
     case object.condition
     when 5
-      "Excellent"
+      'Excellent'
     when 4
-      "Very Good"
+      'Very Good'
     when 3
-      "Good"
+      'Good'
     when 2
-      "Poor"
+      'Poor'
     when 1
-      "Very Poor"
+      'Very Poor'
     else
-      "Unknown"
+      'Unknown'
     end
   end
 
@@ -31,11 +31,11 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   #####################################################################
   def condition_choices
     [
-      ["Excellent", 5],
-      ["Very Good", 4],
-      ["Good", 3],
-      ["Poor", 2],
-      ["Very Poor", 1]
+      ['Excellent', 5],
+      ['Very Good', 4],
+      ['Good', 3],
+      ['Poor', 2],
+      ['Very Poor', 1]
     ]
   end
 
@@ -45,17 +45,17 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   def consequence_str
     case object.failure_consequence
     when 5
-      "Extremely High"
+      'Extremely High'
     when 4
-      "High"
+      'High'
     when 3
-      "Moderate"
+      'Moderate'
     when 2
-      "Low"
+      'Low'
     when 1
-      "Very Low"
+      'Very Low'
     else
-      "Unknown"
+      'Unknown'
     end
   end
 
@@ -65,11 +65,11 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   #####################################################################
   def consequence_choices
     [
-      ["Extremely High", 5],
-      ["High", 4],
-      ["Moderate", 3],
-      ["Low", 2],
-      ["Very Low", 1]
+      ['Extremely High', 5],
+      ['High', 4],
+      ['Moderate', 3],
+      ['Low', 2],
+      ['Very Low', 1]
     ]
   end
 
@@ -79,17 +79,17 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   def failure_str
     case object.failure_probability
     when 5
-      "Imminent"
+      'Imminent'
     when 4
-      "Likely"
+      'Likely'
     when 3
-      "Nominal"
+      'Nominal'
     when 2
-      "Unlikely"
+      'Unlikely'
     when 1
-      "Very Unlikely"
+      'Very Unlikely'
     else
-      "Unknown"
+      'Unknown'
     end
   end
 
@@ -99,11 +99,11 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   #####################################################################
   def failure_choices
     [
-      ["Imminent", 5],
-      ["Likely", 4],
-      ["Nominal", 3],
-      ["Unlikely", 2],
-      ["Very Unlikely", 1]
+      ['Imminent', 5],
+      ['Likely', 4],
+      ['Nominal', 3],
+      ['Unlikely', 2],
+      ['Very Unlikely', 1]
     ]
   end
 
@@ -111,7 +111,6 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   # Returns a Google Map URL for the lat/long location of the asset.
   #####################################################################
   def google_map_url
-    # "https://www.google.com/maps/place/@#{object.latitude},#{object.longitude},9z"
     "https://www.google.com/maps/place/#{object.latitude},#{object.longitude}/@#{object.latitude},#{object.longitude},15z/"
   end
 
@@ -120,9 +119,9 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   #####################################################################
   def install_date
     if object.date_installed
-      object.date_installed.strftime("%m/%d/%Y")
+      object.date_installed.strftime('%m/%d/%Y')
     else
-      "Not installed"
+      'Not installed'
     end
   end
 
@@ -132,21 +131,21 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   def status_str
     case object.status
     when 1
-      "Ordered"
+      'Ordered'
     when 2
-      "In Inventory"
+      'In Inventory'
     when 3
-      "Scheduled Install"
+      'Scheduled Install'
     when 4
-      "Operational"
+      'Operational'
     when 5
-      "Scheduled Replacement"
+      'Scheduled Replacement'
     when 6
-      "Removed"
+      'Removed'
     when 7
-      "In Maintenance"
+      'In Maintenance'
     else
-      "Unknown"
+      'Unknown'
     end
   end
 
@@ -156,13 +155,13 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   #####################################################################
   def status_choices
     [
-      ["Ordered", 1],
-      ["In Inventory", 2],
-      ["Scheduled Install", 3],
-      ["Operational", 4],
-      ["Scheduled Replacement", 5],
-      ["Removed", 6],
-      ["In Maintenance", 7]
+      ['Ordered', 1],
+      ['In Inventory', 2],
+      ['Scheduled Install', 3],
+      ['Operational', 4],
+      ['Scheduled Replacement', 5],
+      ['Removed', 6],
+      ['In Maintenance', 7]
     ]
   end
 
@@ -172,16 +171,14 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   #####################################################################
 
   def manufacturer_choices
-     @list_of_manufacturers ||= Array.new
+    @list_of_manufacturers ||= []
 
-      @manufacturers = Manufacturer.all
+    @manufacturers = Manufacturer.all
 
-      @manufacturers.each do |p|
+    @manufacturers.each do |p|
+      @list_of_manufacturers.push([p.name, p._id])
+    end
 
-        @list_of_manufacturers.push([p.name, p._id])
-      end
-
-      @list_of_manufacturers
+    @list_of_manufacturers
   end
-
 end

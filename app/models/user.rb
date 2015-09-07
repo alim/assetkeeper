@@ -94,8 +94,8 @@ class User
   embeds_one :account
 
   ## RESOURCES MANAGED BY A USER
-  has_many :projects, dependent: :destroy
   has_many :asset_items, dependent: :destroy
+  has_many :photos, dependent: :destroy
 
   ## DELEGATIONS ------------------------------------------------------
 
