@@ -14,19 +14,19 @@ class ContactsController < ApplicationController
   #
   authorize_resource
 
-  ######################################################################
+  #########################################################################
   # GET    /admin/manufacturers/:manufacturer_id/contacts/new(.:format)
   #
   # The new method will create a new contact
-  ######################################################################
+  #########################################################################
   def new
   end
 
-  ######################################################################
+  #########################################################################
   # GET /admin/manufacturers/:manufacturer_id/contacts/:id(.:format)
   #
   # The edit method will update a manufacturer contact.
-  ######################################################################
+  #########################################################################
   def edit
     @contact = @contacts.find(params[:id])
   end
@@ -34,11 +34,11 @@ class ContactsController < ApplicationController
   def index
   end
 
-  ######################################################################
+  #########################################################################
   # POST   /admin/manufacturers/:manufacturer_id/contacts(.:format)
   #
   # The create method will create a new manufacturer contact.
-  ######################################################################
+  #########################################################################
   def create
     @new_contact = @manufacturer.contacts.create!(contact_params)
     if @manufacturer.save
@@ -49,11 +49,11 @@ class ContactsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # PUT or PATCH  /admin/manufacturers/:manufacturer_id/contacts/:id(.:format)
   #
   # The update method will update a manufacturer contact.
-  ######################################################################
+  #########################################################################
   def update
 
     @update_contact = @contacts.find(params[:id])
@@ -69,12 +69,12 @@ class ContactsController < ApplicationController
       redirect_to @manufacturer
     end
   end
-  ######################################################################
+  #########################################################################
   # DELETE /admin/manufacturer/:manufacturer_id/contacts/:id(.:format)
   #
   # The destroy method will destroy the contact record associated with
   # the manufacturer object.
-  ######################################################################
+  #########################################################################
   def destroy
       @remove_contact = @contacts.find(params[:id])
 
@@ -112,10 +112,10 @@ class ContactsController < ApplicationController
       @contacts = nil
     end
   end
-  ######################################################################
+  #########################################################################
   # Never trust parameters from the scary internet, only allow the
   # white list through.
-  ######################################################################
+  #########################################################################
 
     def contact_params
       params.require(:contact).permit(:name, :email, :website, :phone, :body)

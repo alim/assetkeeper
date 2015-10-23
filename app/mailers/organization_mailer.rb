@@ -9,10 +9,10 @@ class OrganizationMailer < ActionMailer::Base
   default from: "#{ORGANIZATION_FROM_EMAIL}"
   default subject: "#{ORGANIZATION_EMAIL_SUBJECT}"
 
-  ######################################################################
+  #########################################################################
   # The member_email method will notify a new member of a organization
   # that he/she has been added by the organization owner.
-  ######################################################################
+  #########################################################################
   def member_email(user, organization)
   	# Convience varaibles for email templates
   	@organization = organization

@@ -1,6 +1,6 @@
 <%= render 'shared/validation_errors', verrors: verrors  %>
 
-<%= form_for asset_model do |f| %>
+<%= form_for asset_model, html: { multipart: true } do |f| %>
     <div class="row">
 
       <div class="small-6 columns">
@@ -101,12 +101,18 @@
         <label>Consequence</label>
         <%= f.select(:failure_consequence, asset_model.consequence_choices) %>
       </div>
+    </div>
 
-       <div class="small-3 columns">
+    <div class='row'>
+      <div class='small-6 columns'>
+        <lable>Upload Photos</label>
+        <%= f.file_field :photos, multiple: true %>
+      </div>
+
+      <div class="small-3 columns">
         <label>Manufacturer</label>
         <%= f.select(:manufacturer_id, asset_model.manufacturer_choices) %>
       </div>
-
     </div>
 
 

@@ -1,8 +1,8 @@
-#######################################################################
+##########################################################################
 # The Organizational concern's purpose is to add features associated
 # with working with the Organizational model to class that belong
 # to an organization.
-#######################################################################
+##########################################################################
 module Organizational
   extend ActiveSupport::Concern
 
@@ -39,10 +39,10 @@ module Organizational
 
   ## INSTANCE METHODS -------------------------------------------------
 
-  ######################################################################
+  #########################################################################
   # Relate the current class to it's organization, if it is present for
   # the class.
-  ######################################################################
+  #########################################################################
   def relate_to_organization
     if self.respond_to?(:user)
       if (org = self.user.organization)

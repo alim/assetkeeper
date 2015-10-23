@@ -1,8 +1,8 @@
-#######################################################################
+##########################################################################
 # The Asset class is the primary model for holding information about
 # infrastructure assets. It will rely on other classes for manufacturer
 # and categories.
-#######################################################################
+##########################################################################
 class AssetItem
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -92,10 +92,10 @@ class AssetItem
 
   ## PUBLIC INSTANCE METHODS ------------------------------------------
 
-  #####################################################################
+  ########################################################################
   # Calculates the criticality by multiplying consequence x failure
   # probability.
-  #####################################################################
+  ########################################################################
   def criticality
     if failure_consequence && failure_probability
       failure_consequence * failure_probability
@@ -106,38 +106,37 @@ class AssetItem
 
   ## CLASS METHODS ----------------------------------------------------
 
-  #####################################################################
+  ########################################################################
   # Class method to return the correct set of asset records from a
   # search request.
-  #####################################################################
-  def self.search_by(search_type, search_term)
+  ########################################################################
+  def self.search_by(stype, search)
     # Check for the type of search we are doing
-    case search_type
+    case stype
     # Search for Manufacturers
     when 'manufacturer_id'
-      if (mid = find_manufacturer_id(search_term))
-        by_manufacturer(mid)
-      else
-        all
-      end
+      mid = find_manufacturer_id(search)
+      mid ? by_manufacturer(mid) : all
     # Search for Tags
     when 'tags'
-      if search_term && (search_term.length > 0)
-        by_tag(search_term)
-      else
-        all
-      end
+      stype && (stype.length > 0) ? by_tag(search) : all
     else # Unrecognized search type so return all
       all
     end
   end
 
-  #####################################################################
+  ########################################################################
+  # Saves an AssetItem record and related photos
+  ########################################################################
+  def self.save_with_photos(params)
+  end
+
+  ########################################################################
   # Class method to filter by role
   # TODO: Need to fix this to filter by user_role and add specs to
   # test progressive selection by user_role such that a customer
   # only sees records that are part of thier organization.
-  #####################################################################
+  ########################################################################
   def self.filter_by(filter)
     case filter
     when 'customer'
@@ -149,10 +148,10 @@ class AssetItem
     end
   end
 
-  #####################################################################
+  ########################################################################
   # Helper class method to find the manufacturer's id based on the
   # search term.
-  #####################################################################
+  ########################################################################
   def self.find_manufacturer_id(search_term)
     return nil unless search_term && (search_term.length > 0)
     manu = Manufacturer.where(name: /^#{search_term}/i).last

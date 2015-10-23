@@ -1,8 +1,8 @@
-########################################################################
+###########################################################################
 # The OrganizationsController is responsible for managing the actions
 # associated with managing user organizations that will provide organization access
 # to a subset of system resources.
-########################################################################
+###########################################################################
 class OrganizationsController < ApplicationController
   respond_to :html
 
@@ -20,14 +20,14 @@ class OrganizationsController < ApplicationController
   # or checks Class permissions
   authorize_resource
 
-  ######################################################################
+  #########################################################################
   # GET /organizations
   # GET /organizations.json
   #
   # The index action will check to see if an organization is currently
   # related to the current user. If one exists, then the organizational
   # record is shown.
-  ######################################################################
+  #########################################################################
   def index
     # Get page number
     page = params[:page].nil? ? 1 : params[:page]
@@ -43,20 +43,20 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # GET /organizations/1
   # GET /organizations/1.json
   #
   # Shows the organization information and the list of organization
   # members. It also allows you to re-send the organization invite to
   # a given user.
-  ######################################################################
+  #########################################################################
   def show
     @user = User.find(@organization.owner_id)
     @resources = @organization.managed_classes
   end
 
-  ######################################################################
+  #########################################################################
   # GET /organizations/new
   #
   # Since we support a resource based authorization system, the new
@@ -64,22 +64,22 @@ class OrganizationsController < ApplicationController
   # the organization has access. For example, you might have a list of Projects
   # to which you want to give the organization access. A list of Project
   # resources should be shown to the user.
-  ######################################################################
+  #########################################################################
   def new
     @organization = Organization.new
   end
 
-  ######################################################################
+  #########################################################################
   # GET /organizations/1/edit
   #
   # This action present the edit view with the list of resources that
   # are currently owned by the signed in user. These resources can be
   # selected by the user for sharing with the organization.
-  ######################################################################
+  #########################################################################
   def edit
   end
 
-  ######################################################################
+  #########################################################################
   # POST /organizations
   # POST /organizations.json
   #
@@ -87,7 +87,7 @@ class OrganizationsController < ApplicationController
   # the organization. It will then add any members to the organization that were
   # specified by the user. If the user is not a member, then a new user
   # will be created. All members will be notified by email.
-  ######################################################################
+  #########################################################################
   def create
     @organization = Organization.create_with_owner(organization_params, current_user)
 
@@ -99,12 +99,12 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # PATCH/PUT /organizations/1
   #
   # The update action allows the user to update the organization attributes,
   # remove organization members and add new organization members.
-  ######################################################################
+  #########################################################################
   def update
     @organization.remove_members(params[:organization][:user_ids])
 
@@ -119,7 +119,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # DELETE /organizations/1
   # DELETE /organizations/1.json
   #
@@ -127,7 +127,7 @@ class OrganizationsController < ApplicationController
   # that are currently related to the organization. Depending on the ORM that
   # is being used, the separate call to the helper method
   # unrelate_resources might not be needed.
-  ######################################################################
+  #########################################################################
   def destroy
     @organization.unrelate_classes
     @organization.destroy
@@ -136,12 +136,12 @@ class OrganizationsController < ApplicationController
 
   ## CUSTOM ACTIONS ----------------------------------------------------
 
-  ######################################################################
+  #########################################################################
   # PUT /organizations/1/notify
   #
   # The notify method will resend a organization invite notification message
   # to a single organization member and re-display the show template.
-  ######################################################################
+  #########################################################################
   def notify
     @user = @organization.users.find(params[:uid])
     if @organization.invite_member(@user)
@@ -165,11 +165,11 @@ class OrganizationsController < ApplicationController
     params
   end
 
-  #####################################################################
+  ########################################################################
   # Updates the new owner of the organization with owner relationship.
   # It depends on the user to be present and that it does not already
   # own an organization
-  #####################################################################
+  ########################################################################
   def update_owner(organization, owner_id)
     return nil unless owner_id
     new_owner = User.find(owner_id)
@@ -189,10 +189,10 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
   end
 
-  ######################################################################
+  #########################################################################
   # Never trust parameters from the scary Internet, only allow the
   # white list through.
-  ######################################################################
+  #########################################################################
   def organization_params
     params.require(:organization).permit(:name, :description, :owner_id, :members)
   end

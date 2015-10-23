@@ -1,9 +1,9 @@
-########################################################################
+###########################################################################
 # The Account model is used to store the Stripe.com customer_id and
 # the current status of the account. The model is also responsible for
 # interfacing with the Stripe.com service to store, retrieve and
 # update the customer information stored there.
-########################################################################
+###########################################################################
 class Account
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -56,9 +56,9 @@ class Account
 
   # PUBLIC INSTANCE METHODS --------------------------------------------
 
-  #####################################################################
+  ########################################################################
   # The status_str method returns the account status in string format
-  #####################################################################
+  ########################################################################
   def status_str
     case self.status
     when ACTIVE
@@ -76,7 +76,7 @@ class Account
     end
   end
 
-  #####################################################################
+  ########################################################################
   # The get_customer method retrieves the customer information from
   # Stripe.com. It then stores some of the information in memory for
   # displaying to the user. None of the retrieved information is stored
@@ -88,7 +88,7 @@ class Account
   # * last4 - digits of the credit card
   # * expiration date - month - year format
   # * sets the account status to INACTIVE if the card is deliquent
-  #####################################################################
+  ########################################################################
   def get_customer
     if self.customer_id.present?
 
@@ -117,7 +117,7 @@ class Account
     end
   end
 
-  #####################################################################
+  ########################################################################
   # The save_with_stripe will save the account record and corresponding
   # stripe customer_id in the database. The stripe_cc_token is not
   # saved since it is only useful for one transaction.
@@ -127,7 +127,7 @@ class Account
   # include:
   # * stripe_cc_token
   # * cardholder_email
-  #####################################################################
+  ########################################################################
   def save_with_stripe(params)
     account_valid = true
     begin
@@ -156,14 +156,14 @@ class Account
     return account_valid
   end
 
-  #####################################################################
+  ########################################################################
   # The update with_stripe method will update the account record and
   # corresponding stripe customer_id in the database. The stripe_cc_token
   # is not saved since it is only useful for one transaction.
   #
   # The update_with_stripe method takes the standard params hash that is
   # passed to the create and update methods.
-  #####################################################################
+  ########################################################################
   def update_with_stripe(params)
     account_valid = true
 
@@ -194,11 +194,11 @@ class Account
     return account_valid
   end
 
-  #####################################################################
+  ########################################################################
   # The destroy method overrides the standard destroy method for ActiveModel.
   # This version will delete Stripe.com customer account associated
   # with the stored customer_id.
-  #####################################################################
+  ########################################################################
   def destroy
     # Destroy the customer account on Stripe.com if the id is present.
     if self.customer_id.present?
@@ -221,9 +221,9 @@ class Account
   # PROTECTED INSTANCE METHODS ----------------------------------------
   protected
 
-  #####################################################################
+  ########################################################################
   # This helper method handles logging and setting stripe errors. It
-  #####################################################################
+  ########################################################################
   def stripe_error_handler(stripe_error, status=nil)
     logger.debug("[Account] stripe error = #{stripe_error.message}")
     errors[:customer_id] << stripe_error.message
@@ -231,10 +231,10 @@ class Account
     false
   end
 
-  #####################################################################
+  ########################################################################
   # Little helper method to update customer record with stripe and
   # contact information.
-  #####################################################################
+  ########################################################################
   def update_customer_info(customer, params)
     customer.card = params[:account][:stripe_cc_token]
     customer.description = "#{ACCOUNT_NAME} account for #{params[cardholder_name]}"
@@ -243,10 +243,10 @@ class Account
     customer.save
   end
 
-  ######################################################################
+  #########################################################################
   # This helper method is used to load card and customer information
   # into the instance variables for the Account model.
-  ######################################################################
+  #########################################################################
   def load_customer_info(customer)
     self.customer_id = customer.id
     self.cardholder_email = customer.email
@@ -260,10 +260,10 @@ class Account
       '/' + customer_card.exp_year.to_s
   end
 
-  ######################################################################
+  #########################################################################
   # The get_default_card is a method that will return the default card
   # associated with a customer account.
-  ######################################################################
+  #########################################################################
   def get_default_card(customer)
     default_card = nil
 
@@ -276,11 +276,11 @@ class Account
     default_card
   end
 
-  ######################################################################
+  #########################################################################
   # The is_valid? helper method checks to make sure the user included
   # cardholder_name, cardholder_email, and that the stripe_cc_token
   # was returned from the Stipe.com service.
-  ######################################################################
+  #########################################################################
   def is_valid?(params)
     if params[:cardholder_name].blank?
       errors[:cardholder_name] << 'cannot be blank.'

@@ -1,10 +1,10 @@
-#######################################################################
+##########################################################################
 # We override the default Devise::RegistrationsController to handle
 # the User (resource) deletion scenario, where the user has a related
 # Organization that may have additional members. We do not want to
 # delete the user yet, unless ownership of the organization has
 # been transferred to another User.
-#######################################################################
+##########################################################################
 class RegistrationsController < Devise::RegistrationsController
 
   def destroy

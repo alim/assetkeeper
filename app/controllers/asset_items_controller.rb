@@ -1,8 +1,8 @@
-########################################################################
+###########################################################################
 # The AssetsController class is responsible for managing AssetItems
 # associated with a user and their organization. The user must be
 # authenticated.
-########################################################################
+###########################################################################
 class AssetItemsController < ApplicationController
   respond_to :html
   decorates_assigned :asset_item
@@ -17,67 +17,70 @@ class AssetItemsController < ApplicationController
   # or checks Class permissions
   authorize_resource
 
-  ######################################################################
+  #########################################################################
   # GET /assets
   # GET /assets.json
   #
   # The index method displays the current users list of assets. If
   # the signed in user is a User::SERVICE_ADMIN, then all assets are
   # listed.
-  ######################################################################
+  #########################################################################
   def index
     # Get page number
     page = params[:page].nil? ? 1 : params[:page]
 
     if current_user.role == User::SERVICE_ADMIN
       @asset_items = AssetItemDecorator.decorate_collection(
-        AssetItem.search_by(params[:stype], params[:search]).filter_by(
-          params[:role_filter]).paginate(page: page, per_page: PAGE_COUNT))
+        AssetItem.search_by(params[:stype], params[:search]).
+        filter_by(params[:role_filter]).
+        paginate(page: page, per_page: PAGE_COUNT))
     else
       @asset_items = AssetItemDecorator.decorate_collection(
-        AssetItem.search_by(params[:stype], params[:search]).filter_by(
-          params[:role_filter]).in_organization(current_user).asc(:name).paginate(
-            page: page,  per_page: PAGE_COUNT))
+        AssetItem.search_by(params[:stype], params[:search]).
+        filter_by(params[:role_filter]).
+        in_organization(current_user).asc(:name).
+        paginate(page: page,  per_page: PAGE_COUNT))
     end
   end
 
-  ######################################################################
+  #########################################################################
   # GET /assets/1
   # GET /assets/1.json
   #
   # The show method will show the asset record. The corresponding
   # view will show the owner name and list of user group names
   # associated with the asset.
-  ######################################################################
+  #########################################################################
   def show
   end
 
-  ######################################################################
+  #########################################################################
   # GET /assets/new
   #
   # The new method will show the user a new asset form. It will also
   # lookup any groups that the user may have to see, if they want to
   # grant access to those groups to the user.
-  ######################################################################
+  #########################################################################
   def new
     @asset_item = AssetItem.new
+    @asset_item.organization = current_user.organization if current_user.organization
   end
 
-  ######################################################################
+  #########################################################################
   # GET /assets/1/edit
   #
   # The standard edit method will display the edit form and include the
   # ability to select groups that will be given access to the asset.
-  ######################################################################
+  #########################################################################
   def edit
   end
 
-  ######################################################################
+  #########################################################################
   # POST /assets
   #
   # The create method will create a new asset and relate any selected
   # groups that the user selected.
-  ######################################################################
+  #########################################################################
   def create
     @asset_item = AssetItem.create_with_user(asset_params, current_user)
 
@@ -89,13 +92,13 @@ class AssetItemsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # PATCH/PUT /assets/1
   # PATCH/PUT /assets/1.json
   #
   # The update will update the AssetItem model object including any
   # changes to the organization associated with the current user.
-  ######################################################################
+  #########################################################################
   def update
     if @asset_item.update_attributes(asset_params)
       @asset_item.relate_to_organization
@@ -105,13 +108,13 @@ class AssetItemsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # DELETE /assets/1
   # DELETE /assets/1.json
   #
   # The destroy asset method will delete the asset, but does not
   # destroy the related groups that were given access to the asset.
-  ######################################################################
+  #########################################################################
   def destroy
     asset_name = @asset_item.name
     @asset_item.destroy
@@ -122,17 +125,17 @@ class AssetItemsController < ApplicationController
 
   private
 
-  ######################################################################
+  #########################################################################
   # Use callbacks to share common setup or constraints between actions.
-  ######################################################################
+  #########################################################################
   def set_asset_item
     @asset_item = AssetItem.find(params[:id])
   end
 
-  ######################################################################
+  #########################################################################
   # Never trust parameters from the scary internet, only allow the
   # white list through.
-  ######################################################################
+  #########################################################################
   def asset_params
     permitted_params = params.require(:asset_item).permit(:name, :description,
       :location, :latitude, :longitude, :material, :date_installed, :condition,
