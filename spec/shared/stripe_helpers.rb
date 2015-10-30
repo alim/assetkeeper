@@ -36,7 +36,6 @@ module StripeTestHelpers
     rescue  Stripe::CardError => e
       raise e
     end
-
     return customer
   end
 

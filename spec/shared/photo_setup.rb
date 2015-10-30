@@ -1,10 +1,10 @@
 # Provide shared macros for testing user accounts
 shared_context 'photo_setup' do
 
-	let(:photos) do
-	  5.times.each { FactoryGirl.create(:photo) }
+  let(:photos) do
+    3.times.each { FactoryGirl.create(:photo) }
       @photo = Photo.last
-	end
+  end
 
   let(:photos_with_user) do
     @user = FactoryGirl.create(:user)
@@ -19,7 +19,7 @@ shared_context 'photo_setup' do
 
     # Create organization and add users to it.
     @org = FactoryGirl.create(:organization, owner: @user_with_org)
-    5.times.each { @org.users << FactoryGirl.create(:user) }
+    3.times.each { @org.users << FactoryGirl.create(:user) }
     @org.save
 
     @user_with_org.organization = @org

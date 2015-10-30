@@ -5,7 +5,7 @@ shared_context 'subscription_setup' do
 
   # Subscription setup -------------------------------------------------
   let(:create_subscriptions) {
-    5.times.each { FactoryGirl.create(:subscription) }
+    3.times.each { FactoryGirl.create(:subscription) }
   }
 
 end
