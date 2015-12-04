@@ -47,7 +47,8 @@
         <div class='row'>
           <div class='small-6 columns'>
             <label>Date Installed</label>
-            <%= f.text_field :date_installed, value: asset_model.install_date, class: 'fdatepicker' %>
+            <%= f.text_field :date_installed, value: asset_model.install_date,
+              class: 'fdatepicker', placeholder: 'Not installed' %>
           </div>
         </div>
 
@@ -105,8 +106,10 @@
 
     <div class='row'>
       <div class='small-6 columns'>
-        <lable>Upload Photos</label>
-        <%= f.file_field :photos, multiple: true %>
+        <lable>Upload Photos (upto 4)</label>
+        <%= f.fields_for :photos do |photo| %>
+          <%= photo.file_field :image %><br>
+        <% end %>
       </div>
 
       <div class="small-3 columns">

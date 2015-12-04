@@ -118,11 +118,7 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   # Formats the date installed DateTime value to mm/dd/yyyy
   ########################################################################
   def install_date
-    if object.date_installed
-      object.date_installed.strftime('%m/%d/%Y')
-    else
-      'Not installed'
-    end
+    object.date_installed.strftime('%m/%d/%Y') if object.date_installed
   end
 
   ########################################################################

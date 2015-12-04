@@ -70,14 +70,18 @@ gem 'draper'
 # Rspec, Cucumber and Webrat GEMs for TDD/BDD
 group :test, :development do
   gem "factory_girl_rails"
-  gem 'rspec-rails'
   gem "capybara"
   gem 'pry-nav'
   gem 'pry-rails'
   gem "webrat"
+
+end
+
+group :test do
   gem "database_cleaner"
   gem "vcr"
   gem "webmock"
+  gem 'rspec-rails'
 end
 
 ##########################################################################

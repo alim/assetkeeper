@@ -16,7 +16,8 @@ class AssetItem
 
   ## CONSTANTS --------------------------------------------------------
 
-  CONDITION_VALUES = { excellent: 5, very_good: 4, good: 3, poor: 2, very_poor: 1 }
+  CONDITION_VALUES = { excellent: 5, very_good: 4, good: 3, poor: 2,
+                       very_poor: 1 }
 
   FAILURE_VALUES = { immenent: 5, likely: 4, neither: 3, unlikely: 2,
                      very_unlikely: 1, unknown: 0 }
@@ -25,7 +26,8 @@ class AssetItem
                          very_low: 1 }
 
   STATUS_VALUES = { ordered: 1, in_inventory: 2, scheduled_for_installation: 3,
-                    operational: 4, scheduled_for_replacement: 5, removed: 6, maintenance: 7 }
+                    operational: 4, scheduled_for_replacement: 5, removed: 6,
+                    maintenance: 7 }
 
   ## FIELDS -----------------------------------------------------------
 
@@ -52,7 +54,10 @@ class AssetItem
   belongs_to :user
   belongs_to :organization
   belongs_to :manufacturer
-  has_many :photos
+
+  has_many :photos, dependent: :destroy
+  accepts_nested_attributes_for :photos, allow_destroy: true,
+    :reject_if => lambda { |p| p['image'].nil? } # Reject attributes if nil
 
   # Relationships needed in the near future
   # belongs_to :category
@@ -104,6 +109,12 @@ class AssetItem
     end
   end
 
+  def assign_photo_user
+    return self unless user.present? && photos.present?
+    photos.each { |p| p.user = user }
+    self
+  end
+
   ## CLASS METHODS ----------------------------------------------------
 
   ########################################################################
@@ -123,12 +134,6 @@ class AssetItem
     else # Unrecognized search type so return all
       all
     end
-  end
-
-  ########################################################################
-  # Saves an AssetItem record and related photos
-  ########################################################################
-  def self.save_with_photos(params)
   end
 
   ########################################################################

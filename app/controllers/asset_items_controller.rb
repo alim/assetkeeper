@@ -64,6 +64,7 @@ class AssetItemsController < ApplicationController
   def new
     @asset_item = AssetItem.new
     @asset_item.organization = current_user.organization if current_user.organization
+    4.times { @asset_item.photos.build }
   end
 
   #########################################################################
@@ -82,7 +83,8 @@ class AssetItemsController < ApplicationController
   # groups that the user selected.
   #########################################################################
   def create
-    @asset_item = AssetItem.create_with_user(asset_params, current_user)
+    binding.pry
+    @asset_item = AssetItem.create_with_user(asset_params, current_user).assign_photo_user
 
     if @asset_item.save
       @asset_item.relate_to_organization
@@ -100,6 +102,8 @@ class AssetItemsController < ApplicationController
   # changes to the organization associated with the current user.
   #########################################################################
   def update
+    binding.pry
+
     if @asset_item.update_attributes(asset_params)
       @asset_item.relate_to_organization
       redirect_to @asset_item, notice: 'Asset was successfully updated.'
@@ -140,11 +144,15 @@ class AssetItemsController < ApplicationController
     permitted_params = params.require(:asset_item).permit(:name, :description,
       :location, :latitude, :longitude, :material, :date_installed, :condition,
       :failure_probability, :failure_consequence, :status, :manufacturer_id,
-      :title, :content, :tags, :part_number, :model_type, :serial_number)
+      :title, :content, :tags, :part_number, :model_type, :serial_number,
+      :organization, photos_attributes: [:image])
 
     # Parse the mm/dd/yyyy formatted date
-    permitted_params[:date_installed] =  DateTime.strptime(
-      permitted_params[:date_installed], '%m/%d/%Y').to_s if permitted_params[:date_installed]
+    if permitted_params[:date_installed].present?
+      permitted_params[:date_installed] =  DateTime.strptime(permitted_params[:date_installed],
+                                                             '%m/%d/%Y').to_s
+    end
+
     permitted_params
   end
 end
