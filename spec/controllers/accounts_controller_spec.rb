@@ -46,23 +46,25 @@ describe AccountsController, :type => :controller do
   }
 
 
-	before(:each) {
-		create_users
-		create_service_admins
-		create_users_with_account
-		signin_customer
-		expect(subject.current_user).not_to be_nil
-	}
+  before(:each) {
+    create_users
+    create_service_admins
+    create_users_with_account
+    signin_customer
+    expect(subject.current_user).not_to be_nil
+  }
 
-	after(:each) {
+  after(:each) {
     Organization.destroy_all
-		delete_users
+    delete_users
   }
 
   # NEW CHECKS ---------------------------------------------------------
+  opts = { :match_requests_on => [:stripe_get_customer] }
+
   describe "New action tests" do
 
-    describe "Valid examples" do
+    describe "Valid examples", vcr: opts do
 
       it "Should return success" do
         get :new, user_id: @signed_in_user.id
@@ -86,7 +88,7 @@ describe AccountsController, :type => :controller do
 
     end # Valid examples
 
-    describe "Invalid examples", :vcr do
+    describe "Invalid examples", vcr: opts do
 
       it "Should redirect, if not logged in" do
         sign_out @signed_in_user
@@ -205,10 +207,10 @@ describe AccountsController, :type => :controller do
    let(:account_params){
       {
         user_id: @signed_in_user.id,
-			  cardholder_name: name,
-			  cardholder_email: email,
-			  account: {stripe_cc_token: token.id}
-		  }
+        cardholder_name: name,
+        cardholder_email: email,
+        account: {stripe_cc_token: token.id}
+      }
     }
 
     let(:login_different_user) {
@@ -337,7 +339,7 @@ describe AccountsController, :type => :controller do
   end # Create
 
   # EDIT ACTION TESTS --------------------------------------------------
-  describe "Edit action tests" do
+  describe "Edit action tests", :vcr do
     let(:edit_params) {
       {
         user_id: customer_account.id,
@@ -382,7 +384,7 @@ describe AccountsController, :type => :controller do
       end
     end # Valid edit action examples
 
-    describe "Invalid edit action examples", :vcr do
+    describe "Invalid edit action examples", vcr: opts do
 
       it "Should redirect you to sign_in, if not logged in" do
         sign_out @signed_in_user
@@ -518,7 +520,7 @@ describe AccountsController, :type => :controller do
   end # Edit
 
   # UPDATE TESTS -------------------------------------------------------
-  describe "Update tests" do
+  describe "Update tests", :vcr do
 
     let(:updated_email) {"mmouse@example.com"}
     let(:updated_name) {"Mickey Mouse"}
@@ -690,14 +692,13 @@ describe AccountsController, :type => :controller do
 
   # DESTROY TESTS ------------------------------------------------------
 
-  describe "Destroy action tests" do
+  describe "Destroy action tests", :vcr do
     let(:destroy_params) {
       {
         user_id: customer_account.id,
         id: customer_account.account.id
       }
     }
-
 
     before(:each) {
       sign_out @signed_in_user
@@ -727,7 +728,7 @@ describe AccountsController, :type => :controller do
       end
     end # Valid examples
 
-    describe "Invalid examples", :vcr do
+    describe "Invalid examples", vcr: opts do
 
       it "Should redirect to sign_in, if not logged in" do
         sign_out @signed_in_user

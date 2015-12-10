@@ -5,24 +5,24 @@ http_interactions:
     uri: https://api.stripe.com/v1/tokens
     body:
       encoding: US-ASCII
-      string: card[name]=Jane%20Smith&card[number]=4242424242424242&card[exp_month]=9&card[exp_year]=2015&card[cvc]=616
+      string: card[name]=Jane%20Smith&card[number]=4242424242424242&card[exp_month]=10&card[exp_year]=2015&card[cvc]=616
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.11.0
+      - Stripe/v1 RubyBindings/1.16.0
       Authorization:
       - Bearer <API_KEY>
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.11.0","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
-        Voyager 3.13.0-35-generic #62-Ubuntu SMP Fri Aug 15 01:58:42 UTC 2014 x86_64
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
         x86_64 x86_64 GNU/Linux"}'
       Content-Length:
-      - '105'
+      - '106'
   response:
     status:
       code: 200
@@ -31,19 +31,25 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 03 Sep 2014 03:51:51 GMT
+      - Fri, 30 Oct 2015 03:31:02 GMT
       Content-Type:
-      - application/json;charset=utf-8
+      - application/json
       Content-Length:
-      - '604'
+      - '802'
+      Connection:
+      - keep-alive
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
       Access-Control-Max-Age:
       - '300'
       Cache-Control:
       - no-cache, no-store
+      Request-Id:
+      - req_7Fza53pWwVkLM6
       Stripe-Version:
       - '2013-08-13'
       Strict-Transport-Security:
@@ -52,55 +58,62 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_4hudulpGzIG7Ul",
-          "livemode": false,
-          "created": 1409716311,
-          "used": false,
+          "id": "tok_7Fza1wO2blLDHl",
           "object": "token",
-          "type": "card",
           "card": {
-            "id": "card_4hudT094NdvrTl",
+            "id": "card_7Fzaux5fqsPljD",
             "object": "card",
-            "last4": "4242",
-            "brand": "Visa",
-            "funding": "credit",
-            "exp_month": 9,
-            "exp_year": 2015,
-            "fingerprint": "K4rn7HQ6KbOupkia",
-            "country": "US",
-            "name": "Jane Smith",
-            "address_line1": null,
-            "address_line2": null,
             "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
             "address_state": null,
             "address_zip": null,
-            "address_country": null,
-            "customer": null,
-            "type": "Visa"
-          }
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": null,
+            "dynamic_last4": null,
+            "exp_month": 10,
+            "exp_year": 2015,
+            "fingerprint": "K4rn7HQ6KbOupkia",
+            "funding": "credit",
+            "last4": "4242",
+            "metadata": {},
+            "name": "Jane Smith",
+            "tokenization_method": null,
+            "type": "Visa",
+            "customer": null
+          },
+          "client_ip": "96.35.101.2",
+          "created": 1446175862,
+          "livemode": false,
+          "type": "card",
+          "used": false
         }
     http_version: 
-  recorded_at: Wed, 03 Sep 2014 03:51:51 GMT
+  recorded_at: Fri, 30 Oct 2015 03:31:02 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: description=Acme%20customer%20account.&card=tok_4hudulpGzIG7Ul&email=janesmith%40example.com
+      string: description=Acme%20customer%20account.&card=tok_7Fza1wO2blLDHl&email=janesmith%40example.com
     headers:
       Accept:
       - "*/*; q=0.5, application/xml"
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.11.0
+      - Stripe/v1 RubyBindings/1.16.0
       Authorization:
       - Bearer <API_KEY>
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.11.0","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
-        Voyager 3.13.0-35-generic #62-Ubuntu SMP Fri Aug 15 01:58:42 UTC 2014 x86_64
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
         x86_64 x86_64 GNU/Linux"}'
       Content-Length:
       - '92'
@@ -112,19 +125,25 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 03 Sep 2014 03:51:52 GMT
+      - Fri, 30 Oct 2015 03:31:03 GMT
       Content-Type:
-      - application/json;charset=utf-8
+      - application/json
       Content-Length:
-      - '1368'
+      - '2452'
+      Connection:
+      - keep-alive
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
       Access-Control-Max-Age:
       - '300'
       Cache-Control:
       - no-cache, no-store
+      Request-Id:
+      - req_7Fzam5BhotgmrY
       Stripe-Version:
       - '2013-08-13'
       Strict-Transport-Security:
@@ -133,65 +152,105 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
+          "id": "cus_7Fzaglfj7Qnu2c",
           "object": "customer",
-          "created": 1409716312,
-          "id": "cus_4hudohM5kri6Co",
-          "livemode": false,
-          "description": "Acme customer account.",
-          "email": "janesmith@example.com",
-          "delinquent": false,
-          "metadata": {},
-          "subscriptions": {
-            "object": "list",
-            "total_count": 0,
-            "has_more": false,
-            "url": "/v1/customers/cus_4hudohM5kri6Co/subscriptions",
-            "data": [],
-            "count": 0
-          },
-          "discount": null,
           "account_balance": 0,
-          "currency": null,
           "cards": {
             "object": "list",
-            "total_count": 1,
-            "has_more": false,
-            "url": "/v1/customers/cus_4hudohM5kri6Co/cards",
+            "count": 1,
             "data": [
               {
-                "id": "card_4hudT094NdvrTl",
+                "id": "card_7Fzaux5fqsPljD",
                 "object": "card",
-                "last4": "4242",
-                "brand": "Visa",
-                "funding": "credit",
-                "exp_month": 9,
-                "exp_year": 2015,
-                "fingerprint": "K4rn7HQ6KbOupkia",
-                "country": "US",
-                "name": "Jane Smith",
-                "address_line1": null,
-                "address_line2": null,
                 "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
                 "address_state": null,
                 "address_zip": null,
-                "address_country": null,
-                "cvc_check": "pass",
-                "address_line1_check": null,
                 "address_zip_check": null,
-                "customer": "cus_4hudohM5kri6Co",
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7Fzaglfj7Qnu2c",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2015,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Jane Smith",
+                "tokenization_method": null,
                 "type": "Visa"
               }
             ],
-            "count": 1
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7Fzaglfj7Qnu2c/cards"
           },
-          "default_card": "card_4hudT094NdvrTl",
+          "created": 1446175863,
+          "currency": null,
+          "default_card": "card_7Fzaux5fqsPljD",
+          "default_source": "card_7Fzaux5fqsPljD",
+          "delinquent": false,
+          "description": "Acme customer account.",
+          "discount": null,
+          "email": "janesmith@example.com",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7Fzaux5fqsPljD",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7Fzaglfj7Qnu2c",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2015,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Jane Smith",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7Fzaglfj7Qnu2c/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7Fzaglfj7Qnu2c/subscriptions"
+          },
           "subscription": null
         }
     http_version: 
-  recorded_at: Wed, 03 Sep 2014 03:51:52 GMT
+  recorded_at: Fri, 30 Oct 2015 03:31:03 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/customers/cus_4hudohM5kri6Co
+    uri: https://api.stripe.com/v1/customers/cus_7Fzaglfj7Qnu2c
     body:
       encoding: US-ASCII
       string: ''
@@ -201,14 +260,14 @@ http_interactions:
       Accept-Encoding:
       - gzip, deflate
       User-Agent:
-      - Stripe/v1 RubyBindings/1.11.0
+      - Stripe/v1 RubyBindings/1.16.0
       Authorization:
       - Bearer <API_KEY>
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.11.0","lang":"ruby","lang_version":"2.1.2 p95 (2014-05-08)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
-        Voyager 3.13.0-35-generic #62-Ubuntu SMP Fri Aug 15 01:58:42 UTC 2014 x86_64
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
         x86_64 x86_64 GNU/Linux"}'
   response:
     status:
@@ -218,19 +277,25 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 03 Sep 2014 03:51:52 GMT
+      - Fri, 30 Oct 2015 03:31:04 GMT
       Content-Type:
-      - application/json;charset=utf-8
+      - application/json
       Content-Length:
-      - '1368'
+      - '2452'
+      Connection:
+      - keep-alive
       Access-Control-Allow-Credentials:
       - 'true'
       Access-Control-Allow-Methods:
       - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
       Access-Control-Max-Age:
       - '300'
       Cache-Control:
       - no-cache, no-store
+      Request-Id:
+      - req_7FzauyKWGGuo7Z
       Stripe-Version:
       - '2013-08-13'
       Strict-Transport-Security:
@@ -239,60 +304,100 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
+          "id": "cus_7Fzaglfj7Qnu2c",
           "object": "customer",
-          "created": 1409716312,
-          "id": "cus_4hudohM5kri6Co",
-          "livemode": false,
-          "description": "Acme customer account.",
-          "email": "janesmith@example.com",
-          "delinquent": false,
-          "metadata": {},
-          "subscriptions": {
-            "object": "list",
-            "total_count": 0,
-            "has_more": false,
-            "url": "/v1/customers/cus_4hudohM5kri6Co/subscriptions",
-            "data": [],
-            "count": 0
-          },
-          "discount": null,
           "account_balance": 0,
-          "currency": null,
           "cards": {
             "object": "list",
-            "total_count": 1,
-            "has_more": false,
-            "url": "/v1/customers/cus_4hudohM5kri6Co/cards",
+            "count": 1,
             "data": [
               {
-                "id": "card_4hudT094NdvrTl",
+                "id": "card_7Fzaux5fqsPljD",
                 "object": "card",
-                "last4": "4242",
-                "brand": "Visa",
-                "funding": "credit",
-                "exp_month": 9,
-                "exp_year": 2015,
-                "fingerprint": "K4rn7HQ6KbOupkia",
-                "country": "US",
-                "name": "Jane Smith",
-                "address_line1": null,
-                "address_line2": null,
                 "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
                 "address_state": null,
                 "address_zip": null,
-                "address_country": null,
-                "cvc_check": "pass",
-                "address_line1_check": null,
                 "address_zip_check": null,
-                "customer": "cus_4hudohM5kri6Co",
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7Fzaglfj7Qnu2c",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2015,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Jane Smith",
+                "tokenization_method": null,
                 "type": "Visa"
               }
             ],
-            "count": 1
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7Fzaglfj7Qnu2c/cards"
           },
-          "default_card": "card_4hudT094NdvrTl",
+          "created": 1446175863,
+          "currency": null,
+          "default_card": "card_7Fzaux5fqsPljD",
+          "default_source": "card_7Fzaux5fqsPljD",
+          "delinquent": false,
+          "description": "Acme customer account.",
+          "discount": null,
+          "email": "janesmith@example.com",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7Fzaux5fqsPljD",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7Fzaglfj7Qnu2c",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2015,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Jane Smith",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7Fzaglfj7Qnu2c/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7Fzaglfj7Qnu2c/subscriptions"
+          },
           "subscription": null
         }
     http_version: 
-  recorded_at: Wed, 03 Sep 2014 03:51:52 GMT
-recorded_with: VCR 2.8.0
+  recorded_at: Fri, 30 Oct 2015 03:31:04 GMT
+recorded_with: VCR 2.9.3

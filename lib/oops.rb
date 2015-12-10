@@ -1,4 +1,4 @@
-########################################################################
+###########################################################################
 # The Oops module provides utility methods for handling redirection
 # to an error page. The module can be used as a mixin by including it
 # in the appropriate controllers. The module makes a couple of
@@ -9,7 +9,7 @@
 #
 # The module will set flash variables, so it assumes the error pages
 # have the capability of display flash error and alert messages
-########################################################################
+###########################################################################
 module Oops
 
 	## Constants for targeting the alert message to either the home or
@@ -17,13 +17,13 @@ module Oops
 	HOME = 1
 	ADMIN = 2
 
-  ######################################################################
+  #########################################################################
   # The display_alert method will display an alert message to an error
   # page. It takes a hash as an argument, that includes:
   # * message - the message to display
   # * target - the target error page - Oops::ADMIN or Oops::HOME
   # * resource - the resource that can contain the error messages
-  ######################################################################
+  #########################################################################
   def display_alert(args)
     return nil if args.count < 3
 

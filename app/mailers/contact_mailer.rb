@@ -1,7 +1,7 @@
-########################################################################
+###########################################################################
 # The contact mailer is for managing the contact form  request on
 # the web service.
-########################################################################
+###########################################################################
 class ContactMailer < ActionMailer::Base
 	# Email address defaults for all contact requests
 
@@ -18,9 +18,9 @@ class ContactMailer < ActionMailer::Base
   default from: CONTACT_FROM
   default to: CONTACT_EMAILBOX
 
-  ######################################################################
+  #########################################################################
   # The standard contact request message.
-  ######################################################################
+  #########################################################################
 	def contact_message(contact)
 		# Setup instance variable for mailer view
 		@contact = contact

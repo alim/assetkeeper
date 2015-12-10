@@ -69,7 +69,7 @@ describe Account, type: :model do
 
     let(:user) { User.first }
 
-    describe 'Saving with stripe attributes' do
+    describe 'Saving with stripe attributes', :vcr do
       # context 'Valid attributes', :vcr do
       context 'Valid attributes' do
         let(:token) do
@@ -85,7 +85,11 @@ describe Account, type: :model do
           }
         end
 
-        before { token }
+        before do
+          # VCR.use_cassette('get_token') do
+            token
+          # end
+        end
 
         it 'Should allow saving with stripe information to account record' do
           expect(user.account.save_with_stripe(params)).to be_truthy
@@ -151,12 +155,12 @@ describe Account, type: :model do
 
           expect(user.account.status).to eq(Account::INACTIVE)
           msg = user.account.errors.full_messages[0]
-          expect(msg).to match(/Customer No such token: 123451234512345/)
+          expect(msg).to match(/Customer Invalid token id: 123451234512345/)
         end
       end
     end
 
-    describe 'Updating with stripe attributes' do
+    describe 'Updating with stripe attributes', :vcr do
       let(:new_email) { 'janedoe@example.com' }
       let(:new_name) { 'Jane Doe' }
 
@@ -281,7 +285,7 @@ describe Account, type: :model do
       end
     end
 
-    describe 'Get customer method' do
+    describe 'Get customer method', :vcr do
       # context 'Valid customer get operation tests', :vcr do
       context 'Valid customer get operation tests' do
         let(:name) { 'Mickey Mouse' }

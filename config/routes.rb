@@ -1,5 +1,9 @@
 AssetKeeper::Application.routes.draw do
-  resources :asset_items
+  resources :photos
+
+  resources :asset_items do
+    resources :photos
+  end
 
   resources :manufacturers do
     resources :contacts
@@ -8,20 +12,20 @@ AssetKeeper::Application.routes.draw do
   resources :subscriptions
 
   resources :organizations do
-  	# Route for notifying and re-invite
-		member do
-			put 'notify'
-		end
-	end
+    # Route for notifying and re-invite
+    member do
+      put 'notify'
+    end
+  end
 
   # The path_prefix sets up path helpers to prepend /auth to them
   # devise_for :users, path_prefix: 'auth'
   devise_for :users, path_prefix: 'auth', controllers: { registrations: :registrations }
 
-	resources :users do
-	  # Account is an embedded document for a user with limited actions
-	  resources :accounts, only: [:new, :create, :edit, :update, :destroy]
-	end
+  resources :users do
+    # Account is an embedded document for a user with limited actions
+    resources :accounts, only: [:new, :create, :edit, :update, :destroy]
+  end
 
   get   "home/index"
   get   "home/pricing"

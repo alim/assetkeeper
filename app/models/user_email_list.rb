@@ -1,27 +1,27 @@
-########################################################################
+###########################################################################
 # The UserEmailList class is a server class that is used for managing
 # the email list that is associated with an Organization class during
 # the create or editing of an Organization record. The email list is
 # not stored with the Organization class is only a temporary service
 # object used to create, notify and invite organization members.
-########################################################################
+###########################################################################
 class UserEmailList
   PASSWORD_LENGTH = 12
 
   attr_reader :email_list
 
-  ######################################################################
+  #########################################################################
   # Initializes the class with a whitespace separated list of email
   # addresses.
-  ######################################################################
+  #########################################################################
   def initialize(email_list)
     @email_list = email_list
   end
 
-  ######################################################################
+  #########################################################################
   # Checks to insure that all email addresses in the list are correctly
   # formatted.
-  ######################################################################
+  #########################################################################
   def check_list
     return false unless email_list
 
@@ -34,13 +34,13 @@ class UserEmailList
     errors
   end
 
-  ######################################################################
+  #########################################################################
   # The create_notify method will look to see if members have been assigned
   # to the Group. For each email address that has nil user record, this
   # method will create a new User record for the requested member. The
   # new user will be notified of their new account. Each newly created
   # user will be associated with the current group.
-  ######################################################################
+  #########################################################################
   def create_users
     users = []
     lookup_users.each do |member, user|
@@ -59,7 +59,7 @@ class UserEmailList
 
   private
 
-  ######################################################################
+  #########################################################################
   # The lookup_user method will take an string of white-space separated
   # email addresses and return a hash based on the email addresses
   # as keys. The value of the hash will be a User or nil, depending on
@@ -69,7 +69,7 @@ class UserEmailList
   # address format, while processing. The method also takes the Group
   # record as the parameter. It assumes that group.members holds the
   # email list.
-  ######################################################################
+  #########################################################################
   def lookup_users
     users = {}     # Hash for returning results
     return users unless @email_list

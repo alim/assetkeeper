@@ -1,10 +1,10 @@
-########################################################################
+###########################################################################
 # The User model is responsible for holding information associated with
 # a user account. This model is then used by the Devise GEM for user
 # user authentication and sign in. The model has been upgraded to
 # include timestamps and strip_attributes for removing leading and
 # trailing white spaces.
-########################################################################
+###########################################################################
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -104,10 +104,10 @@ class User
 
   ## PUBLIC CLASS METHODS ----------------------------------------------
 
-  #####################################################################
+  ########################################################################
   # Class method to return the correct set of user records from a
   # search request.
-  #####################################################################
+  ########################################################################
   def self.search_by(search_type, search_term)
     # Check for the type of search we are doing
     case search_type
@@ -122,9 +122,9 @@ class User
     end
   end
 
-  #####################################################################
+  ########################################################################
   # Class method to filter by role
-  #####################################################################
+  ########################################################################
   def self.filter_by(filter)
     case filter
     when 'customer'
@@ -138,12 +138,12 @@ class User
 
   ## PUBLIC INSTANCE METHODS ------------------------------------------
 
-  #####################################################################
+  ########################################################################
   # Checks to see if its safe to delete the organization. If there are
   # other members in the organization and the current user is the owner
   # then ownership must be changed to another user. This method will
   # just raise a validation error.
-  #####################################################################
+  ########################################################################
   def check_org
     # Ok to delete if there is no organization related to the current
     # user object.

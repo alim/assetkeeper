@@ -3,17 +3,21 @@ require 'spec_helper'
 RSpec.describe Photo, type: :model do
   include_context 'photo_setup'
 
-  before(:each) { photos_with_user }
+  before(:each) do
+    photos_with_user
+  end
 
   after(:each) do
     User.destroy_all
     Photo.destroy_all
     Organization.destroy_all
   end
+  opts = { :match_requests_on => [:aws] }
 
   ## VALIDATION CHECKS -------------------------------------------------
   describe 'Validation checks' do
-    describe 'valid tests', :vcr do
+
+    describe 'valid tests', :vcr => opts do
       it 'valid with a user and NO organization' do
         expect(@photo).to be_valid
       end
@@ -33,7 +37,7 @@ RSpec.describe Photo, type: :model do
       end
     end
 
-    describe 'Invalid tests', :vcr do
+    describe 'Invalid tests', :vcr => opts do
       it 'be invalid without a user_id' do
         photo = FactoryGirl.build(:photo)
         expect(photo).not_to be_valid
@@ -49,7 +53,7 @@ RSpec.describe Photo, type: :model do
 
   ## ORGANIZATIONAL CONCERN -------------------------------------------
 
-  describe 'Organizational concern tests', :vcr do
+  describe 'Organizational concern tests', :vcr => opts do
     describe 'scope tests' do
       let(:new_user) { FactoryGirl.create(:user) }
       let(:other_photo) { FactoryGirl.create(:photo, user: new_user) }
@@ -124,7 +128,7 @@ RSpec.describe Photo, type: :model do
 
   ## CREATING WITH USER -----------------------------------------------
 
-  describe '#create_with_user', :vcr do
+  describe '#create_with_user', :vcr => opts do
     let(:new_user) { FactoryGirl.create(:user) }
 
     let(:photo_params) do

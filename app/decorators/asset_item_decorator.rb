@@ -1,13 +1,13 @@
-#######################################################################
+##########################################################################
 # This decorator class wraps view oriented methods around the Asset
 # model. It uses the Draper decorator gem to help with this capability.
-#######################################################################
+##########################################################################
 class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
   delegate_all
 
-  #####################################################################
+  ########################################################################
   # Condition value translator to string representation for views
-  #####################################################################
+  ########################################################################
   def condition_str
     case object.condition
     when 5
@@ -25,10 +25,10 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     end
   end
 
-  #####################################################################
+  ########################################################################
   # Returns an array of condition choices to be used with the select
   # view helper
-  #####################################################################
+  ########################################################################
   def condition_choices
     [
       ['Excellent', 5],
@@ -39,9 +39,9 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     ]
   end
 
-  #####################################################################
+  ########################################################################
   # Consequence value translator to string representation for views
-  #####################################################################
+  ########################################################################
   def consequence_str
     case object.failure_consequence
     when 5
@@ -59,10 +59,10 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     end
   end
 
-  #####################################################################
+  ########################################################################
   # Returns an array of condition choices to be used with the select
   # view helper
-  #####################################################################
+  ########################################################################
   def consequence_choices
     [
       ['Extremely High', 5],
@@ -73,9 +73,9 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     ]
   end
 
-  #####################################################################
+  ########################################################################
   # Failure value translator to string representation for views
-  #####################################################################
+  ########################################################################
   def failure_str
     case object.failure_probability
     when 5
@@ -93,10 +93,10 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     end
   end
 
-  #####################################################################
+  ########################################################################
   # Returns an array of failure probability choices to be used with
   # the select view helper
-  #####################################################################
+  ########################################################################
   def failure_choices
     [
       ['Imminent', 5],
@@ -107,27 +107,23 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     ]
   end
 
-  #####################################################################
+  ########################################################################
   # Returns a Google Map URL for the lat/long location of the asset.
-  #####################################################################
+  ########################################################################
   def google_map_url
     "https://www.google.com/maps/place/#{object.latitude},#{object.longitude}/@#{object.latitude},#{object.longitude},15z/"
   end
 
-  #####################################################################
+  ########################################################################
   # Formats the date installed DateTime value to mm/dd/yyyy
-  #####################################################################
+  ########################################################################
   def install_date
-    if object.date_installed
-      object.date_installed.strftime('%m/%d/%Y')
-    else
-      'Not installed'
-    end
+    object.date_installed.strftime('%m/%d/%Y') if object.date_installed
   end
 
-  #####################################################################
+  ########################################################################
   # Status value translator to string representation for views
-  #####################################################################
+  ########################################################################
   def status_str
     case object.status
     when 1
@@ -149,10 +145,10 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     end
   end
 
-  #####################################################################
+  ########################################################################
   # Returns an array of status choices to be used with the select
   # view helper
-  #####################################################################
+  ########################################################################
   def status_choices
     [
       ['Ordered', 1],
@@ -165,10 +161,10 @@ class AssetItemDecorator < ApplicationDecorator # Draper::Decorator
     ]
   end
 
-  #####################################################################
+  ########################################################################
   # Returns an array of manufacturer choices to be used with the select
   # view helper
-  #####################################################################
+  ########################################################################
 
   def manufacturer_choices
     @list_of_manufacturers ||= []

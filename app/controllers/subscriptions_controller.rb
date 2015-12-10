@@ -1,10 +1,10 @@
-########################################################################
+###########################################################################
 # The SubscriptionsController is responsible for subscribing a customer
 # to our web service. It depends on the account resource which should
 # hold a customer_id associated with the Stripe.com service. It will
 # also depend on the existence of one or more subscription plans being
 # setup on the Stripe.com service for charging.
-########################################################################
+###########################################################################
 class SubscriptionsController < ApplicationController
 
   # Before filters & actions -------------------------------------------
@@ -16,12 +16,12 @@ class SubscriptionsController < ApplicationController
   # or checks Class permissions
   authorize_resource
 
-  ######################################################################
+  #########################################################################
   # GET /subscriptions
   # GET /subscriptions.json
   #
   # The index method will only be available for service administrators
-  ######################################################################
+  #########################################################################
   def index
      # Get page number
     page = params[:page].nil? ? 1 : params[:page]
@@ -33,25 +33,25 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   #
   # The show method will display the list of subscription attributes
   # that were returned from Stripe.com and stored in the Subscription
   # model class.
-  ######################################################################
+  #########################################################################
   def show
   end
 
-  ######################################################################
+  #########################################################################
   # GET /subscriptions/new
   #
   # This method will present the customer with a new subscription for,
   # if the customer does not already have a subscription associated
   # with their account. If they do have a subscription, they will be
   # directed to the Subscriptions#show action.
-  ######################################################################
+  #########################################################################
   def new
     @subscription = Subscription.new
 
@@ -73,24 +73,24 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # GET /subscriptions/1/edit
   #
   # Standard edit action and view. Instructions added to the view
   # about updating their subscription plan. We added a partial to
   # display the plan options.
-  ######################################################################
+  #########################################################################
   def edit
   end
 
-  ######################################################################
+  #########################################################################
   # POST /subscriptions
   # POST /subscriptions.json
   #
   # The create method will fill out the subscription options and calls
   # the model instance method for creating a subscription on the
   # Stripe.com
-  ######################################################################
+  #########################################################################
   def create
     @subscription = Subscription.new(subscription_params)
 
@@ -110,10 +110,10 @@ class SubscriptionsController < ApplicationController
       end
   end
 
-  #####################################################################
+  ########################################################################
   # PATCH/PUT /subscriptions/1
   # PATCH/PUT /subscriptions/1.json
-  #####################################################################
+  ########################################################################
   def update
 
     @subscription.subscribe(current_user.account, subscription_params[:stripe_plan_id], coupon: subscription_params[:coupon_code])
@@ -126,13 +126,13 @@ class SubscriptionsController < ApplicationController
       end
   end
 
-  ##########################################################################
+  #############################################################################
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   #
   # This method will cancel a Stripe subscription and then destroy the
   # subscription record associated with the user and customer account.
-  ##########################################################################
+  #############################################################################
   def destroy
     # First cancel the Stripe subscription
 

@@ -1,7 +1,7 @@
-########################################################################
+###########################################################################
 # This module provides test helpers for setting up interactions with
 # the stripe service.
-########################################################################
+###########################################################################
 module StripeTestHelpers
 
   # Get a Stripe card token for usage in test cases
@@ -36,7 +36,6 @@ module StripeTestHelpers
     rescue  Stripe::CardError => e
       raise e
     end
-
     return customer
   end
 
