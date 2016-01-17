@@ -11,10 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap-sprockets
-// require foundation
-// require foundation-datepicker
+//= require jquery_ujs
 // require turbolinks <- Disable this plugin when using Foundation
 // require_tree .
 
