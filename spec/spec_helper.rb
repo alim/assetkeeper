@@ -11,7 +11,7 @@ require 'webmock/rspec'
 require "paperclip/matchers"
 
 # Suppress potential false positives
- RSpec::Expectations.configuration.warn_about_potential_false_positives = false
+# RSpec::Expectations.configuration.warn_about_potential_false_positives = false
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/shared/ and its subdirectories.
