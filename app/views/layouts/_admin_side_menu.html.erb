@@ -1,4 +1,4 @@
-<aside class="left-off-canvas-menu">
+<!--aside class="left-off-canvas-menu">
   <ul class="off-canvas-list">
 
     <li><label>Main Menu</label></li>
@@ -17,7 +17,7 @@
       <%= link_to '<i class="fi-torso"></i> Profile'.html_safe, edit_user_registration_path %>
     </li>
 
-    <!-- Service Administration Menu ========================= -->
+    <!-- Service Administration Menu ========================= >
     <% if current_user.role == User::SERVICE_ADMIN %>
       <li <%= "#{active(manufacturers_path)}" %> >
         <%= link_to '<i class="fi-torsos"></i> Manufacturers'.html_safe,
@@ -25,18 +25,18 @@
       </li>
     <% end %>
 
-    <!-- User groups -->
+    <!-- User groups >
     <li <%= "#{active(organizations_path)}" %>>
       <%= link_to '<i class="fi-torsos-all"></i> Organization'.html_safe, organizations_path %>
     </li>
 
-    <!-- Subscription -->
+    <!-- Subscription >
     <li <%= "#{active(new_subscription_path)}" %> >
       <%= link_to '<i class="fi-dollar-bill"></i> Subscribe'.html_safe,
         new_subscription_path %>
     </li>
 
-    <!-- Service Administration Menu ========================= -->
+    <!-- Service Administration Menu ========================= >
     <% if current_user.role == User::SERVICE_ADMIN %>
       <li <%= "#{active(users_path)}" %> >
         <%= link_to '<i class="fi-torsos"></i> Users'.html_safe,
@@ -44,4 +44,4 @@
       </li>
     <% end %>
   </ul>
-</aside>
+</aside-->
