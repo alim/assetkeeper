@@ -1,15 +1,19 @@
 source 'https://rubygems.org'
 
+
 ## STANDARD RAILS 4.1.x Gemset ----------------------------------------
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
+
+# Sprockets-Rails
+gem 'sprockets-rails', '>= 2.3.2'
 
 # Bootstrap SASS
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

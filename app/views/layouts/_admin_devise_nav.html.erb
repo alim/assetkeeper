@@ -1,5 +1,5 @@
 <!-- Navigation Menu ------------------------------------------ -->
-<nav class="tab-bar">
+<!--nav class="tab-bar">
   <section class="left-small">
     <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
   </section>
@@ -12,4 +12,29 @@
     </div>
 
   </section>
+</nav-->
+<br>
+<br>
+<br>
+<nav class="navbar navbar-fixed-top navbar-dark bg-primary">
+    <button class="navbar-toggler hidden-sm-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        ☰
+    </button>
+    <a class="navbar-brand" href="#"> </a>
+    <div class="collapse navbar-toggleable-xs" id="collapsingNavbar">
+        <ul class="nav navbar-nav pull-right">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">Home</span></a>
+            </li>
+            <!--li class="nav-item">
+                <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#myAlert" data-toggle="collapse">Wow</a>
+            </li-->
+            <div class='nav-item'>
+             <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link') %>
+            </div>
+        </ul>
+    </div>
 </nav>

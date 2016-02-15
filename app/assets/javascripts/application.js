@@ -10,11 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
+// require jquery
 //= require bootstrap-sprockets
-// require foundation
-// require foundation-datepicker
+//= require jquery_ujs
 // require turbolinks <- Disable this plugin when using Foundation
 // require_tree .
 
