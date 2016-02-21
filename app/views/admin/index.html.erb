@@ -44,29 +44,29 @@
                 <li class="nav-menu"><a class="nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Main Menu</a>
                  <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
 
-                 <li class="nav-item"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="nav-link"></i>Home'.html_safe, admin_index_path) %> </li>
+                 <li id="padding30x"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="nav-link"></i>Home'.html_safe, admin_index_path) %> </li>
 
-                  <li class="nav-item"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="nav-link"></i>Asset Inventory'.html_safe, asset_items_path) %> </li>
+                  <li id="padding30x"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="nav-link"></i>Asset Inventory'.html_safe, asset_items_path) %> </li>
                  </ul>
                 </li>
                 <li class="nav-menu"><a class="nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu2" aria-expanded="false">Settings</a>
 
                  <ul class="nav collapse" id="submenu2" role="menu" aria-labelledby="btn-1">
-                  <li class="nav-item"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="nav-link"></i> Profile'.html_safe, edit_user_registration_path) %> </li>
+                  <li id="padding30x"><%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="nav-link"></i> Profile'.html_safe, edit_user_registration_path) %> </li>
 
                   <!-- Service Administration Menu ========================= -->
                   <% if current_user.role == User::SERVICE_ADMIN %>
-                   <li class="nav-item"> <%= "#{active(manufacturers_path)}" %> <%= link_to('<i class="nav-link"></i> Manufacturers'.html_safe, manufacturers_path) %> </li>
+                   <li id="padding30x"> <%= "#{active(manufacturers_path)}" %> <%= link_to('<i class="nav-link"></i> Manufacturers'.html_safe, manufacturers_path) %> </li>
                   <% end %>
 
-                  <li class="nav-item"> <%= "#{active(organizations_path)}" %> <%= link_to('<i class="nav-link"></i> Organization'.html_safe, organizations_path) %> </li>
+                  <li id="padding30x"> <%= "#{active(organizations_path)}" %> <%= link_to('<i class="nav-link"></i> Organization'.html_safe, organizations_path) %> </li>
 
-                  <li class="nav-item"> <%= "#{active(new_subscription_path)}" %> <%= link_to('<i class="nav-link"></i> Subscribe'.html_safe, new_subscription_path) %> </li>
+                  <li id="padding30x"> <%= "#{active(new_subscription_path)}" %> <%= link_to('<i class="nav-link"></i> Subscribe'.html_safe, new_subscription_path) %> </li>
 
                   <!-- Service Administration Menu ========================= -->
                   <% if current_user.role == User::SERVICE_ADMIN %>
 
-                  <li class="nav-item"> <%= "#{active(users_path)}" %> <%= link_to('<i class="nav-link"></i> Users'.html_safe, users_path) %> </li>
+                  <li id="padding30x"> <%= "#{active(users_path)}" %> <%= link_to('<i class="nav-link"></i> Users'.html_safe, users_path) %> </li>
                   <% end %>
 
                  </ul>
