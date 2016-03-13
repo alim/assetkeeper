@@ -1,0 +1,12 @@
+<%- model_class = AssetItem -%>
+
+<div class="col-md-3 col-sm-6">
+                    <div class="card card-inverse card-info">
+                        <div class="card-block bg-info">
+
+                            <h6 class="text-uppercase"><%= link_to('<i class="fa fa-tag fa-fw"></i> Asset Inventory'.html_safe, asset_items_path, {style: "color: white"}) %></h6>
+
+                            <h1 class="display-1"><%= AssetItem.count %></h1>
+                        </div>
+                    </div>
+</div>
