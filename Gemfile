@@ -43,7 +43,7 @@ gem 'spring',        group: :development
 
 ## APPLICATION SPECIFIC GEMS ##########################################
 
-gem 'mongoid', "~> 4.0"
+gem 'mongoid', "~> 5.0"
 gem 'bson_ext'
 
 # UI Related Gems
