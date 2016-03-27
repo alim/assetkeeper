@@ -1,5 +1,6 @@
 production:
   sessions:
+  clients:
     default:
       uri:  <%= ENV['MONGOLAB_URI'] %>
 
@@ -13,6 +14,7 @@ production:
         retry_interval: 1
 development:
   sessions:
+  clients:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
@@ -69,6 +71,7 @@ development:
     # use_utc: false
 test:
   sessions:
+  clients:
     default:
       database: assetkeeper_test
       hosts:

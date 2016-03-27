@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 ## STANDARD RAILS 4.1.x Gemset ----------------------------------------
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -43,7 +43,7 @@ gem 'spring',        group: :development
 
 ## APPLICATION SPECIFIC GEMS ##########################################
 
-gem 'mongoid', "~> 4.0"
+gem 'mongoid', "~> 5.0"
 gem 'bson_ext'
 
 # UI Related Gems
