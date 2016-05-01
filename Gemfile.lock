@@ -309,6 +309,7 @@ DEPENDENCIES
   mongoid (~> 5.0)
   mongoid-paperclip
   mongoid_taggable
+  nokogiri
   pry-nav
   pry-rails
   rails (= 4.2.6)
