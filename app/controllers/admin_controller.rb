@@ -15,6 +15,10 @@ class AdminController < ApplicationController
 	# logging into the service.
 	#########################################################################
 	def index
+      @asset_items = AssetItemDecorator.decorate_collection(
+        AssetItem.search_by(params[:stype], params[:search]).filter_by(
+          params[:role_filter]))
+
   end
 
 	#########################################################################

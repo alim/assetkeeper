@@ -1,0 +1,12 @@
+<%- model_class = Organization -%>
+
+<div class="col-md-3 col-sm-6">
+                    <div class="card card-inverse card-danger">
+                        <div class="card-block bg-danger">
+
+                            <h6 class="text-uppercase"><%= link_to('<i class="fa fa-group fa-fw"></i> Organizations'.html_safe, organizations_path, {style: "color: white"}) %></h6>
+
+                            <h1 class="display-1"><%= Organization.count %></h1>
+                        </div>
+                    </div>
+                </div>

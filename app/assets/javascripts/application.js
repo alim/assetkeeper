@@ -13,7 +13,7 @@
 // require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-// require turbolinks <- Disable this plugin when using Foundation
-// require_tree .
+//= require turbolinks
+//= require_tree .
 
 // $(function(){ $(document).foundation(); });

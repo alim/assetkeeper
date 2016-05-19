@@ -6,7 +6,11 @@
 
     <title><%= content_for?(:title) ? yield(:title) : "Asset Keeper" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
+    <!--%= stylesheet_link_tag    "application" %-->
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
 
     <%= javascript_include_tag "https://js.stripe.com/v2/" %>
     <%= tag :meta, name: "pub_key", content: ENV['PUB_KEY'] %>
@@ -19,8 +23,8 @@
   <body>
     <div class="off-canvas-wrap" data-offcanvas>
       <div class="inner-wrap">
-        <%= render partial: 'layouts/admin_devise_nav'%>
-        <!--%= render partial: 'layouts/admin_side_menu' %-->
+
+      <!-- Separate Admin Layout Files -->
 
         <section class="main-section">
 

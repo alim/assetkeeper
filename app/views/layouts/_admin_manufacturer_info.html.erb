@@ -1,0 +1,12 @@
+<%- model_class = Manufacturer -%>
+
+<div class="col-md-3 col-sm-6">
+                    <div class="card card-inverse card-warning">
+                        <div class="card-block bg-warning">
+
+                            <h6 class="text-uppercase"><%= link_to('<i class="fa fa-building fa-fw"></i>Manufacturers'.html_safe, manufacturers_path, {style: "color: white"}) %></h6>
+
+                            <h1 class="display-1"><%= Manufacturer.count %></h1>
+                        </div>
+                    </div>
+                </div>

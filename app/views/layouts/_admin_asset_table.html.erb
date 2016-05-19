@@ -1,0 +1,75 @@
+<%- model_class = AssetItem -%>
+
+<br>
+<div class"row">
+    <div class="col-sm-6 text-center">
+      <label class="label label-success">Area Chart</label>
+      <div id="area-chart" ></div>
+    </div>
+    <div class="col-sm-6 text-center">
+       <label class="label label-success">Line Chart</label>
+      <div id="line-chart"></div>
+    </div>
+    <div  class="col-sm-6 text-center">
+       <label class="label label-success">Bar Chart</label>
+      <div id="bar-chart" ></div>
+    </div>
+    <div class="col-sm-6 text-center">
+       <label class="label label-success">Bar stacked</label>
+      <div id="stacked" ></div>
+    </div>
+    <!--div class="col-sm-6 col-sm-offset-3 text-center">
+       <label class="label label-success">Pie Chart</label>
+      <div id="pie-chart" ></div>
+    </div-->
+
+  </div>
+
+<div class="col-lg-9 col-md-8">
+
+ <a id="features"></a>
+            <hr>
+            <p class="lead">
+                Below is a list of the current assets with their condition/status:
+            </p>
+                    <div class="table-responsive">
+                       <% if @asset_items.present? %>
+                        <table class="table table-striped">
+
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Manufacturer</th>
+                                    <th>Model Type</th>
+                                    <th>Condition</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                          <tbody>
+                            <% @asset_items.each do |asset| %>
+                           <tr>
+                               <td><%= link_to asset.name, asset_item_path(asset) %></td>
+                               <td><%= asset.description.html_safe %></td>
+                               <td>
+                                   <% if asset.manufacturer %>
+                                     <%= link_to asset.manufacturer.name, manufacturer_path(asset.manufacturer) %>
+                                   <% else %>
+                                      None specified
+                                   <% end %>
+                               </td>
+                               <td><%= asset.model_type.html_safe %></td>
+                               <td><%= asset.condition_str.html_safe %></td>
+                               <td><%= asset.status_str.html_safe %></td>
+                           <% end %>
+                         </tbody>
+                        </table>
+                      <% else %>
+                       <p>
+                         No assets have been created yet. Click on the <strong>New</strong>
+                         button below to create your first one.
+                       </p>
+                     <% end %>
+                    </div>
+                </div>
+            </div>
