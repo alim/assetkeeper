@@ -1,40 +1,48 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="http://cdn.oesmith.co.uk/morris-0.5.1.css" rel="stylesheet" />
 
-<div class="container-fluid" id="main">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.0/morris.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+
+
+<div class="container-fluid top-buffer" id="main">
     <div class="row row-offcanvas row-offcanvas-left">
         <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav nav-pills nav-stacked">
-                <li class="nav-menu"><a class="nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false"><i class="fa fa-list fa-fw"></i>Main Menu</a>
+                <li class="nav-menu"><a class="nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false"><i class="fa fa-list fa-fw" id="padding20x"></i>Main Menu</a>
                  <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
 
-                 <li id="padding30x"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="fa fa-home fa-fw"></i>Home'.html_safe, admin_index_path) %> </li>
+                 <li id="padding50x"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="fa fa-home fa-fw"></i>Home'.html_safe, admin_index_path) %> </li>
 
-                  <li id="padding30x"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="fa fa-tag fa-fw"></i>Asset Inventory'.html_safe, asset_items_path) %> </li>
+                  <li id="padding50x"> <%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="fa fa-tag fa-fw"></i>Asset Inventory'.html_safe, asset_items_path) %> </li>
                  </ul>
                 </li>
-                <li class="nav-menu"><a class="nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu2" aria-expanded="false"><i class="fa fa-wrench fa-fw"></i>Settings</a>
+                <li class="nav-menu"><a class="nav-link" href="#" id="btn-1" data-toggle="collapse" data-target="#submenu2" aria-expanded="false"><i class="fa fa-wrench fa-fw" id="padding20x"></i>Settings</a>
 
                  <ul class="nav collapse" id="submenu2" role="menu" aria-labelledby="btn-1">
-                  <li id="padding30x"><%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="fa fa-info-circle fa-fw"></i> Profile'.html_safe, edit_user_registration_path) %> </li>
+                  <li id="padding50x"><%= "#{active(edit_user_registration_path)}" %> <%= link_to('<i class="fa fa-info-circle fa-fw"></i> Profile'.html_safe, edit_user_registration_path) %> </li>
 
                   <!-- Service Administration Menu ========================= -->
                   <% if current_user.role == User::SERVICE_ADMIN %>
-                   <li id="padding30x"> <%= "#{active(manufacturers_path)}" %> <%= link_to('<i class="fa fa-building fa-fw"></i> Manufacturers'.html_safe, manufacturers_path) %> </li>
+                   <li id="padding50x"> <%= "#{active(manufacturers_path)}" %> <%= link_to('<i class="fa fa-building fa-fw"></i> Manufacturers'.html_safe, manufacturers_path) %> </li>
                   <% end %>
 
-                  <li id="padding30x"> <%= "#{active(organizations_path)}" %> <%= link_to('<i class="fa fa-group fa-fw"></i> Organization'.html_safe, organizations_path) %> </li>
+                  <li id="padding50x"> <%= "#{active(organizations_path)}" %> <%= link_to('<i class="fa fa-group fa-fw"></i> Organization'.html_safe, organizations_path) %> </li>
 
-                  <li id="padding30x"> <%= "#{active(new_subscription_path)}" %> <%= link_to('<i class="fa fa-sign-in fa-fw"></i> Subscribe'.html_safe, new_subscription_path) %> </li>
+                  <li id="padding50x"> <%= "#{active(new_subscription_path)}" %> <%= link_to('<i class="fa fa-sign-in fa-fw"></i> Subscribe'.html_safe, new_subscription_path) %> </li>
 
                   <!-- Service Administration Menu ========================= -->
                   <% if current_user.role == User::SERVICE_ADMIN %>
 
-                  <li id="padding30x"> <%= "#{active(users_path)}" %> <%= link_to('<i class="fa fa-user fa-fw"></i> Users'.html_safe, users_path) %> </li>
+                  <li id="padding50x"> <%= "#{active(users_path)}" %> <%= link_to('<i class="fa fa-user fa-fw"></i> Users'.html_safe, users_path) %> </li>
                   <% end %>
 
                  </ul>
                 </li>
-                <!--li class="nav-item"><a class="nav-link" href="#">Analytics</a></li-->
-                <!--li class="nav-item"><a class="nav-link" href="#">Export</a></li-->
             </ul>
         </div>
         <!--/col-->

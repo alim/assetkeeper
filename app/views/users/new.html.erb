@@ -1,5 +1,8 @@
 <%- model_class = User -%>
 
+<%= render partial: 'layouts/admin_side_menu' %>
+<%= render partial: 'layouts/admin_devise_nav'%>
+
 <%= render 'shared/page_header',
   flash: flash,
   title: 'New User Account',

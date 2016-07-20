@@ -7,6 +7,7 @@
 %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class='Format-Header'>
   <div class='row'>
     <div class='small-6 columns'>
       <label>Email</label>
@@ -26,15 +27,21 @@
       <div class="form-actions">
         <%= f.submit "Login", class: 'action-button' %>
         <% if devise_mapping.rememberable? -%>
+         <div class="small-12 columns">
+           <br/>
           <label class='checkbox'>
             <%= f.check_box :remember_me %> Remember my login
           </label>
+        </div>
         <% end -%>
       </div>
     </div>
   </div>
+</div>
 
 <% end %>
 <br/>
-<%= link_to "Forgot your password?", new_password_path(resource_name) %>
+<div class='Format-Header'>
+ <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+</div>
 <br/><br/>

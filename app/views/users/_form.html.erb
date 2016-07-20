@@ -1,49 +1,85 @@
+
 <%= render 'shared/validation_errors', verrors: verrors  %>
 
 <%= form_for user, html: { class: 'form-horizontal' } do |f| %>
 
-  <div class="row">
-    <div class="small-6 columns">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
+<div class="Format-Header">
+  <form class="form-horizontal" role="form">
+    <div class="row row-grid">
+      <div class="col-sm-6 col-lg-6">
+          <div class="form-group">
+             <label class="control-label col-md-4">First Name</label>
+             <div class="col-md-8">
+              <%= f.text_field :first_name, class: 'form-control' %>
+             </div>
+           </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-6">
+          <div class="form-group">
+            <label class="control-label col-md-4">Last Name</label>
+             <div class="col-md-8">
+              <%= f.text_field :last_name, class: 'form-control' %>
+             </div>
+          </div>
+      </div>
     </div>
 
-    <div class="small-6 columns">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div>
-  </div>
+     <div class="row row-grid">
+      <div class="col-sm-6 col-lg-6">
+         <div class="form-group">
+            <label class="control-label col-md-4">Email</label>
+              <div class="col-md-8">
+               <%= f.text_field :email, class: 'form-control' %>
+              </div>
+         </div>
+       </div>
 
-  <div class="row">
-    <div class="small-6 columns">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </div>
+       <div class="col-sm-6 col-lg-6">
+           <div class="form-group">
+               <label class="control-label col-md-4">Phone</label>
+                 <div class="col-md-8">
+                   <%= f.text_field :phone, class: 'form-control' %>
+                 </div>
+           </div>
+       </div>
+      </div>
 
-    <div class="small-6 columns">
-      <%= f.label :phone %>
-      <%= f.text_field :phone %>
-    </div>
-  </div>
+      <br/>
+      <hr>
+     </hr>
+     <br/>
 
+   <div class="row row-grid">
+    <div class="col-sm-6 col-lg-6">
+       <div class="form-group">
+         <label class="control-label col-md-4">Password</label>
+          <div class="col-md-8">
+           <%= f.text_field :password, value: user.password, class: 'form-control' %>
+          </div>
+       </div>
+   </div>
 
-  <div class="row">
-    <div class="small-6 columns">
-      <%= f.label :password %>
-      <%= f.text_field :password, value: user.password %>
-    </div>
+   <div class="col-sm-6 col-lg-6">
+       <div class="form-group">
+        <label class="control-label col-md-4">Confirmation Password</label>
+        <div class="col-md-8">
+          <%= f.text_field :password_confirmation, value: user.password, class: 'form-control' %>
+        </div>
+      </div>
+   </div>
+ </div>
+ <br/>
+ <hr>
+ </hr>
+ <br/>
 
-    <div class="small-6 columns">
-      <%= f.label :password_confirmation, 'Confirm password' %>
-      <%= f.text_field :password_confirmation, value: user.password %>
-    </div>
-  </div>
-
-  <div class='row'>
+ <div class="row row-grid">
+  <div class="col-sm-6 col-lg-4">
     <% if current_user.role == User::SERVICE_ADMIN %>
-      <div class="small-6 columns">
-        <%= f.label :role %>
-        <%= f.radio_button :role, User::CUSTOMER %>
+      <div class="form-group">
+          <label class="control-label col-md-4">Role</label>
+        <%= f.radio_button :role, User::CUSTOMER%>
         <label>Customer &nbsp&nbsp</label>
 
         <%= f.radio_button :role, User::SERVICE_ADMIN %>
@@ -60,10 +96,18 @@
     </div>
 
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.submit "Submit", class: 'action-button' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, class: 'cancel-button' %>
-  </div>
+ <br/>
+
+<div class="row row-grid" id="shaderow">
+ <div class="form-actions" id="alignbutton">
+   <%= f.submit class: "btn btn-primary" %>
+   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+               users_path, class: 'btn btn-primary' %>
+ </div>
+ </div>
+</form>
+</div>
+
 <% end %>
