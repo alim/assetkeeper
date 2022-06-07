@@ -8,6 +8,7 @@
     asset."
 %>
 
+<div class="Format-Header">
 <div class="row">
   <div class="small-12 columns">
     <%= render 'asset_subnav' %>
@@ -175,15 +176,22 @@
     <% end %>
   </div>
 </div>
+</div>
 
+<br/>
+
+<div class="Format-Header">
+<div class="row row-grid">
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              asset_items_path, :class => 'cancel-button'  %>
+              asset_items_path, :class => 'btn btn-primary'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_asset_item_path(@asset_item), :class => 'success-button' %>
+              edit_asset_item_path(@asset_item), :class => 'btn btn-primary' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               asset_item_path(@asset_item),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'delete-button right' %>
+              :class => 'btn btn-primary right' %>
+</div>
+</div>
 </div>

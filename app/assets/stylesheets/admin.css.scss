@@ -2,8 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#padding30x {
-    margin-left: 30px;
+#padding20x {
+    margin-left: 20px;
+}
+
+#padding50x {
+    margin-left: 50px;
 }
 
 #bolditem {
@@ -17,4 +21,99 @@
 
 #whitecolor {
   color: white;
+}
+
+#shaderow{
+  background: #e6e6e6;
+  height: 70px;
+  width: 1400px;
+  margin-top: 10px;
+}
+
+#alignbutton {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+
+.row.row-grid [class*="col-"] + [class*="col-"] {
+    margin-top: 15px;
+}
+
+@media (min-width: 1200px) {
+    .row.row-grid [class*="col-lg-"] + [class*="col-lg-"] {
+        margin-top: 0;
+    }
+}
+@media (min-width: 992px) {
+    .row.row-grid [class*="col-md-"] + [class*="col-md-"] {
+        margin-top: 0;
+    }
+}
+@media (min-width: 768px) {
+    .row.row-grid [class*="col-sm-"] + [class*="col-sm-"] {
+        margin-top: 0;
+    }
+}
+
+.row-grid + .row-grid {
+    margin-top: 15px;
+}
+
+#butn-inline {
+  display: inline-block;
+}
+
+.top-buffer {
+  margin-top: 20px;
+}
+
+.bottom-buffer {
+  margin-bottom: 40px;
+}
+
+
+/*
+////////////////////////////////////////
+ Format Neader
+////////////////////////////////////////
+*/
+.Format-Header {
+  height: 90%; /* Set your own height: percents, ems, whatever! */
+  width: 65%; /* Set your own width: percents, ems, whatever! */
+  /*overflow: auto; /* Recommended in case content is larger than the container */
+  margin-left: 320px; /* Center the item vertically & horizontally */
+}
+
+.Format-Header1 {
+  height: 90%; /* Set your own height: percents, ems, whatever! */
+  width: 80%; /* Set your own width: percents, ems, whatever! */
+  /*overflow: auto; /* Recommended in case content is larger than the container */
+  margin-left: 320px; /* Center the item vertically & horizontally */
+}
+
+.Format-Header2 {
+  height: 90%; /* Set your own height: percents, ems, whatever! */
+  width: 90%; /* Set your own width: percents, ems, whatever! */
+  /*overflow: auto; /* Recommended in case content is larger than the container */
+  margin-left: 320px; /* Center the item vertically & horizontally */
+}
+
+.Format-Header3 {
+  height: 90%; /* Set your own height: percents, ems, whatever! */
+  width: 90%; /* Set your own width: percents, ems, whatever! */
+  /*overflow: auto; /* Recommended in case content is larger than the container */
+  margin-left: 2px; /* Center the item vertically & horizontally */
+}
+
+#side-padding {
+  padding-left: 10px;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    /* Set the hr color */
+    /*color: #333; /* old IE */
+    /*background-color: #333; /* Modern Browsers */
 }

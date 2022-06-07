@@ -1,3 +1,6 @@
+<%= render partial: 'layouts/admin_side_menu' %>
+<%= render partial: 'layouts/admin_devise_nav'%>
+
 <%= render 'shared/form_page_header',
   flash: flash,
   title: 'User List',
@@ -9,6 +12,7 @@
   form_code: 'user_search'
 %>
 
+<div class="Format-Header1">
 <table class="table table-striped">
   <thead>
     <tr>
@@ -43,25 +47,30 @@
 
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
-                      user_path(user), :class => 'intable-success-button' %>
+                      user_path(user), :class => 'btn btn-primary' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_path(user), :class => 'intable-edit-button' %>
+                      edit_user_path(user), :class => 'btn btn-primary' %>
           <%= link_to t('.delete', :default => t("helpers.links.destroy")),
                       user_path(user),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'intable-delete-button' %>
+                      :class => 'btn btn-primary' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<!--/div-->
 
 <div class='digg_pagination'>
   <%= will_paginate @users %>
 </div>
 
-<div class="form-actions">
-  <%= link_to t('.new', default: t("helpers.links.new")),
-    new_user_path, class: 'success-button' %>
+<div class="row row-grid" id="shaderow">
+ <div class="form-actions" id="alignbutton">
+   <%= link_to t('.new', :default => t("helpers.links.new")),
+               new_user_path, class: 'btn btn-primary' %>
+ </div>
+ </div>
+</div>
 </div>

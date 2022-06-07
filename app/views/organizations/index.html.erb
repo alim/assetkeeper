@@ -1,3 +1,6 @@
+<%= render partial: 'layouts/admin_side_menu' %>
+<%= render partial: 'layouts/admin_devise_nav'%>
+
 <%- model_class = Organization -%>
 <%= render 'shared/page_header',
     flash: flash,
@@ -6,16 +9,17 @@
     "All organizations in the system are shown below."
 %>
 
+<div class="Format-Header1">
 <div class='row'>
-  <div class='12-small columns'>
+  <div class="col-xs-12">
     <% if @organizations.present? %>
-    	<table class="full-width">
+    	 <table class="table table-striped">
     		<thead>
     		  <tr>
-    		    <th width="20%">Name</th>
-    		    <th width="40%">Description</th>
-    		    <th width="20%">Owner</th>
-    		    <th width="20%"><%=t '.actions', :default => t("helpers.actions") %></th>
+    		    <th>Name</th>
+    		    <th>Description</th>
+    		    <th>Owner</th>
+    		    <th><%=t '.actions', :default => t("helpers.actions") %></th>
     		  </tr>
     		</thead>
     		<tbody>
@@ -30,28 +34,31 @@
                   No owner
                 <% end %>
               </td>
-    		      <td>
     		      	<% if current_user.admin? %>
+                 <td>
     					    <%= link_to t('.edit', default: t("helpers.links.edit")),
-    					                edit_organization_path(organization), class: 'intable-success-button' %>
+    					                edit_organization_path(organization), class: 'btn btn-primary' %>
     					    <%= link_to t('.destroy', default: t("helpers.links.destroy")),
     					                organization_path(organization),
     					                method: :delete,
     					                data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
-    					                class: 'intable-delete-button' %>
+    					                class: 'btn btn-primary', id: 'butn-inline' %>
+                 </td>
     		        <% else %>
     		        	No actions allowed
     		        <% end %>
-    		      </td>
+    		      <!--/td-->
     		    </tr>
     		  <% end %>
     		</tbody>
     	</table>
     <% else %>
-    	<p>
-    		No organizations have been created yet. Click on the <strong>New</strong>
-    		button below to create your first one.
-    	</p>
+      <div class='Format-Header'>
+       <p>
+        No organizations have been created yet. Click on the <strong>New</strong>
+        button below to create your first one.
+       </p>
+     </div>
     <% end %>
   </div>
 </div>
@@ -59,9 +66,12 @@
   <%= will_paginate @organizations %>
 </div>
 
-<div class='form-actions'>
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<br/>
+ <div class="row row-grid" id="shaderow">
+   <div class='form-actions' id="alignbutton">
+    <%= link_to t('.new', :default => t("helpers.links.new")),
             new_organization_path,
-            :class => 'success-button' %>
+            :class => 'btn btn-primary' %>
+  </div>
+ </div>
 </div>
-
