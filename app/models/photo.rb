@@ -1,8 +1,8 @@
-##########################################################################
+#############################################################################
 # The Photo class is responsible for handling uploaded photos and storing
 # them on Amazon S3. It also auto-scales the photos to three additional
 # sizes beyond the original.
-##########################################################################
+#############################################################################
 class Photo
   include Mongoid::Document
   include Mongoid::Timestamps

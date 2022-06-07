@@ -1,3863 +1,974 @@
 ---
 http_interactions:
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9b566f7972e0c00600/original.jpg
+    method: post
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: ''
+      string: description=Test%20Stripe%20Customer%20for%20johnsmith%40example.com
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:53 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:d1a0lyBDU35JrG/ThrN58bIa/ak=
       Accept:
-      - "*/*"
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      X-Amz-Request-Id:
-      - BAD811E3A80F2334
-      X-Amz-Id-2:
-      - cCrJuYJBXf1QCH/ZDTdwDkzHWh7dbJJfSFlJKQNd0RWekJ+3VqVmtrM5OHgqWiqX
-      Content-Type:
-      - application/xml
-      Transfer-Encoding:
-      - chunked
-      Date:
-      - Tue, 11 Aug 2015 01:29:53 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:53 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9b566f7972e0c00600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
+      - "*/*; q=0.5, application/xml"
       Accept-Encoding:
-      - ''
+      - gzip, deflate
       User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:53 GMT
+      - Stripe/v1 RubyBindings/1.16.0
       Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:C+lycjAA6SMCS64gSxtvw8EYNko=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      X-Amz-Request-Id:
-      - 826BA9BACE27B474
-      X-Amz-Id-2:
-      - oqWnGiecw0LGMDpIn7UwpUqiFs2vE4TGS5xJQM1DNwtypU47bMDC0EyLPVu6kie3O32flZy0BrU=
+      - Bearer <API_KEY>
       Content-Type:
-      - application/xml
-      Transfer-Encoding:
-      - chunked
-      Date:
-      - Tue, 11 Aug 2015 01:29:52 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:53 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9b566f7972e0c00600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:53 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:vQ+tJckr6b+0t5TFaqON7EhRAdE=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      X-Amz-Request-Id:
-      - E11760931344235C
-      X-Amz-Id-2:
-      - QCGSVo1tQ2BR5b12QXhhL2ZmzgCcbfIwGQ2+uX7HxI71JIKjlVVnUZGMU52Edjj3
-      Content-Type:
-      - application/xml
-      Transfer-Encoding:
-      - chunked
-      Date:
-      - Tue, 11 Aug 2015 01:29:53 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:54 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9b566f7972e0c00600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:54 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:X1OkAojfglqYng+ek2Lr8liCSR0=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      X-Amz-Request-Id:
-      - 8AB6EC3A4AD36C3E
-      X-Amz-Id-2:
-      - eXnQ+xA0BhSFgjcqUsVWtxkxwMQ9xKA2vIZcuuUKp/FsFF68DIBVspmcgzkfwLmmHlVlHebfQGM=
-      Content-Type:
-      - application/xml
-      Transfer-Encoding:
-      - chunked
-      Date:
-      - Tue, 11 Aug 2015 01:29:53 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:54 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:54 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:1uxa9QjpGi6iLGqMGeJ4FTx5LRY=
-      Accept:
-      - "*/*"
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '68'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - lJH/Ij4+t2BLFDi5iXYYPj6S/uVjalilJPscg6H8rIbS2EgLMCjhVcyKAwNptb7ZqjrGudKbGFA=
-      X-Amz-Request-Id:
-      - 8F3C0905C9FCA9F3
-      Date:
-      - Tue, 11 Aug 2015 01:29:55 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:27:57 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '913'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmUf6aF16pk3
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "cus_7FzmU0Bysjf50b",
+          "object": "customer",
+          "account_balance": 0,
+          "cards": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7FzmU0Bysjf50b/cards"
+          },
+          "created": 1446176547,
+          "currency": null,
+          "default_card": null,
+          "default_source": null,
+          "delinquent": false,
+          "description": "Test Stripe Customer for johnsmith@example.com",
+          "discount": null,
+          "email": null,
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7FzmU0Bysjf50b/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7FzmU0Bysjf50b/subscriptions"
+          },
+          "subscription": null
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:54 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:28 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/small.jpg
+    method: post
+    uri: https://api.stripe.com/v1/tokens
     body:
       encoding: US-ASCII
-      string: ''
+      string: card[name]=John%20Smith&card[number]=4242424242424242&card[exp_month]=10&card[exp_year]=2016&card[cvc]=313
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:54 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:IPmL9oPr12TDfZUSApTKBg01Inw=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '106'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - XVA4GgrJtV4IMXFcJ2jd7K1oBuaF3124ewvHjcWh2L5DAhxiEVVOe/p+qRisQ6RBD9TXmNIBjQ4=
-      X-Amz-Request-Id:
-      - FF47DAACEA04C95A
-      Date:
-      - Tue, 11 Aug 2015 01:29:55 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:27:59 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:28 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '802'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmAoitP16nyd
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "tok_7Fzmp2ZbF2IgN3",
+          "object": "token",
+          "card": {
+            "id": "card_7Fzmj5VGENjGfs",
+            "object": "card",
+            "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": null,
+            "dynamic_last4": null,
+            "exp_month": 10,
+            "exp_year": 2016,
+            "fingerprint": "K4rn7HQ6KbOupkia",
+            "funding": "credit",
+            "last4": "4242",
+            "metadata": {},
+            "name": "John Smith",
+            "tokenization_method": null,
+            "type": "Visa",
+            "customer": null
+          },
+          "client_ip": "96.35.101.2",
+          "created": 1446176548,
+          "livemode": false,
+          "type": "card",
+          "used": false
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:54 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:28 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/medium.jpg
+    method: post
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: ''
+      string: description=Acme%20customer%20account.&card=tok_7Fzmp2ZbF2IgN3&email=johnsmith%40example.com
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:54 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:4YroRdNCkPWj+tU45nMvQefqomU=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '92'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - 3dgu2KtgsPxTaZwr09VNHpTMSGK2JvrGK2N583zY/EnyC2v0tkK/er9OX/EVLmMx
-      X-Amz-Request-Id:
-      - 1E4642B4C2573B0E
-      Date:
-      - Tue, 11 Aug 2015 01:29:55 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:27:59 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:29 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2452'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7Fzm9fUFu0XPJ9
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "cus_7FzmuVBO9OVLYI",
+          "object": "customer",
+          "account_balance": 0,
+          "cards": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7Fzmj5VGENjGfs",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7FzmuVBO9OVLYI",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2016,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "John Smith",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7FzmuVBO9OVLYI/cards"
+          },
+          "created": 1446176549,
+          "currency": null,
+          "default_card": "card_7Fzmj5VGENjGfs",
+          "default_source": "card_7Fzmj5VGENjGfs",
+          "delinquent": false,
+          "description": "Acme customer account.",
+          "discount": null,
+          "email": "johnsmith@example.com",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7Fzmj5VGENjGfs",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7FzmuVBO9OVLYI",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2016,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "John Smith",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7FzmuVBO9OVLYI/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7FzmuVBO9OVLYI/subscriptions"
+          },
+          "subscription": null
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:54 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:29 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/large.jpg
+    method: post
+    uri: https://api.stripe.com/v1/coupons
     body:
       encoding: US-ASCII
-      string: ''
+      string: percent_off=25&duration=repeating&duration_in_months=3&id=DISCOUNT
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:54 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:2BTdnzQOHYzePOsct/m4LBvWT8g=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '66'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - "/O/uizlRru3WYeJGAMqpH5RIs7uRf145zth2/600HYVHBnzjRivnmNZvcneF/wdU"
-      X-Amz-Request-Id:
-      - 854EC5C5DD0C5102
+      Server:
+      - nginx
       Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:00 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
+      - Fri, 30 Oct 2015 03:42:30 GMT
       Content-Type:
-      - image/jpeg
+      - application/json
       Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
+      - '314'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmB8RRT20Jvn
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "DISCOUNT",
+          "object": "coupon",
+          "amount_off": null,
+          "created": 1446176550,
+          "currency": null,
+          "duration": "repeating",
+          "duration_in_months": 3,
+          "livemode": false,
+          "max_redemptions": null,
+          "metadata": {},
+          "percent_off": 25,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:55 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:30 GMT
 - request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/original.jpg
+    method: post
+    uri: https://api.stripe.com/v1/plans
     body:
       encoding: US-ASCII
-      string: ''
+      string: amount=3000&interval=month&name=Silver%20Plan&currency=usd&id=SILVER
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:55 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:GEYANECjvJLeUCZTr7X07mxZkmc=
       Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - KIp0F5eV8KC1eEzvb45dz/53z3KcDyaFEk/FnIFejclhCBAe6C8DQr/pkoKKRvh+5r9V0ciXTwg=
-      X-Amz-Request-Id:
-      - EB93A3BEB47C73B6
-      Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:55 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
+      - "*/*; q=0.5, application/xml"
       Accept-Encoding:
-      - ''
+      - gzip, deflate
       User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:55 GMT
+      - Stripe/v1 RubyBindings/1.16.0
       Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:gS7KU/eYlUv+zsifSBXtZfmdlkw=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - KhuApEmnvcmzkf6clj5BbjG0ywXS90qIiwSKhDORHqcd6XiOUoZd60bQQuTtXTFktZneQfht4J0=
-      X-Amz-Request-Id:
-      - 55FC2ED20DA28A1A
-      Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:56 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
+      - Bearer <API_KEY>
       Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:OkUYjg7xd9E+vVHAFRpIs3SYs28=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - e7NaN2xhZfAIfh38qoqsd4hQ8bIs0tJtqpdCZsOeEMk+wH2sojgYHgecD9R20/f1
-      X-Amz-Request-Id:
-      - 79BA2EB7A5C873E4
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:56 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94f9c566f7972e0c20600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:i+heyPY9qHUmjhSj1GfGilsT0zo=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - avuZYzUkSn2lJymybETqT9UBPuGBsZkBxTXJ7vaceh78L0Mkc1XLXACLePXxTPOf
-      X-Amz-Request-Id:
-      - FB678B9A81398D7D
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:56 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:00MwypGHffBg5kvy7AuhtZxLY2Y=
-      Accept:
-      - "*/*"
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '68'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - MBlimMmbk0f4opLe85Ern1jXSfMCqMGQsxmN8eFlykqbPrF/UHzsYle/crsmNLF9
-      X-Amz-Request-Id:
-      - F3C9E6B0842BD520
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:02 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:31 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '309'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7Fzm5jzimEOAhW
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "SILVER",
+          "object": "plan",
+          "amount": 3000,
+          "created": 1446176551,
+          "currency": "usd",
+          "interval": "month",
+          "interval_count": 1,
+          "livemode": false,
+          "metadata": {},
+          "name": "Silver Plan",
+          "statement_descriptor": null,
+          "trial_period_days": null,
+          "statement_description": null
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:56 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:31 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/small.jpg
+    method: post
+    uri: https://api.stripe.com/v1/plans
     body:
       encoding: US-ASCII
-      string: ''
+      string: amount=2500&interval=month&name=Bronze%20Plan&currency=usd&id=BRONZE
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:em2aaXL17gTiH+i0LuHIGodPKLw=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '68'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - zhapjnOYTkXG2rE3IVSebSsOVHXnKGFApFTnQ7YFWLDCAkjY3arMrrbXYxHLnn1USl1AsOiJCzg=
-      X-Amz-Request-Id:
-      - E9EAD787D1E256B3
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:04 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:33 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '309'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmhCWce53HYE
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "BRONZE",
+          "object": "plan",
+          "amount": 2500,
+          "created": 1446176552,
+          "currency": "usd",
+          "interval": "month",
+          "interval_count": 1,
+          "livemode": false,
+          "metadata": {},
+          "name": "Bronze Plan",
+          "statement_descriptor": null,
+          "trial_period_days": null,
+          "statement_description": null
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:56 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:33 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/medium.jpg
+    method: get
+    uri: https://api.stripe.com/v1/coupons/DISCOUNT
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:56 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:CHeSI0mTE6+bPkA5rhR3DtBzGWQ=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - uoHjE1foM4tzwQFooSIt39s5sXjNWSEVELd3Aia3FUWlfZ82qkZ9urLEo1KRY1khU5bz9gUZ6q8=
-      X-Amz-Request-Id:
-      - E1548A24FA2010CC
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:04 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:33 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '314'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7Fzm8T3J6BlKXD
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "DISCOUNT",
+          "object": "coupon",
+          "amount_off": null,
+          "created": 1446176550,
+          "currency": null,
+          "duration": "repeating",
+          "duration_in_months": 3,
+          "livemode": false,
+          "max_redemptions": null,
+          "metadata": {},
+          "percent_off": 25,
+          "redeem_by": null,
+          "times_redeemed": 0,
+          "valid": true
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:57 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:33 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/large.jpg
+    method: delete
+    uri: https://api.stripe.com/v1/coupons/DISCOUNT
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:5L3hoL9p3PLz4QR+hZiOU9Q2cT4=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - I+dVc1/qVUPy1VCgLzh5abjywad7XimgTWZC/J+sNK0cWtORr5l8eIejQ3yHgg70FPCtMapYE1k=
-      X-Amz-Request-Id:
-      - 9700DD0A090E5FF8
+      Server:
+      - nginx
       Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:04 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
+      - Fri, 30 Oct 2015 03:42:34 GMT
       Content-Type:
-      - image/jpeg
+      - application/json
       Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
+      - '42'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7Fzmspiyffhqw5
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "deleted": true,
+          "id": "DISCOUNT"
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:57 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:34 GMT
 - request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/original.jpg
+    method: get
+    uri: https://api.stripe.com/v1/plans/SILVER
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:y33STImLR24asOG3IoDr7fyavCg=
       Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 9a2Xhqe58jBfZIzLyhRogTWb3rjyyIQ45milmAPKKa0pfGHnwuOcvETIW2tffZnP
-      X-Amz-Request-Id:
-      - 73ADE37A4566524F
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:57 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
+      - "*/*; q=0.5, application/xml"
       Accept-Encoding:
-      - ''
+      - gzip, deflate
       User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
+      - Stripe/v1 RubyBindings/1.16.0
       Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:gCDyVJdtoAfvN3h7wEGZeR1YuWY=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - PGs2b0qY7t5L1vL6uorhltv4ZDRM3FMx6jskMMmw/bihSy8dy7mMs5Ve2Nn3QLtoNs9iy3Jlt9s=
-      X-Amz-Request-Id:
-      - B956065CB969EAAF
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:57 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
+      - Bearer <API_KEY>
       Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:57 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:FurlSRuTk24tjZru8pJ57qPMRUY=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 8cMgzGaz3463BVPF3gVojqUwVAYB8vQdcSPjM8jpdxtyJhJsYzT2lo1tCzJMNVHwVYJAXYt+Eiw=
-      X-Amz-Request-Id:
-      - 85A57BC2124291BC
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:58 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa0566f7972e0c40600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:YkoD/ajf7fdAjRIxyBZWIrqxk2I=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - O4GX6wsJhx8cI1T3ou4CSFyupBHfsHTKEco5of7dsQte+v86ZD86EZ30VdrAXTS7H2XQe/BfVtQ=
-      X-Amz-Request-Id:
-      - FEEE8B5F7AFF6EBB
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:58 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:yPloAyuVuc7v7mUE3fa3yDsetIo=
-      Accept:
-      - "*/*"
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - NisHvJbzQmE2A4wrxKSEioiUuDK7jfpzTPaV8OD5pgU415QgI/5RXMc8oBRTJje5
-      X-Amz-Request-Id:
-      - 8FF1A9F59B0D140C
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:07 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:35 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '309'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmHsD5EivbXv
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "SILVER",
+          "object": "plan",
+          "amount": 3000,
+          "created": 1446176551,
+          "currency": "usd",
+          "interval": "month",
+          "interval_count": 1,
+          "livemode": false,
+          "metadata": {},
+          "name": "Silver Plan",
+          "statement_descriptor": null,
+          "trial_period_days": null,
+          "statement_description": null
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:58 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:35 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/small.jpg
+    method: delete
+    uri: https://api.stripe.com/v1/plans/SILVER
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:fHE0oNeVXwoOnas7+vLuZ7H+by0=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - FGvTertMnfHfQ9D9nxjaNXeaG8PsEnVlHgKvgFKCWcR4vJdY5O2kqMs5MiVyYVAahBZXLzm9l50=
-      X-Amz-Request-Id:
-      - 5AE2F39726788139
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:09 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:35 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '40'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmDjOKkxo8Ld
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "deleted": true,
+          "id": "SILVER"
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:58 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:35 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/medium.jpg
+    method: get
+    uri: https://api.stripe.com/v1/plans/BRONZE
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:7lvkJzIqLk4lrbzKivczFRd2yOM=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - n3iRmhBO5G0elhxGYuzO6ZBno4OWNAFej4PsIUMqWkFb7aJAh75urhtKqY7Cn6geApu6jbssdq0=
-      X-Amz-Request-Id:
-      - AAA002EF34A4E300
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:09 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
       Server:
-      - AmazonS3
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 03:42:36 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '309'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmEHFvWvrKbO
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
     body:
       encoding: UTF-8
-      string: ''
+      string: |
+        {
+          "id": "BRONZE",
+          "object": "plan",
+          "amount": 2500,
+          "created": 1446176552,
+          "currency": "usd",
+          "interval": "month",
+          "interval_count": 1,
+          "livemode": false,
+          "metadata": {},
+          "name": "Bronze Plan",
+          "statement_descriptor": null,
+          "trial_period_days": null,
+          "statement_description": null
+        }
     http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:58 GMT
+  recorded_at: Fri, 30 Oct 2015 03:42:36 GMT
 - request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/large.jpg
+    method: delete
+    uri: https://api.stripe.com/v1/plans/BRONZE
     body:
       encoding: US-ASCII
       string: ''
     headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:58 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:mXb+N1kMwx64uemU/eF71vDZzTE=
       Accept:
-      - "*/*"
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
   response:
     status:
       code: 200
       message: OK
     headers:
-      X-Amz-Id-2:
-      - ScmbvJlAOye5LRtjCZUEdBouVvQOFrSrmmzf9nWNYbfeNUVoTbZeexQ22FyA7STG9xNA6sAE1ck=
-      X-Amz-Request-Id:
-      - E22E6C23034C787A
+      Server:
+      - nginx
       Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:09 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
+      - Fri, 30 Oct 2015 03:42:36 GMT
       Content-Type:
-      - image/jpeg
+      - application/json
       Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:59 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:gvPDL44fxfps9XGz1VW/NUOABss=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - YN1ns12TGvxagaoJovCDG5hsbfCPth6t4XdgGrnF5xLsmarJcbVbh4+v9dxcdCGYP4MyWswo2f0=
-      X-Amz-Request-Id:
-      - 499E817CFFE6C6F7
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:59 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:3DyIFBwpyLkLXajx/3U60LtjCsI=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - D7cTYGxAXsYO6LnMSiIKq2BixBuxExBggDc/qiEyigj5KJ/nX5NIRaoHJR0JWd8QslQSEdv1tfo=
-      X-Amz-Request-Id:
-      - 0660A3B0D3100BA5
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:59 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:qW3A6ufHF1OrpjQFS6xi058+MLE=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - rjLdxnUfTMq1Nfk9hxFwR978hNtZhmJV1M9Le6J+QGNajGtpxgff6WjQBTwQhVER0PRfwMPYQfc=
-      X-Amz-Request-Id:
-      - F4D178FE08CB503A
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:29:59 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fa5566f7972e0c60600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:29:59 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:Tq33mwIUpwYlsBr3iPVBNFuMLbw=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - ALoZ8n7ilp0CU/Hi/2ULqm/pUoXypzviLEVbQ1nP4kdjdJBihsk/FAzg0mq60Cyr
-      X-Amz-Request-Id:
-      - A1944A0046EC4545
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:00 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:DWNaYZ31lXiCCtdb94s9WQUK7AE=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - ars7msc6p7PyExAFNxurvOyKdZV78KB+WR4hVNnuv7ZtN4cMYKIqUaevuTuo0VON8M+HIhbgECY=
-      X-Amz-Request-Id:
-      - 3E2A745B5B5EEC94
-      Date:
-      - Tue, 11 Aug 2015 01:30:01 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:15 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:00 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:dHurUcjZo3Jd00uhhyLzOeorg8g=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - lQ6sUvD971jZ7wq+yZi6MHO+g2vz/8wjVKKGWc7QcQs8vQd7ZXM7EfLkEW8Z8MavwcDV12GkFhA=
-      X-Amz-Request-Id:
-      - 96C1F7CA7835AF1E
-      Date:
-      - Tue, 11 Aug 2015 01:30:01 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:17 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:00 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:PPtA7GRRCklnTa2qNI0941QWFZY=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - rivebfaniX0Ii582/JexQvaCNY1f69Y+Z+5mP8PioTZZccdX1JZ5HWEZAQAo+B9Jq9MsZ0P13Ns=
-      X-Amz-Request-Id:
-      - CF9909851DC5CD3F
-      Date:
-      - Tue, 11 Aug 2015 01:30:01 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:17 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:00 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:P6fHMN6dYgjcEzuFPy45VKeOUvI=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - Igs/axBMxN7nVFS2r8GknimsgTtcQK2vh/bteQHPn3Fgf5zNOZPIM3P9plVPWeTMMTICFERzlL0=
-      X-Amz-Request-Id:
-      - 95495D78D4EF650A
-      Date:
-      - Tue, 11 Aug 2015 01:30:01 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:17 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:00 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:00 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:cMRlqyva9G/7C4SYDftOmxgI2sM=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - t3Sxz1s8T3s8ecgYcRUMh3/FXOvQ5BPz2s5MTaKHW3CHWwaWAasEo+AGalC94znd
-      X-Amz-Request-Id:
-      - 38D5457C54DF7351
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:01 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:01 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:TnKPf9bCRQHg4+Nam+t2NwPnTRI=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 7/gAdkRoo9jng1y+u2hlVdrYaE7i7UPVKVDMYF1fJ4QXW2RWYZgAwILR66mp45oT
-      X-Amz-Request-Id:
-      - 7BD9CA41D00BFBF5
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:01 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:01 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:ajs4Nq0lWq8w4ORtnWVOqRwZ++s=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - VTGt/f8qV0lmgTYOuqElTlTm90j2JwajKnQ4VSWJjGn7sQ4tM7QD3V95+wmnuiMH
-      X-Amz-Request-Id:
-      - EE615BDAFD59249F
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:01 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fab566f7972e0c80600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:01 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:k9lxK+n5EU9/rN50XnezgJRUdiw=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - JtPKuoHv9WSOjh/H0vXPNtn6Vu42ciwxKe0/VlTwSQVEMQOhfvI3vO9OJDwpFq/F
-      X-Amz-Request-Id:
-      - 5FFB047D6C4E58CB
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:02 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:tMBv1u680EjTzHNjqAA8ZonetBY=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - ZBowUwgMZESA0jEP6HzggyrtLEnot1Pil8/DqiPFAsq41lSsimAjU+YIk3ZRoC6IwKLUNikeLuo=
-      X-Amz-Request-Id:
-      - 3FEDC2F753AB3AF9
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:26 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:02 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:pC/HrZQDQ54HBw4L164fuQKXbFM=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - C8MQQuf1VGQ5APt/SVnvK1ISWQ0JEvQNhHRcX3I81jZOkgf+bfwl2bn5c8LVzZZl
-      X-Amz-Request-Id:
-      - A4E05FF308DC5316
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:28 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:02 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:wHLdYvNIZL01EqMROaWbBekJOHw=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - 8swLU6nmlZY24NOSfLxfyoWRRvkWTm7Psmw8q7cH+f0rlb4rIdlzHNZGWw9fN/It
-      X-Amz-Request-Id:
-      - 3114AABB56B17EDE
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:28 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:02 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:PH/tYSme+K5urCb0Nm4Hzl+wOAQ=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - ZHO+7cRTgMt372S2y3/CwQbzch9bRBFAndB9o5L7Kpb8s0azwcebPIcWkH9QiU8l
-      X-Amz-Request-Id:
-      - E8943B6B60FCB3EF
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:28 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:02 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:02 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:fpSxxqKMtkK9gX28qSQwKne7u2Y=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - nG/8LwHg42U9l1siSOZKNwE2rpUcC2wY5HWvYaEHYWhO2V2jGB46kJLCsWN1uFAW
-      X-Amz-Request-Id:
-      - 6745DBB66F1397F5
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:03 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:gOcUDAITraT6+IQRfivbVw0mDDI=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - wA93CeRlfCsO4BfGonrwrg4lWWo1olvODwGU7i+TZHX/FWHYNB1zo3aNNbFTnpTJ
-      X-Amz-Request-Id:
-      - D25E69D8A42F81EC
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:03 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:ZGspkLHWFJOnj8Wa5XQmyc1+f68=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - OJr0Rfw7C2derK75jbQ4Ey/fI4R7ctJCv772uUfbtBbOBGMtSY9Jkm/8wWGL88kf
-      X-Amz-Request-Id:
-      - C663F4CA16826CDA
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:03 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fb5566f7972e0ca0600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:0CssUxSxMBr1vdG5w3E1Q+NYUQ4=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - CK+0FBhBR1ekcL8c+hVyK5qs6HoNfCOjmKAyon48z6AI/KQHlaejHvcjTbD1wtB6lYxpqRUHTDA=
-      X-Amz-Request-Id:
-      - 553768E1EA0BA15B
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:03 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:03 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:x0hW+xsnTHZjvBRcrG4zCTlCels=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - e2/UMBBauPsIYij84sCIIidPe7XA5g0Sfnwaa4RQV1kf23QnL5AyvkEMqrXBHcHRdRY9VinDIeo=
-      X-Amz-Request-Id:
-      - DB4EFA9A3C9EE671
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:38 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:04 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:/XHtE/g6ALmyiInFdmZFjyyDDOc=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - fbPzfgW22ag/AZXnobJCx0Ya4akWz6AWvxI2hGT7wlE66HYtNvakNGrrwiKBea36TPfX0zQL5kY=
-      X-Amz-Request-Id:
-      - FCCC919828FF202B
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:39 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:04 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:3PA4TnRCf6/4TJQNbYNoQg3nwlA=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - zPDsqTjq5+ZkLSyQkOFNYOEmJCFiwsEiIzkIgtgpXjEXmB683OuCbULwzl3rGNB0XVJYp9456Ck=
-      X-Amz-Request-Id:
-      - BA45E2083F09A2BF
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:40 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:04 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:13unjQjrqtQIEt25/6+ZvZN6cxU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - eki7BtUcLB1/X/5KS7UFu3V+7y4qcvKns2jT7+M0fjBppevtIkMkb9f5UCnfjWh7UKETOtuNIjA=
-      X-Amz-Request-Id:
-      - 8BB20CCA98D54EA5
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:40 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:04 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:0Vcx657XyF1/I9k4W4xf0L0CyVo=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - xT69A+a2JVlYA+Bs4UyBHBPJtIPYuSw+kwIIsYQ9HEUPxsjdrcmSXGYv2xjNJqll
-      X-Amz-Request-Id:
-      - 241A3F4721AD05FE
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:04 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:04 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:ZA+oHH+luBTT2JmjQIPGR6F9IRU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - jdUgDX4M1G5kNBmOhwUzJdj8HbfFKQco6YwwmGTW+Vs1kpYuknonfrU1wg6yM0mn2sq2LK9jIJ8=
-      X-Amz-Request-Id:
-      - 9B6C8F9BCD68872D
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:05 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:/lVEtgzhDO9CmGvxVub0Yaho6jw=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 5Zvb9LCiVN56LtPgpOev39rCesx//ws9nFyVbaX+OplYvcyLuNbACxMaCzCzm1DL
-      X-Amz-Request-Id:
-      - 7EDC04CC040D16FF
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:05 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fc1566f7972e0cc0600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:qOInqf0kt84fM7fcIjhtZ+rnZwk=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 34Dm1nA63l9qOMiH9S1NX1xfbQIqKkSneLRrJ2zkskLkq7oGl/e3Kf15dcJDEYS/Y8YLycpKxwM=
-      X-Amz-Request-Id:
-      - 08F1010FD32939B6
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:05 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:eaSkCN4OI9NgL12jyVgguy2WSPU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - 1SrNl7XITZklyUvV9QCgKAfGMueHe8U/ZhIiQ5/I1P7X/1xStaxldNIXRrF98r9e
-      X-Amz-Request-Id:
-      - 80676FD888222548
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:49 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:05 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:ywNwk5dnXJ1Tw1PeGaKCPoiX29I=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - veG/EzGk8/nfwKb2E6DzDTkMCiJEXlzmv5nt2/wmgSnNBbUayKJQExOG9CRvo4mz
-      X-Amz-Request-Id:
-      - 3A2FFFB7742F785B
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:51 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:05 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:05 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:2vkOPRt0K9lNxICV3z72K2sEIiU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - 39jl49lmGVO966zorL4CngSSc9k09gdIH276qFs4AMvFI1GDApks3ktga9x3a93VWTOzAPXIRYA=
-      X-Amz-Request-Id:
-      - F4D26D44890C686A
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:52 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:06 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:dMlVsJjqdMi50LKVdFPGfe4mhF4=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - i+DBVEZf7VEHTBamT9E3liDPACkzBZoDCOZn/QUy2JCE/mvSfRFrdJs9PkzdKKMT
-      X-Amz-Request-Id:
-      - 2E043221ABA776E8
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:28:52 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:06 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:2Cdna22ZRrCLO8MWKfY2cmotIwo=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - nFPI3h04YZToff1aYgGB5I6kdXdLJYAem22KP67PLCjMt6nsJoE6YDQtmjDaNzlXGDw60A5wp1k=
-      X-Amz-Request-Id:
-      - FAD8973DC87E7A5A
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:06 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:FIL9EJnItCvJLAL5mUjDOgvJ8+g=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 8iKFbGvpCqnIzxpfO8nC1QkMK5b7TaHhOuOBoJKwYwnU6Ys//af/Octcf0nyh4UDliUweQ5YNh0=
-      X-Amz-Request-Id:
-      - 55EA5354B1CCE6F9
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:06 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:06 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:9adCz4E6vmsJ2SGqw3IuRWBRWQQ=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - FVKhdT+onM33MZC75UrsZfSq6oZR4yb4hhM96Ai6+8QfSR9f2E8j6vrlU+YPXUHn
-      X-Amz-Request-Id:
-      - 275FF9C97A9E18F7
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:07 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fce566f7972e0ce0600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:Q7u4qfudeIIicqq6DvZkSkWJYaE=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - UJmOK6vADQmAc5hIxtj2buvjGxHMDcUkoEZ8Z19gI34L87dDuXRs+EoqIxfkZpRz828+xRbJXlI=
-      X-Amz-Request-Id:
-      - 7904924A61CE9C74
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:07 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:Z2Bn3WSPegjMZm03kDPz2Xjr6dw=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - "+NM0clxj1ewNKFOnIF+KJd8FpRSzyCTySwEwXkublgx6qBmQgqQJTPJFOTuZY3CeWsJuY+18FsU="
-      X-Amz-Request-Id:
-      - E19E469B1CFB563E
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:02 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:07 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:EQcfiGm4doZI6yjeoi5eqLbNYjU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - x1tqigpMNeFqjOjpeGPjTo6a/1VfoEOn0c4YxPtcGdLKdqDrsjyIKtw7V2KmJESrPn5K6NiBSl0=
-      X-Amz-Request-Id:
-      - 82B5E7342E0B785B
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:04 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:07 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:07 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:8xYsIB91XDnpNZV9aJIuAqmS4EA=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - Hdl3jz+KUlBQD0hBAejfozZWJhtSnmDpG6NRmVg9E2hHB3KMZ4kC8c4TRDcG6ky9
-      X-Amz-Request-Id:
-      - 5D02FEBCB176D6CC
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:05 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:08 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:NNIvxsUVgVA/eNtp+gWWgaF4lsk=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - dUjKrAFzLozEyhaOOn8KgpOqVdO1bgCVATArZKhBsFZn5/nFNq1WIeWMCXUWxRwN5lQ4TuCit/Q=
-      X-Amz-Request-Id:
-      - 04F02FF371114EF0
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:05 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:08 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:J8i5ZuuuUh1goJmg+MnvuRQQuQk=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - jrvVMgxolnhB1gygBUPPPFGYaosSgmwQu0Zc9cwWd45hK0iqrHR+vSybR1hpXFBKfuzrFgmySkg=
-      X-Amz-Request-Id:
-      - 594969463142554F
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:08 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:xanCrK/Dzj8YZ/lpTh3PW0jQyfg=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - zVW+UxQklHk+j7DleSk5xYGWvKvwwaY+mUno+sl+KteqcP21+uXG/Z+exdgtQXBj
-      X-Amz-Request-Id:
-      - 8F88C9E13E54B79E
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:08 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:vNiYM/U0Im6kDQWl31KqIFoMytU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - d55PUqLtzRJhXs6zYdHZQTpEUqXnkSgL6xP6UD+K6nNJf3QL4y/JF0FiIzEAFtpU
-      X-Amz-Request-Id:
-      - 221718938017A3CC
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:08 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fdb566f7972e0d00600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:08 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:cM/sNYT1EHD0oFlKdZ9FvK3iEMU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - Cil5uNao7PbrKZn/sCJCJkQUgqg6rEQoGjwuoqdX0JZgBGMElhOA9/vxMUkXP+C1
-      X-Amz-Request-Id:
-      - 3D8219A498AD8F11
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:09 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:7L2DyYw+e5vFuXIH2fqmlEmaKL8=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - M8AffsxxPpgqzWiEOiQDgylh8qf5gmAlt+lWsO/1DFo2n+xH5PS6gypjU0vIGyzT
-      X-Amz-Request-Id:
-      - F15A68659B179383
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:15 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:09 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:MdArBKYd+4CNTQCnXQGSuqyyELg=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - Xbz1LVDL8q4gb0cu8UqFV7rIUGyIC8Vu/7kwMs9GZAJuhFwg4NkkXr+gLDKHf12026bEIyvjr2g=
-      X-Amz-Request-Id:
-      - 156979E3F6528289
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:17 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:09 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:oQ8GpCbCFg8frt4SWzDldY3Uu+k=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - UbKi8s2kmIP10IkTMGAUT1rrGyeIBHK3kFwOd9KGcQCcGCQo+ldzQgzbk6GTmBuw7CE2jNHWq+w=
-      X-Amz-Request-Id:
-      - 9F73357E9CFE167B
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:17 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:09 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:3faCsTZUqopyh+kmz4b54lcQ7Gs=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - Gak9yq1Xlowtbtq1OL+kjR1qsH/4TJZ3HjVi6kks/Wo2WwYQQ4Kv6gNIKfEBHKBzYSvjxnhGzIs=
-      X-Amz-Request-Id:
-      - 29E70F9F1E4B376D
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:17 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:09 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:09 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:dilEhdtFVlAoM4W/QqfF2Gr/UKY=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - mTdfFzhKuupJyAk2cZ17MBSmRpsMceuQKeRyAPWukHMQ5pviJUXZ9LpoEhMBVPKkF/Q3wTPClbE=
-      X-Amz-Request-Id:
-      - E823C73D5080CB20
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:10 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:BNVOzcGyPGsKLyApTdgBQglqxUs=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 8c8EO8macKavBzMzCyPpB8lgu98AwZVt0EUNh1VblKLZ4DJWjasQFn2SWLj1MC+JjPdfgHsUEJ8=
-      X-Amz-Request-Id:
-      - 46539F0BD4354249
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:10 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:BbhmSVb69ePz0JatAcc06IV2jfE=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - YLG+yOQaBNRqZRiHj/8Wo2CLbGxX7jDtAPq0j9UEYIpnz8EltZX9ZyaM1G29oUx8
-      X-Amz-Request-Id:
-      - ACC68BA086DEFF03
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:10 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94fe5566f7972e0d20600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:sTYmOgTWIc2AaWQFV2NSXr+iMzI=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - 4yQv3HC6iT6q9u1FGRIB5ydo0y8BCFXmTCxGuJugYcaj7hd709UoAoscq8VVOKIFC4XwVQmMlDc=
-      X-Amz-Request-Id:
-      - 4381F68B6CD0B385
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:10 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:8mHTStxrSi5Ec1txijPOYZFY6yA=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - "+DpgQEJ5gv2uJJ4jg8rmPyBrx2cOPWsK9158bnoJipPphTn92Ap2k476ssCxrvRIas4krecbjpk="
-      X-Amz-Request-Id:
-      - FAD4DB011808D57C
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:25 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:10 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:10 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:hhSjfYcUuldolYi065zgj0nTvqI=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - czHpRdyH1p1RAS/10s3PcDOPVCMkG/gm66B6mtuwg+wTdmMITrNVRhOwc69acfqxk7mUluTrfZA=
-      X-Amz-Request-Id:
-      - 1FC6197CC323D191
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:27 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:11 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:S++OrPPXTVrxqYSXoe4qFCFvoXs=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - ZeYupXUUOHt4r4pyifzfdXGnHO3toZM+aXPsHSTOHdCmOptfnLfpz0BHovykNfHa
-      X-Amz-Request-Id:
-      - F2D76E7A4E0A4654
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:27 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:11 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:KHFloovOgk8n27/X4sGFmVbaCYU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - "+f3ljDLwJpZIIYj/wuPYVfodtlutnIRwrZ+hu54vOCWs1fgNvrdg5tFlL3tLTAhlHA7wB4eryiU="
-      X-Amz-Request-Id:
-      - CDB84237BFB75888
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:27 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:11 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:E/zv70pouTZJxDdo52tytBLYtuQ=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - vtnWgUzDynH9zdQDYyLFzictDCXrUKWTnTNINCusp7KZh6ezGM1JCJdAnaYBI5z0gTMoiJCaUCM=
-      X-Amz-Request-Id:
-      - F344E4D589AF6207
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:11 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:pAlqr0JpKOO+hP9CMnhOjcbhm1U=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - WV73XsL3OWzuTACaEHaJ2PpwSAI13bd240TcN2uBF8w/M6EynhCoZQxeQrQc21f6JEc4qlJv1CM=
-      X-Amz-Request-Id:
-      - 3CE2076DE9CDACFA
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:11 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:11 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:5+FwzCAKGsRSAlPFjwa4eYuiP4Y=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - a1gV6uyCNjGiQyY5gLELWCVoxUhPU+XBhvIQWsDijrNv/Gwnd/5Q3HmAW1haAAQS
-      X-Amz-Request-Id:
-      - AFEC5E47909D5A19
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:12 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff3566f7972e0d40600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:yQQLdTiGnmK8javWqFO4jNKYDWc=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - EFoqbpfnynd/koqMr6faAGREuv6YW9JaII3mKc5fXSf/xtyS5l7MAthhe7D3+tVnzZHHp5Gaxm8=
-      X-Amz-Request-Id:
-      - 84669CA704E3ED8C
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:12 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:tk83dwI7kBiQeJmtf8vGRwf0OoQ=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - vzohAIeDM0n7H8kFNCAo0ZdZi9oOSeLT82kRfWymOGHofcf/sCyEjsBfPpgFy5oD
-      X-Amz-Request-Id:
-      - 88FC8E748CAF45C3
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:29 GMT
-      Etag:
-      - '"cc7bacc2d0c2f5c5032a1709cf9285b4"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/png
-      Content-Length:
-      - '821996'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:12 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:TCZ1yO2K20HRmB3l2TD6Yn0x8S0=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - BThGeN5qFVy6cK9xYBc3R2bRnSzreJ26+LApadUvG1Tf3cOLw183qgKJMjDOvOIj
-      X-Amz-Request-Id:
-      - 412E87A2203BF77D
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:31 GMT
-      Etag:
-      - '"76b2b27fb10008f3ceb218b5f7dbf102"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '11553'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:12 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:12 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:A3enOYJRfBC6teA95+nYaFfNmIg=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - L9CfoS5AGUmtYFy0vujejnqTeeu5HQ4285vEQEDNYanB0YBJBIJGeAmQ19KbVLTH
-      X-Amz-Request-Id:
-      - 0986ECDB28633AEE
-      Date:
-      - Tue, 11 Aug 2015 01:30:14 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:31 GMT
-      Etag:
-      - '"65fe5e160943b9904b9cc5f502601ce9"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '29636'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:13 GMT
-- request:
-    method: head
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:XxIexE3B7T07hyNu4G1DTLlbcVk=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      X-Amz-Id-2:
-      - ohxjGLwGdOI2S63iUDKRXfcj68NwxzvnVCX7XV6p8QEHAAbQlatVSdM0XRIXCUUxmz2Yv4ypNzU=
-      X-Amz-Request-Id:
-      - FCA0DB1ECE8A1E02
-      Date:
-      - Tue, 11 Aug 2015 01:30:14 GMT
-      Last-Modified:
-      - Tue, 11 Aug 2015 01:29:31 GMT
-      Etag:
-      - '"ca04b180e55398eb0f3cb5abf7f08105"'
-      Accept-Ranges:
-      - bytes
-      Content-Type:
-      - image/jpeg
-      Content-Length:
-      - '135716'
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:13 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/original.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:Hj8X6/PO434kTZOWKJiF/JhSi2U=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - Nqsn+L4nGssiLJYemEdykQLHj24ZwDLXRB8RYYh7JhEcUjP7gXkyiQIt/jT7t7J1
-      X-Amz-Request-Id:
-      - 60DADC9606254AA3
-      Date:
-      - Tue, 11 Aug 2015 01:30:14 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:13 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/small.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:BF/fQJZvObZ9ddarIoam9cNWSRU=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - ghYSoDSeOp7qhKj08qNnWrz2dVWOlkiYAaSysCcX2oxx6qPv0reAuOR0lz6ovwlq
-      X-Amz-Request-Id:
-      - E32A9FDE844AB616
-      Date:
-      - Tue, 11 Aug 2015 01:30:14 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:13 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/medium.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:3aP2JmTheyXmh3e2oJ2t7lhLMTg=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - cnx+VwvwRTGaDNAKi3HGVtYeP8g35V6ZlpvsQpYIlpDOzafDnZcjT62wgnyXNbsBMoUjMlGqYqY=
-      X-Amz-Request-Id:
-      - 767D06940634E82B
-      Date:
-      - Tue, 11 Aug 2015 01:30:14 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:13 GMT
-- request:
-    method: delete
-    uri: https://s3.amazonaws.com/assetkeeper.test/:image/55c94ff8566f7972e0d80600/large.jpg
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - ''
-      Accept-Encoding:
-      - ''
-      User-Agent:
-      - aws-sdk-ruby/1.59.1 ruby/2.2.0 x86_64-linux
-      Date:
-      - Tue, 11 Aug 2015 01:30:13 GMT
-      Authorization:
-      - AWS AKIAJO7MSOWDRXU2IRYQ:sLNntSaYPeQcpM5qLroGm6u16rM=
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 204
-      message: No Content
-    headers:
-      X-Amz-Id-2:
-      - RxrUvn/ZAWZmOrePO/zWZoZ74T2NlKAehgoMLEGcT/c4qmbra5mv8f8VFZiP5XP6EUvgxJYCPfg=
-      X-Amz-Request-Id:
-      - 3D1CFB684C95B394
-      Date:
-      - Tue, 11 Aug 2015 01:30:15 GMT
-      Server:
-      - AmazonS3
-    body:
-      encoding: UTF-8
-      string: ''
-    http_version: 
-  recorded_at: Tue, 11 Aug 2015 01:30:14 GMT
+      - '40'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FzmMNgdyzX7ON
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "deleted": true,
+          "id": "BRONZE"
+        }
+    http_version: 
+  recorded_at: Fri, 30 Oct 2015 03:42:36 GMT
 recorded_with: VCR 2.9.3

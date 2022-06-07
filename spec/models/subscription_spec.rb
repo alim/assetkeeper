@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Subscription, :type => :model do
+describe Subscription, type: :model do
   include_context 'subscription_setup'
 
   let(:find_a_subscription) {
@@ -18,20 +18,20 @@ describe Subscription, :type => :model do
   after(:each) { Subscription.destroy_all }
 
   # METHOD CHECKS ------------------------------------------------------
-	describe "Should respond to all accessor methods" do
-		it { is_expected.to respond_to(:stripe_plan_id) }
-		it { is_expected.to respond_to(:cancel_at_period_end) }
-		it { is_expected.to respond_to(:quantity) }
-		it { is_expected.to respond_to(:sub_start) }
-		it { is_expected.to respond_to(:sub_end) }
-		it { is_expected.to respond_to(:status) }
-		it { is_expected.to respond_to(:canceled_at) }
-		it { is_expected.to respond_to(:current_period_start) }
-		it { is_expected.to respond_to(:current_period_end) }
-		it { is_expected.to respond_to(:trial_start) }
-		it { is_expected.to respond_to(:trial_end) }
-		it { is_expected.to respond_to(:user_id) }
-	end
+  describe "Should respond to all accessor methods" do
+    it { is_expected.to respond_to(:stripe_plan_id) }
+    it { is_expected.to respond_to(:cancel_at_period_end) }
+    it { is_expected.to respond_to(:quantity) }
+    it { is_expected.to respond_to(:sub_start) }
+    it { is_expected.to respond_to(:sub_end) }
+    it { is_expected.to respond_to(:status) }
+    it { is_expected.to respond_to(:canceled_at) }
+    it { is_expected.to respond_to(:current_period_start) }
+    it { is_expected.to respond_to(:current_period_end) }
+    it { is_expected.to respond_to(:trial_start) }
+    it { is_expected.to respond_to(:trial_end) }
+    it { is_expected.to respond_to(:user_id) }
+  end
 
   # VALIDATION TESTS ---------------------------------------------------
   describe "Validation tests" do
@@ -162,13 +162,13 @@ describe Subscription, :type => :model do
 
     # FIND SUBSCRIPTION AND CREATE CUSTOMER ---------------------------------
 
-    before(:each){
+    before do
       find_a_subscription
       stripe_customer
       create_stripe_coupon
       create_silver_plan
       create_bronze_plan
-    }
+    end
 
     # DELETE ALL USERS AND CUSTOMERS ---------------------------------
 

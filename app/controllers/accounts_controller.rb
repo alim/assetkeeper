@@ -1,8 +1,8 @@
-#######################################################################
+##########################################################################
 # The Accounts controller manages the users interaction associated
 # with setting up a payment account. The payment account information
 # is associated with the Stripe.com service.
-#######################################################################
+##########################################################################
 class AccountsController < ApplicationController
 
   respond_to :html
@@ -18,13 +18,13 @@ class AccountsController < ApplicationController
   authorize_resource
 
 
-  ######################################################################
+  #########################################################################
   # GET    /admin/users/:user_id/accounts/new(.:format)
   #
   # The new action will present a AJAX based form to user as part of
   # the User views. If there is an error it will redirect to the
   # admin_oops_url with a corresponding error message.
-  ######################################################################
+  #########################################################################
   def new
     begin
       @user.account = Account.new
@@ -36,12 +36,12 @@ class AccountsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # POST   /admin/users/:user_id/accounts(.:format)
   #
   # The create method will update the account settings with the
   # stripe.com customer_id and set the status of the account to ACTIVE
-  ######################################################################
+  #########################################################################
   def create
     @user.account = Account.new if @user.account.nil?
 
@@ -53,12 +53,12 @@ class AccountsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # GET    /admin/users/:user_id/accounts/:id/edit
   #
   # The edit action will present the user with a form for editing the
   # account record for credit card updates.
-  ######################################################################
+  #########################################################################
   def edit
     if @account.present?
       unless @account.get_customer
@@ -71,14 +71,14 @@ class AccountsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # PUT or PATCH  /admin/users/:user_id/accounts/:id(.:format)
   #
   # Updates an embedded account record for a user profile. The edit
   # view will direct the user to Stripe.com for entering their credit
   # card information. From there, they are redirected back to this action
   # for updatig the account record.
-  ######################################################################
+  #########################################################################
   def update
     if @account.present?
 
@@ -95,12 +95,12 @@ class AccountsController < ApplicationController
     end
   end
 
-  ######################################################################
+  #########################################################################
   # DELETE /admin/users/:user_id/accounts/:id(.:format)
   #
   # The destroy method will destroy the account record associated with
   # the user and destory the customer record on the stripe.com service.
-  ######################################################################
+  #########################################################################
   def destroy
     # Added the following check, because we could not CANCAN ability to
     # operate correctly.
@@ -149,9 +149,9 @@ class AccountsController < ApplicationController
     end
   end
 
-  #####################################################################
+  ########################################################################
   # A helper method for setting the account instance variable.
-  #####################################################################
+  ########################################################################
   def handle_account_errors(user, params)
     @verrors = user.account.errors.full_messages
     @account = user.account

@@ -1,10 +1,10 @@
-########################################################################
+###########################################################################
 # The Subscription model holds information about a subscription plan
 # that will be created on the Stripe.com service. The model includes
 # enhancements for timestamps and white space stripping. Eventually,
 # we would like to generalize this class via dependency injection to
 # support multiple payment providers.
-########################################################################
+###########################################################################
 class Subscription
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -69,10 +69,10 @@ class Subscription
 
   ## INSTANCE METHODS --------------------------------------------------
 
-  ######################################################################
+  #########################################################################
   # The plan_str returns a string that represents the name of the
   # subscription plan.
-  ######################################################################
+  #########################################################################
   def plan_str
     case self.stripe_plan_id
     when PLAN_OPTIONS[:bronze][:plan_id]
@@ -86,7 +86,7 @@ class Subscription
     end
   end
 
-  ##########################################################################
+  #############################################################################
   # The subscribe method creates or updates a Stripe subscription for a
   # given user. It then store some of the information in memory for that
   # user. The following parameters are passed to this method:
@@ -96,7 +96,7 @@ class Subscription
   # 3) Discount Coupon
   #
   # This method will return a subscription object.
-  ##########################################################################
+  #############################################################################
   def subscribe(account_user, plan_id, coupon_code)
 
     if account_user.customer_id.present?
@@ -125,7 +125,7 @@ class Subscription
     return self
   end
 
-  ##########################################################################
+  #############################################################################
   # The cancel_subscription method cancels a Stripe subscription for a
   # given user.  The following parameter are passed to this method:
   #
@@ -133,7 +133,7 @@ class Subscription
   #
   # This method will return a 'true' or 'false' indicating whether the
   # subscription was cancelled.
-  ##########################################################################
+  #############################################################################
   def cancel_subscription(account_user)
 
     subscription_cancelled = true
@@ -159,13 +159,13 @@ class Subscription
     return subscription_cancelled
   end
 
-  ##########################################################################
+  #############################################################################
   # The destroy method cancels a Stripe subscription for a given user and
   # then deletes the customer.
   #
   # This method will return a 'true' or 'false' indicating whether the
   # subscription was canceled and the customer was deleted.
-  ##########################################################################
+  #############################################################################
   def destroy
 
     removed_customer = true
@@ -189,10 +189,10 @@ class Subscription
     return removed_customer
   end
 
-  ##########################################################################
+  #############################################################################
   # The sub_create function creates a new subscription by calling the
   # subscribe function.
-  ##########################################################################
+  #############################################################################
   def sub_create(current_user, stripe_pl_id, coupon)
     current_user.subscription = self
     self.subscribe(current_user.account, stripe_pl_id, coupon)
@@ -201,10 +201,10 @@ class Subscription
   ## PROTECTED INSTANCE METHODS --------------------------------------------
   protected
 
-  ##########################################################################
+  #############################################################################
   # Utility method to dupate the subscription information from the Stripe
   # customer record.
-  ##########################################################################
+  #############################################################################
   def update_customer_subscription_info(customer, plan_id, coupon_code)
     customer_subscription = customer.update_subscription(
                               :plan => plan_id,
@@ -217,9 +217,9 @@ class Subscription
     self.trial_end = customer_subscription.trial_end
   end
 
-  #########################################################################
+  ############################################################################
   # Debug level logger
-  #########################################################################
+  ############################################################################
   def logger_debugger(errors, stripe_error, customer_id, description)
     logger.debug(description)
     errors[:customer_id] << stripe_error.message

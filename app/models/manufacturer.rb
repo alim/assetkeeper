@@ -1,4 +1,4 @@
-##############################################################################
+#################################################################################
 # The Manufacturer model class represents an example primary resource for the
 # service. This model could be substituted with any primary resource
 # that makes sense for your service. A primary resource is related to
@@ -7,7 +7,7 @@
 #
 # The concept of a primary resource allows you to grant group access to
 # the primary resource and any of its related resources.
-##############################################################################
+#################################################################################
 
 class Manufacturer
   include Mongoid::Document
@@ -47,9 +47,9 @@ class Manufacturer
 
   ## PUBLIC METHODS ---------------------------------------------------
 
-  #####################################################################
+  ########################################################################
   # Create a new manufacturer if the current user is Admin
-  #####################################################################
+  ########################################################################
   def self.create_with_user(manufacturer_params, user)
     if user.role == User::SERVICE_ADMIN
       manufacturer = Manufacturer.new(manufacturer_params)

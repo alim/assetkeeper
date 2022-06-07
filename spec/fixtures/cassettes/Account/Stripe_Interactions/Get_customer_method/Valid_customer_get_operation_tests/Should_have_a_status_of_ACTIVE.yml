@@ -1,0 +1,403 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/tokens
+    body:
+      encoding: US-ASCII
+      string: card[name]=Mickey%20Mouse&card[number]=4242424242424242&card[exp_month]=10&card[exp_year]=2018&card[cvc]=313
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '108'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 02:48:45 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '804'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FyudGxD3NxpLs
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "tok_7Fyudwnk0SPyOY",
+          "object": "token",
+          "card": {
+            "id": "card_7FyuWNKnjHHI3a",
+            "object": "card",
+            "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": null,
+            "dynamic_last4": null,
+            "exp_month": 10,
+            "exp_year": 2018,
+            "fingerprint": "K4rn7HQ6KbOupkia",
+            "funding": "credit",
+            "last4": "4242",
+            "metadata": {},
+            "name": "Mickey Mouse",
+            "tokenization_method": null,
+            "type": "Visa",
+            "customer": null
+          },
+          "client_ip": "96.35.101.2",
+          "created": 1446173325,
+          "livemode": false,
+          "type": "card",
+          "used": false
+        }
+    http_version: 
+  recorded_at: Fri, 30 Oct 2015 02:48:45 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: US-ASCII
+      string: description=Acme%20customer%20account.&card=tok_7Fyudwnk0SPyOY&email=andylim%40example.com
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+      Content-Length:
+      - '90'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 02:48:45 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2454'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FyuEQwX4zZo83
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_7FyufA7XjFoOD9",
+          "object": "customer",
+          "account_balance": 0,
+          "cards": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7FyuWNKnjHHI3a",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7FyufA7XjFoOD9",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2018,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Mickey Mouse",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7FyufA7XjFoOD9/cards"
+          },
+          "created": 1446173325,
+          "currency": null,
+          "default_card": "card_7FyuWNKnjHHI3a",
+          "default_source": "card_7FyuWNKnjHHI3a",
+          "delinquent": false,
+          "description": "Acme customer account.",
+          "discount": null,
+          "email": "andylim@example.com",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7FyuWNKnjHHI3a",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7FyufA7XjFoOD9",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2018,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Mickey Mouse",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7FyufA7XjFoOD9/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7FyufA7XjFoOD9/subscriptions"
+          },
+          "subscription": null
+        }
+    http_version: 
+  recorded_at: Fri, 30 Oct 2015 02:48:45 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/customers/cus_7FyufA7XjFoOD9
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.16.0
+      Authorization:
+      - Bearer <API_KEY>
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.16.0","lang":"ruby","lang_version":"2.2.0 p0 (2014-12-25)","platform":"x86_64-linux","publisher":"stripe","uname":"Linux
+        Voyager 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:09:58 UTC 2015 x86_64
+        x86_64 x86_64 GNU/Linux"}'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 Oct 2015 02:48:46 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2454'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_7FyurXxyOqCLe4
+      Stripe-Version:
+      - '2013-08-13'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_7FyufA7XjFoOD9",
+          "object": "customer",
+          "account_balance": 0,
+          "cards": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7FyuWNKnjHHI3a",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7FyufA7XjFoOD9",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2018,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Mickey Mouse",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7FyufA7XjFoOD9/cards"
+          },
+          "created": 1446173325,
+          "currency": null,
+          "default_card": "card_7FyuWNKnjHHI3a",
+          "default_source": "card_7FyuWNKnjHHI3a",
+          "delinquent": false,
+          "description": "Acme customer account.",
+          "discount": null,
+          "email": "andylim@example.com",
+          "livemode": false,
+          "metadata": {},
+          "shipping": null,
+          "sources": {
+            "object": "list",
+            "count": 1,
+            "data": [
+              {
+                "id": "card_7FyuWNKnjHHI3a",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_zip_check": null,
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_7FyufA7XjFoOD9",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 10,
+                "exp_year": 2018,
+                "fingerprint": "K4rn7HQ6KbOupkia",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": "Mickey Mouse",
+                "tokenization_method": null,
+                "type": "Visa"
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_7FyufA7XjFoOD9/sources"
+          },
+          "subscriptions": {
+            "object": "list",
+            "count": 0,
+            "data": [],
+            "has_more": false,
+            "total_count": 0,
+            "url": "/v1/customers/cus_7FyufA7XjFoOD9/subscriptions"
+          },
+          "subscription": null
+        }
+    http_version: 
+  recorded_at: Fri, 30 Oct 2015 02:48:46 GMT
+recorded_with: VCR 2.9.3

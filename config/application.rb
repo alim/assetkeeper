@@ -15,6 +15,10 @@ Bundler.require(*Rails.groups)
 
 module AssetKeeper
   class Application < Rails::Application
+    # Mongoid.logger.level = Logger::WARN
+    # Moped.logger.level = Logger::WARN
+    Paperclip.options[:log] = false
+
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
 
